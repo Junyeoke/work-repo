@@ -1,0 +1,86 @@
+/* 주문 양식 css */
+/* 여백 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 목록 점 없애기 */
+ul {
+  list-style-type: none;
+}
+
+legend {
+  /* 1em(rem) = 16px (반응형 웹 디자인) */
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* 외곽선 */
+fieldset {
+  border: 1px solid lightgrey;
+  /* 바깥여백 아래쪽 */
+  margin-bottom: 35px;
+  /* 안쪽여백 축약형 상 우 하 좌(시계방향) */
+  padding: 30px 20px 30px 30px;
+}
+
+form {
+  /* 가로 */
+  width: 520px;
+  /* 세로 : 안에 컨텐츠 내용물만큼 자옫 증가(자식 요소만큼 자동증가) */
+  height: auto;
+  /* 안쪽여백 - 왼쪽 */
+  padding-left: 10px;
+  /* TODO : 중앙정렬 <div> 등... */
+  /* 바깥여백 : 상/하 좌/우 */
+  /* 사용법 : margin : 숫자px auto; */
+  margin: 50px auto;
+}
+
+/* 라벨 */
+.field {
+    /* 가로크기 */
+    width: 60px;
+    /* 바깥여백 - 오른쪽 */
+    margin-right: 15px;
+    /* 가로배치 */
+    display: inline-block;
+    /* 글자 크기 : 세로 크기 */
+    font-size: 0.9em;
+    /* 굵은 글씨 */
+    font-weight: bold;
+    /* 글자 오른쪽 정렬 */
+    text-align: right;
+}
+
+/* 입력양식 */
+.input-box {
+    /* 가로배치 */
+    display: inline-block;
+    /* 가로크기 */
+    width: 350px;
+    /* 세로크기 */
+    height: 35px;
+    /* 안쪽여백 */
+    padding: 5px;
+    /* 바깥여백(축약식2) */
+    margin: 10px 0;
+}
+
+/* 제출버튼 */
+.order {
+    /* 가로 */
+    width: 100%;
+    /* 외곽선 */
+    border: 1px solid#aaaaaa;
+    /* 배경색 */
+    background-color: #e9e9e9;
+    /* 글자크기 */
+    font-size: 1em;
+    /* 굵은글씨 */
+    font-weight: bold;
+    /* 안쪽여백 */
+    padding: 20px;
+}

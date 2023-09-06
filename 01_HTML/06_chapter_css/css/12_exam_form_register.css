@@ -1,0 +1,57 @@
+/* 디자인시 전체크기를 확인! */
+#container {
+  /* 가로 */
+  width: 600px;
+  /* 중앙 정렬 */
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* 라벨디자인 */
+.field {
+  /* 가로크기 */
+  width: 60px;
+  /* 바깥여백 - 오른쪽 */
+  margin-right: 15px;
+  /* 가로배치 */
+  display: inline-block;
+  /* 글자 크기 : 세로 크기 */
+  font-size: 0.9em;
+  /* 굵은 글씨 */
+  font-weight: bold;
+  /* 글자 오른쪽 정렬 */
+  text-align: right;
+}
+/* 입력양식 */
+.input-box {
+  /* 가로배치 */
+  display: inline-block;
+  /* 가로크기 */
+  width: 350px;
+  /* 세로크기 */
+  height: 35px;
+  /* 안쪽여백 */
+  padding: 5px;
+  /* 바깥여백(축약식2) */
+  margin: 10px 0;
+}
+/* 버튼 */
+/* 자식 선택자사용 */
+#buttons > li {
+  display: inline-block;
+}
+
+button {
+  /* 가로 */
+  width: 250px;
+  /* 세로 */
+  height: 50px;
+  /* 외곽선 */
+  border: 1px solid white;
+  /* 글자크기 */
+  font-size: 0.9em;
+  margin-right: 10px;
+}

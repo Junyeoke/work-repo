@@ -1,0 +1,12 @@
+fieldset {
+  width: 30vw;
+  /* 중앙정렬 */
+  margin: 0 auto;
+}
+
+label, input {
+    /* 라벨/이미지 모두 세로 중앙 */
+    vertical-align: middle;
+}
+
+

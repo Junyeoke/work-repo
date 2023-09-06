@@ -1,0 +1,18 @@
+/* 문제풀이 */
+
+ul{
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    background-color: #f5f7e4;
+    width: 640px;
+    padding: 30px;
+    
+}
+li{
+    /* display : 가로배치 */
+    display: inline-block;
+    /* 앞에 점 없애기 */
+    list-style-type: none;
+    margin-left: 20px;
+    
+}

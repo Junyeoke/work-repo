@@ -1,0 +1,54 @@
+/* 문제풀이 */
+/* 본문 영역 */
+.contents {
+  width: 1000px;
+  margin: 50px auto;
+}
+
+/* section 별 위쪽 여백 */
+main > section {
+  margin-top: 30px;
+}
+
+/* 본문 - 글 */
+.detail p {
+  color: #222;
+  margin-bottom: 30px;
+}
+
+/* 본문 - 이미지 */
+.detail > img {
+  float: left;
+  margin-right: 50px;
+  border-radius: 10px;
+}
+
+/* 여백들 추가 */
+/* 본문 제목 */
+main h2 {
+  /* 바깥여백 아래 */
+  margin-bottom: 40px;
+  font-size: 1.5em;
+}
+
+/* 이미지(왼쪽) + 상세설명(글) */
+main div {
+  /* 바깥여백 - 위 */
+  margin-top: 20px;
+}
+
+/* main : 소제목 */
+main h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* main - 상세일정 */
+.schedule h3 {
+    font-size: 1.2em;
+}
+
+/* main - 상세일정(li) */
+.schedule ul li {
+    margin-bottom: 20px;
+}

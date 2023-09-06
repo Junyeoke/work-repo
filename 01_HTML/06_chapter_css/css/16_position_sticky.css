@@ -1,0 +1,9 @@
+/* position : sticky(고정) */
+.top-bar{
+    height: 50px;
+    background-color: blue;
+    /* 고정, 좌표 설정가능(left/top/right/bottom) */
+    position: sticky;
+    /* 위쪽 */
+    top: 0; 
+}

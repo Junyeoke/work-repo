@@ -1,0 +1,24 @@
+/* 문제 풀이 */
+
+h3{
+    border-left: 5px solid blue;
+    margin: 20px;
+    padding-left: 10px;
+}
+p{
+    margin-left: 30px;
+    margin-bottom: 10px;
+  
+}
+ul{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-left: 45px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    
+}
+li{
+    padding-top: 10px;
+    margin-left: 20px;
+}

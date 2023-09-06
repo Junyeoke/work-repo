@@ -1,0 +1,23 @@
+h2{
+    color: black;
+    /* 글자크기 */
+    font-size: 25px;
+}
+
+li{
+    /* ./ 현재경로 */
+    /* ../ 상위경로 */
+    /* 이미지 가져오기 함수 : url(이미지경로) */
+    list-style-image: url(../img/arrow.gif);
+}
+
+span{
+    /* 굵은 글씨 */
+    font-weight: bold;
+}
+
+p{
+    color: green;
+    /* 밑줄 */
+    text-decoration: underline;
+}

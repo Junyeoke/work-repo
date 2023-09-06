@@ -1,0 +1,38 @@
+/* footer 영역 */
+
+footer {
+  /* 가로 */
+  width: 1200px;
+  /* 세로 */
+  height: 1000px;
+  /* 외곽선 - 위 */
+  border-top: 2px solid #222;
+  /* 바깥여백 - 위 */
+  margin-top: 50px;
+}
+
+#bottomMenu {
+  height: 50px;
+}
+
+/* 꼬리말 : li 세로>가로배치 */
+#bottomMenu ul li {
+  display: inline-block;
+  /* 안쪽여백 */
+  padding: 5px 20px;
+  border-right: 1px solid #ddd;
+}
+
+#bottomMenu ul {
+  /* 바깥여백 위 */
+  margin-top: 15px;
+  /* 바깥여백 - 왼쪽 */
+  margin-left: 60px;
+}
+
+/* 꼬리말 a 태그 */
+
+#bottomMenu ul li a{
+    font-size: 15px;
+    color: #666;
+}

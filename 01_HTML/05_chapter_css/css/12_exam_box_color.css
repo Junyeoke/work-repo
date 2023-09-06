@@ -1,0 +1,13 @@
+body{
+    background-color: yellow;
+}
+#button{
+    color: white;
+    background-color: blue;
+    width: 120px;
+    height: 25px;
+    padding: 8px;
+    /* 글자중앙정렬 */
+    /* text-align: center; */
+    text-align: center;
+}

@@ -1,0 +1,62 @@
+/* 여백초기화 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* 리스트 점 없애기 */
+li {
+  list-style-type: none;
+}
+
+/* 로고수정 */
+#logo {
+  /* 왼쪽배치 */
+  float: left;
+  /* 바깥여백 */
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  /* 외곽선 */
+  border: 1px solid red;
+}
+
+/* 소메뉴 수정 */
+#top {
+  /* 오른쪽 배치 */
+  float: right;
+  /* 바깥여백 */
+  margin-top: 30px;
+  margin-right: 20px;
+  /* 외곽선 */
+  border: 1px solid red;
+}
+
+#menu li {
+    /* 대메뉴 가로배치 */
+  display: inline-block;
+
+}
+
+#menu {
+  /* 배경색 */
+  background-color: #443e58;
+  /* 높이 */
+  height: 40px;
+  /* 폰트사이즈 */
+  font-size: 20px;
+  /* 안쪽여백 */
+  padding-top: 15px;
+  /* 글자 중앙정렬 */
+  text-align: center;
+  /* float 영향 제거 */
+  clear: both;
+  /* 폰트색상 */
+  color: white;
+}
+
+/* 대메뉴 간격조정 */
+.item{
+    margin-right: 30px;
+    margin-left: 30px;
+}

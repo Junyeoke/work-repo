@@ -1,0 +1,92 @@
+/* 구글 웹폰트 import(외부 css 파일 가져오기) */
+@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap");
+
+/* 여백초기화 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* 전체 페이지 디자인 */
+
+#container {
+  /* 가로 */
+  width: 1200px;
+  /* 중앙정렬 */
+  margin: 0 auto;
+}
+
+/* ***************************************************** */
+/* header : 로고와 내비게이션                             */
+/* ***************************************************** */
+header {
+  /* 가로 */
+  width: 100%;
+  /* 세로 */
+  height: 100px;
+  /* 배경색 */
+  background-color: #045;
+}
+
+/* 로고 디자인(왼쪽정렬) */
+
+#logo {
+  float: left;
+  padding-left: 20px;
+  width: 250px;
+  height: 100px;
+  /* 글자 세로 중앙정렬 height == line-height */
+  line-height: 100px;
+}
+
+#logo h1 {
+  /* 구글 웹폰트 적용 */
+  font-family: "Merienda", cursive;
+  /* 글자크기 */
+  font-size: 40px;
+  color: white;
+  font-family: 600;
+}
+
+/* 내비게이션(오른쪽) */
+nav {
+  float: right;
+  width: 900px;
+  height: 100px;
+  /* 메뉴를 아래로 내리기 위해 안쪽여백 추가 */
+  padding-top: 40px;
+}
+
+/* ul(#topMenu) > li : 세로 -> 가로배치 */
+
+#topMenu > li {
+  /* 가로배치 */
+  display: inline-block;
+}
+
+#topMenu > li > a {
+  /* 글자크기 */
+  font-size: 1.1em;
+  color: white;
+  /* 글자 굵기 */
+  font-weight: 600;
+  /* 안쪽여백 */
+  /* 축약형 : 상하/좌우 */
+  padding: 20px 60px;
+}
+
+/* 마우스가 위로 올라갔을때 디자인 */
+#topMenu > li > a:hover {
+  color: skyblue;
+}
+
+

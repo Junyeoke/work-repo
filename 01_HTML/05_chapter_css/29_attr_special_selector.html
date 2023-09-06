@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>속성 선택자 - 특수 선택자(부분 문자열로 포함되는 것)</title>
+    <style>
+      /* 부분 문자열이 포함되는 태그(요소)를 선택 */
+      /* 처음/중간/마지막 전부 모두 선택 됨 */
+      /* 코딩 : *(문자열의 끝을 의미) */
+      img[alt*="an"] {
+        border: 5px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 빈 이미지(더미 이미지)를 인터넷에서 가져오는 링크 소개 -->
+    <!-- css에서 표준명명법 : 단어와 단어사이는 -(마이너스, 대쉬)를 붙인다. -->
+    <img src="http://placehold.it/300x200" alt="white-blank" />
+    <img src="http://placehold.it/300x200" alt="blank b1" />
+    <img src="http://placehold.it/300x200" alt="blank b2" />
+  </body>
+</html>
+

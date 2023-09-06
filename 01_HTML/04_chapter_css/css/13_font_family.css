@@ -1,0 +1,30 @@
+.font_arial{
+    /*  폰트 스타일 : pc에 폰트가 있어야 화면에 적용됨  */
+    /*  font-family : 스타일1, 스타일2, 스타일3  */
+    /*  스타일 1 이 있으면 스타일 1이 적용됨 
+        없으면 스타일 2이 적용,
+        없으면 스타일 3이 적용
+    */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font_roman{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.font_italic{
+    /* 이텔릭체 */
+    font-style: italic;
+    /* 굵은 글씨 bold, bolder(더굵게)*/
+    font-weight: bolder;
+    /* 글자 중앙 정렬 : 이미지는 등은 안됨, 오직 글자만 가능 */
+    /* 중앙 정렬 */
+    text-align: center;
+
+    /* 왼쪽 정렬 */
+    /* text-align: left; */
+    
+    /* 오른쪽 정렬 */
+    /* text-align: right; */
+
+}

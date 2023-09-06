@@ -1,0 +1,26 @@
+li {
+    list-style-type: none;
+}
+
+#v_menu{
+    width: 150px;
+}
+
+#v_menu li{
+    border-bottom: 1px dotted black;
+    padding: 5px;
+    
+}
+
+/* 가로 메뉴 디자인 */
+/* 후손선택자 */
+#h_menu li{
+    display: inline-block;
+  
+}
+
+.menus{
+   margin-left: 20px;
+   margin-right: 20px;
+    color: green;
+}

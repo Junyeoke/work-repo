@@ -1,0 +1,9 @@
+h3{
+    /* 외곽선 */
+    /* border : 선두께 선스타일 선색상 */
+    border: 5px solid #e1285a;
+    /* 안쪽 여백 */
+    padding : 10px;
+    /* 가로크기 : 고정크기(px) */
+    width: 400px;
+}

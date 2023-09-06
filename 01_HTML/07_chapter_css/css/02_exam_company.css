@@ -1,0 +1,116 @@
+/* 여백초기화 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* 목록 점 없애기 */
+
+li {
+  list-style-type: none;
+}
+
+.clear {
+  clear: both;
+}
+/* 전체 페이지 디자인 */
+
+#page {
+  width: 995px;
+  /* 중앙정렬 */
+  margin: 0 auto;
+
+}
+
+/* 머리말 디자인 */
+header {
+  width: 995px;
+  height: 100px;
+  /* 외곽선 아래 */
+  border-bottom: 1px solid #cccccc;
+ 
+}
+
+/* 로고디자인 : 왼쪽배치 */
+
+#logo {
+  float: left;
+}
+
+/* 소메뉴 : 오른쪽 배치 */
+#top {
+  float: right;
+  /* 바깥여백 위 */
+  margin-top: 30px;
+  
+}
+/* 더미 div : float 영향 제거용 */
+.clear {
+  /* float 영향제거 */
+  clear: both;
+}
+
+/* 대메뉴(이미지들) 세로 -> 가로배치 변경 */
+nav {
+  width: 995px;
+  height: 70px;
+  margin-top: 10px;
+
+}
+
+/* 세로 -> 가로 배치 : display(inline-block), float:left */
+nav li {
+  /* inline-block : 가로로 배치하되 크기가 모자라면 줄바꿈이됨 */
+  display: inline-block;
+  width: 150px;
+}
+
+/* 좌측 본문 */
+
+section {
+  /* 왼쪽배치 */
+  float: left;
+  /* 가로 */
+  width: 600px;
+ 
+}
+
+/* 사이드바 우측배치 */
+aside {
+  /* 우측배치 */
+  float: right;
+  width: 370px;
+
+}
+
+/* 꼬리말 */
+
+footer {
+  width: 995px;
+  height: 100px;
+  /* 외곽선 : 위 */
+  border-top: 1px solid #cccccc;
+  /* 바깥여백 위쪽 */
+  margin-top: 20px;
+}
+
+/* 꼬리말 아래에 있는 주소 */
+#address {
+  /* 왼쪽배치 */
+  float: left;
+  /* 바깥여백 왼쪽, 위 */
+  margin-left: 50px;
+  margin-top: 30px;
+  
+}
+
+/* 꼬리말 아래에 있는 고객센터 */
+
+#customer {
+  /* 오른쪽 배치 */
+  float: right;
+  /* 바깥여백 위 */
+  margin-left: 60px;
+  margin-top: 20px;
+  margin-right: 70px;
+}

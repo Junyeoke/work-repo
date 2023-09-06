@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 자바스크립트에서의 클래스(참고) -->
+    <script>
+        // 클래스 정의
+        class Square {
+            // 생성자
+            constructor(length) {
+                this.length = length; // 멤버변수
+            }
+            // 함수(메소드)
+            getPerimeter() {
+                return 4 * this.length; // 정사각형 둘레 구하기 공식
+            }
+            getArea() {
+                return this.length * this.length; // 정사각형 넓이 구하기 공식
+            }
+        }
+
+        // 클래스 사용
+        // let 변수명 = new 생성자함수(값);
+        let square = new Square(-10);
+        console.log("getPerimeter()",square.getPerimeter());
+        console.log("getSquare()", square.getArea());
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+li {
+  list-style-type: none;
+}
+
+/* 수목원로고 : 왼쪽 정렬 */
+#logo {
+  float: left;
+}
+
+/* 메뉴 : 오른쪽 정렬 */
+#menu {
+  float: right;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* 메뉴 가로배치 */
+#menu li {
+  display: inline-block;
+}
+
+/* 본문 이미지 : float 효과 제거 */
+#main_image {
+  padding-top: 20px;
+  /* TODO : float 효과 제거 속성 */
+  clear: both;
+}
+

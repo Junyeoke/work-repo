@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상 선택자(같은 태그 중 마지막 태그를 선택)</title>
+    <style>
+      /* 가상선택자(같은 태그 중 마지막 태그를 선택) */
+      /* last-of-type : 태그 중 마지막 태그 선택 */
+      img:last-of-type {
+        border: 5px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 빈 이미지(더미 이미지)를 인터넷에서 가져오는 링크 소개 -->
+    <!-- css에서 표준명명법 : 단어와 단어사이는 -(마이너스, 대쉬)를 붙인다. -->
+    <img src="http://placehold.it/300x200" alt="white-blank" />
+    <img src="http://placehold.it/300x200" alt="blank b1" />
+    <img src="http://placehold.it/300x200" alt="blank b2" />
+  </body>
+</html>
+

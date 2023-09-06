@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 열병합사용법 : <td colspan="병합할개수"></td> -->
+    <table>
+      <tr>
+        <td colspan="2"><p>글쓰기 게시판</p></td>
+      </tr>
+      <tr>
+        <td><label for="">제목</label></td>
+        <td><input type="text" name="name" value="" /></td>
+      </tr>
+      <tr>
+        <td><label for="">내용</label></td>
+        <td><textarea cols="30" rows="10"></textarea></td>
+      </tr>
+      <tr>
+        <td><label for="">파일첨부</label></td>
+        <td><input type="file" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><label for="">5M 이하의 파일만 첨부 가능합니다.</label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button>확인</button></td>
+        <!-- 2번째 방법 : 버튼 -->
+        <!-- <button>확인</button> -->
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+body {
+  /* 글자색 */
+  color: #444444;
+}
+/* 나의 일정 */
+h3 {
+  /* 왼쪽 외곽선 */
+  border-left: 5px solid green;
+  /* 안쪽 여백 왼쪽 */
+  padding-left: 10px;
+}
+/* 날짜 */
+div {
+  width: 610px;
+  /* 오른쪽 정렬 */
+  text-align: right;
+  margin-bottom: 10px;
+}
+/* 표 */
+/* 공통속성 :
+    선택자, 선택자2 ...{} */
+table,
+td {
+  border: 1px solid #aaaaaa;
+}
+table {
+  /* 테이블 선사이 간격 붙이기 속성 */
+  border-collapse: collapse;
+  /* 가로크기 */
+  width: 610px;
+  font-size: 12px;
+  /* 바깥여백 -위 */
+  margin-top: 15px;
+}
+
+tr {
+  border: 1px solid #aaaaaa;
+  height: 60px;
+}
+
+td{
+    width: 76px;
+    padding: 5px;
+}

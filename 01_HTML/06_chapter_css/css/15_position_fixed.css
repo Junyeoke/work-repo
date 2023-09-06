@@ -1,0 +1,23 @@
+/* fixed(메뉴 고정으로 많이 사용) */
+/* 주의 : 고정되면 아래 태그가 위로 말려올라옴 */
+/* 메뉴 */
+.top-bar{
+    height: 50px;
+    background-color: red;
+    /* 고정(fixed), 좌표 사용가능(left/top/right.bottom) */
+    position: fixed;
+    /* 왼쪽(x) */
+    left: 0;
+    /* 위쪽(y) */
+    top: 0;
+    /* 오른쪽(-x) */
+    right: 0px;
+}
+
+/* 본문 */
+.container{
+    /* 바깥여백-위 */
+    /* 메뉴박스의 크기만큼 여백을 준다. 박스와 겹침 방지 */
+    margin-top: 50px;
+
+}
