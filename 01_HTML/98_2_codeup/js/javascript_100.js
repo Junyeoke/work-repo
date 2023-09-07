@@ -1514,10 +1514,15 @@ console.log(
 // }console.log(day);
 
 // TODO 1093
-let n, i, t;
-let a = new Array(24);
+// 10
+
+// 1 3 2 2 5 6 7 4 5 9
 
 
-// TODO 1094
+let num = +prompt();
+let arr = new Array(24);
 
-// TODO 1095
+for(let i = 0; i < 24; i++){
+  arr[i] = 0;
+  console.log(arr[i]);
+}

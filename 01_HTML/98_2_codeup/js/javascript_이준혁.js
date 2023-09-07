@@ -397,7 +397,7 @@
 // CRASH
 
 // let carHeight = 170;
-// let t_hight = prompt("터널의 높이를 입력해주세요").split(" ");
+// let t_hight = prompt("터널의 높이를 입력해주세요", "170 168 175").split(" ");
 // let array = +t_hight;
 // for(let i = 0; i < t_hight.length; i++){
 //     if(carHeight >= t_hight[i]){
@@ -439,7 +439,7 @@
 // } else {
 //     score += 1;
 //     if(time >= 5){
-//         time += (time - 1) / 5;
+//         score += (time - 1) / 5;
 //     }
 //     console.log(score);
 // }
@@ -448,7 +448,9 @@
 //     score++;
 //     time += 5;
 // }
-// console.log(score);
+
+
+
 
 // TODO 1166
 // 문제 설명
