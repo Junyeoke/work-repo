@@ -115,6 +115,69 @@ WHERE COMMISSION NOT IN (300, 500, 1400);
 SELECT * FROM EMPLOYEE
 WHERE ENAME LIKE 'F%';
 
+-- 연습 4) 이름에 'M'이 포함되어 있는 사원 조회하기
+SELECT * FROM EMPLOYEE
+WHERE ENAME LIKE '%M%';
+
+-- 연습 5) 이름이 'N'으로 끝나는 사원 조회하기
+SELECT * FROM EMPLOYEE
+WHERE ENAME LIKE '%N';
+
+-- 예제 13) 이름의 두번 째 글자가 'A'인 사원 조회하기
+-- LIKE기호 : %(키워드를 제외한 어떤 문자열을 의미)
+--         : _(키워드를 제외한 어떤 한 문자를 의미)
+SELECT * FROM EMPLOYEE
+WHERE ENAME LIKE '_A%';
+
+-- 연습 6) 이름의 세번 째 글자가 'A'인 사원 조회하기
+SELECT * FROM EMPLOYEE
+WHERE ENAME LIKE '__A%';
+
+-- 예제 14)IN, BETWEEN 의 반대를 나타낼 때 NOT 앞에 붙여서 사용했음
+-- LIKE의 반대를 나타낼 때 똑같이 사용할 수 있음 : NOT LIKE
+-- 이름에 A가 포함되지 않는 사람을 조회하세요
+SELECT * FROM EMPLOYEE
+WHERE ENAME NOT LIKE '%A%';
+
+-- 6) NULL 검색(조회)
+-- 예제 15) 상여금(COMMISSION)이 NULL 인 사원을 조회하세요
+-- NULL의 특징 : 연산/비교 모든 것이 안됨 -> 결과는 NULL
+-- 예약어 : NULL 조회시 : WHERE 컬럼명 IS NULL;
+SELECT * FROM EMPLOYEE
+WHERE COMMISSION IS NULL;
+
+-- IN과 BETWEEN, LIKE의 반대는 앞에 NOT
+-- IS NOT NULL이 존재함
+SELECT * FROM EMPLOYEE
+WHERE COMMISSION IS NOT NULL;
+
+-- 7) ORDER BY : 정렬 기능
+-- 예제 16) 사원 테이블을 오름차순으로 정렬하세요
+-- 사용법 ) SELECT 컬럼명 FROM 테이블명
+--         ORDER BY 정렬대상컬럼 ASC/DESC;
+-- 참고) 이 기능을 사용하면 성능이 대폭 저하
+SELECT * FROM EMPLOYEE
+ORDER BY SALARY ASC; -- ASC(오름차순, 생략가능)
+
+-- 내림차순으로 정렬
+SELECT * FROM EMPLOYEE
+ORDER BY SALARY DESC; -- DESC(내림차순, 생략불가)
+
+-- 연습7) 사원 테이블에서 사원명으로 오름차순 정렬
+SELECT * FROM EMPLOYEE
+ORDER BY ENAME;
+
+-- 연습8) 입사일 데이터로 내림차순 정렬
+SELECT * FROM EMPLOYEE
+ORDER BY HIREDATE DESC;
+
+-- 연습9) 사원테이블에서 급여는 내림차순으로 정렬하고, 사원명은 오름차순으로 정렬
+SELECT * FROM EMPLOYEE
+ORDER BY SALARY DESC, ENAME ASC;
+
+
+
+
 
 
 
