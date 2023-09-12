@@ -17,10 +17,10 @@ function App() {
       {/* <B_SingUp_Exam /> */}
       {/* <C_Object_SignUp /> */}
       {/* <D_SpreadOperator /> */}
-      {/* <E_Object_SignUp_Exam /> */}
+      <E_Object_SignUp_Exam />
       {/* <F_Calculator /> */}
       {/* <G_Object_Calulator /> */}
-      <H_ProfileCard />
+      {/* <H_ProfileCard /> */}
     </div>
   );
 }

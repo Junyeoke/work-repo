@@ -1,0 +1,81 @@
+-- 07_Subquery_Exam
+
+-- 1) (사원번호가(ENO) 7788인 사원)과 
+--   담당 업무가(JOB) 같은 사원을(사원이름(ENAME),담당업무(JOB)) 표시하세요.
+-- 대상 : EMPLOYEE
+SELECT JOB
+FROM EMPLOYEE
+WHERE ENO = 7788;
+
+SELECT ENAME, JOB
+FROM EMPLOYEE
+WHERE JOB = (SELECT JOB
+FROM EMPLOYEE
+WHERE ENO = 7788);
+
+-- 2) (사원번호가(ENO) 7499인 사원)보다 
+--   급여가(SALARY) 많은 사원을(사원이름(ENAME),담당업무(JOB)) 표시하세요. 
+-- 대상 : EMPLOYEE
+SELECT SALARY
+FROM EMPLOYEE
+WHERE ENO = 7499;
+
+SELECT ENAME, JOB
+FROM EMPLOYEE
+WHERE SALARY > (SELECT SALARY
+FROM EMPLOYEE
+WHERE ENO = 7499);
+
+-- 3) (최소(MIN) 급여를(SALARY) 받는 사원)의 이름,(ENAME) 
+--    담당 업무(JOB) 및 급여(SALARY)를 표시하세요.
+-- 대상 : EMPLOYEE
+SELECT MIN(SALARY)
+FROM EMPLOYEE;
+
+SELECT ENAME, JOB, SALARY
+FROM EMPLOYEE
+WHERE SALARY = (SELECT MIN(SALARY)
+FROM EMPLOYEE);
+
+-- 4) 평균 급여가(SALARY) 가장 적은(MIN) 사원의 담당 업무(JOB)를 찾아 
+--    직급과(JOB) 평균(AVG) 급여를(SALARY) 표시하세요.
+--  (설명) == (담당 업무별 평균 급여가 가장 적은) 사람을 찾아 
+--    직급과 평균 급여를 표시하세요.
+-- 단, 소수점 나오면 반올림하기(첫째자리에서)
+-- 4-1) 담당 업무별 평균 급여가 가장 적은 사람
+SELECT MIN(ROUND(AVG(SALARY), 1))
+FROM EMPLOYEE
+GROUP BY JOB;
+
+-- 4-2) 그 사람의 직급과 평균급여 화면에 출력 : 그 사람의 직급별 평균급여를 화면에 출력
+SELECT JOB, ROUND(AVG(SALARY), 1)
+FROM EMPLOYEE
+GROUP BY JOB
+HAVING ROUND(AVG(SALARY), 1) IN (SELECT MIN(ROUND(AVG(SALARY), 1))
+FROM EMPLOYEE
+GROUP BY JOB);
+
+-- 5) (각 부서의 최소(MIN) 급여(SALARY))를 받는 
+--   사원의 이름(ENAME), 급여(SALARY), 부서번호(DNO)를 표시하세요.
+-- 다중행 서브쿼리
+
+SELECT MIN(SALARY)
+FROM EMPLOYEE
+GROUP BY DNO;
+
+SELECT ENAME, SALARY, DNO
+FROM EMPLOYEE
+WHERE SALARY IN (SELECT MIN(SALARY)
+FROM EMPLOYEE
+GROUP BY DNO);
+
+-- 6) 매니저가(MANAGER) 없는 사원의 이름을(ENAME) 표시하세요.
+SELECT ENO
+FROM EMPLOYEE
+WHERE MANAGER IS NULL;
+
+SELECT ENAME
+FROM EMPLOYEE
+WHERE ENO = (SELECT ENO
+FROM EMPLOYEE
+WHERE MANAGER IS NULL);
