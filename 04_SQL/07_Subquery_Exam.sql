@@ -79,3 +79,157 @@ FROM EMPLOYEE
 WHERE ENO = (SELECT ENO
 FROM EMPLOYEE
 WHERE MANAGER IS NULL);
+
+-- 7) 매니저가(MANAGER) 있는 사원의(조건 1개) 이름을(ENAME) 표시하세요. (조건2)
+-- 단, 서브쿼리를 이용하세요
+-- 사원테이블 : EMPLOYEE
+
+SELECT ENO FROM EMPLOYEE
+WHERE MANAGER IS NOT NULL; -- 여러건이 나옴 // IN 사용
+
+SELECT ENAME
+FROM EMPLOYEE
+WHERE ENO IN (SELECT ENO
+FROM EMPLOYEE
+WHERE MANAGER IS NOT NULL);
+
+-- 8) (BLAKE와 동일한 부서(DNO))에 속한 사원의 이름과(ENAME) 
+--    입사일을(HIREDATE) 표시하는 질의를 작성하세요.
+-- 단, BLAKE는 제외
+-- 사원테이블 : EMPLOYEE
+
+SELECT DNO
+FROM EMPLOYEE
+WHERE ENAME = 'BLAKE';
+
+SELECT ENAME, HIREDATE
+FROM EMPLOYEE
+WHERE DNO = (SELECT DNO
+FROM EMPLOYEE
+WHERE ENAME = 'BLAKE')
+AND ENAME <> 'BLAKE';
+
+-- 9) 급여가(SALARY) (평균(AVG) 급여(SALARY))보다 많은 사원들의 
+--    사원번호와(ENO) 
+--    이름을(ENAME) 표시하되 결과를 급여(SALARY)에 대해서
+--    오름차순으로 정렬하세요.
+-- 사원테이블 : EMPLOYEE
+
+SELECT AVG(SALARY)
+FROM EMPLOYEE;
+
+SELECT ENO, ENAME FROM EMPLOYEE
+WHERE SALARY > (SELECT AVG(SALARY)
+FROM EMPLOYEE)
+ORDER BY SALARY;
+
+-- 10) (이름에(ENAME) K가 포함된 사원)과 같은 부서에서(DNO) 일하는 사원의 
+--   사원번호와(ENO) 이름을(ENAME) 표시하는 
+-- 질의를 작성하세요.
+-- 사원테이블 : EMPLOYEE
+SELECT DNO FROM EMPLOYEE
+WHERE ENAME LIKE '%K%';
+
+SELECT ENO, ENAME FROM EMPLOYEE
+WHERE DNO IN (SELECT DNO FROM EMPLOYEE
+WHERE ENAME LIKE '%K%');
+
+-- 11) (부서 위치가(LOC) DALLAS인) 사원의 이름과(ENAME) 
+--    부서번호(DNO) 및 담당 업무를(JOB) 표시하세요.
+-- 단, 서브쿼리를 이용하세요
+-- 힌트 : 서브쿼리
+
+SELECT DNO FROM DEPARTMENT
+WHERE LOC = 'DALLAS';
+
+SELECT ENAME, DNO, JOB
+FROM EMPLOYEE
+WHERE DNO = (SELECT DNO FROM DEPARTMENT
+WHERE LOC = 'DALLAS');
+
+-- 12) (KING에게) 보고하는 사원의 이름과(ENAME) 급여를(SALARY) 표시하세요.
+-- 힌트 : 보고하는 사원의 매니저가(MANAGER) KING 임(7839)
+-- 사원테이블 : EMPLOYEE
+
+SELECT ENO FROM EMPLOYEE
+WHERE ENAME = 'KING';
+
+SELECT ENAME, SALARY FROM EMPLOYEE
+WHERE MANAGER = (SELECT ENO FROM EMPLOYEE
+WHERE ENAME = 'KING');
+
+
+-- 13) (RESEARCH 부서(DNO))의 사원에 대한 부서번호(DNO), 
+--   사원이름(ENAME) 및 담당 업무(JOB)를 표시하세요.
+
+SELECT DNO FROM DEPARTMENT
+WHERE DNAME = 'RESEARCH';
+
+SELECT DNO, ENAME, JOB FROM EMPLOYEE
+WHERE DNO = (SELECT DNO FROM DEPARTMENT
+WHERE DNAME = 'RESEARCH');
+
+-- 14(*)) 1)평균(AVG) 급여보다(SALARY) 많은 급여를 받고 (서브쿼리1)
+--     2)이름에 M이 포함된 사원과(ENAME) 같은 부서에서(DNO) 근무하는(서브쿼리2)
+--    사원의 사원번호(ENO), 이름(ENAME), 급여(SALARY)를 표시하세요.
+
+SELECT AVG(SALARY) FROM EMPLOYEE;
+
+SELECT DNO FROM EMPLOYEE
+WHERE ENAME LIKE '%M%';
+
+SELECT ENO, ENAME, SALARY FROM EMPLOYEE
+WHERE SALARY > (SELECT AVG(SALARY) FROM EMPLOYEE)
+AND DNO IN (SELECT DNO FROM EMPLOYEE
+WHERE ENAME LIKE '%M%');
+
+-- 15) 평균(AVG) 급여가(SALARY) 가장 적은(MIN) 업무를(JOB) 찾으세요.
+--  출력은 담당업무(JOB), 평균(AVG)급여(SALARY) 출력하세요
+--  설명) 담당 업무별(JOB) 평균(AVG) 급여를(SALARY) 찾아서 
+--       그중에서 가장 평균 급여가 적은(MIN) 업무를 찾으면 됨
+-- 1) 담당 업무별(JOB) 평균(AVG) 급여 중 가장 적은(MIN) 급여 조회 : 1037.5
+-- 2) 1037.5 와 평균급여 같은 사원의 담당업무별(JOB) 평균급여를(AVG(SALARY)) 조회 
+
+SELECT MIN(AVG(SALARY)) FROM EMPLOYEE
+GROUP BY JOB;
+
+SELECT JOB, AVG(SALARY) FROM EMPLOYEE
+GROUP BY JOB
+HAVING AVG(SALARY) = (SELECT MIN(AVG(SALARY)) FROM EMPLOYEE
+GROUP BY JOB);
+
+-- 16) 전체 사원 중 ALLEN과 같은 직위(JOB)인 사원들의 
+-- 직위(JOB), 사원번호(ENO), 사원명(ENAME), 급여(SALARY), 
+-- 부서번호(DNO), 부서명(DNAME) 출력하는 SQL문을 작성하세요
+-- 힌트) 조인 + 서브쿼리
+-- 1) ALLEN 이 가지고 있는 직위(JOB) 를 조회
+-- 2) 그 직위로 전체 사원 + 부서를 조인한 테이블을 조회
+SELECT JOB FROM EMPLOYEE
+WHERE ENAME = 'ALLEN';
+
+SELECT EMP.JOB, EMP.ENO, EMP.ENAME, EMP.SALARY, EMP.DNO, DEP.DNAME
+FROM EMPLOYEE EMP, DEPARTMENT DEP
+WHERE EMP.DNO = DEP.DNO
+AND JOB = (SELECT JOB FROM EMPLOYEE
+WHERE ENAME = 'ALLEN');
+
+
+-- 17) 10번 부서에 근무하는 사원 중 30번 부서에는 존재하지 않는 직책을 가진 사원들의
+-- 사원번호(ENO), 사원명(ENAME), 직위(JOB), 부서번호(DNO), 부서명(DNAME), 
+-- 부서위치를(LOC) 출력하세요
+-- 힌트) 조인 + 서브쿼리
+-- 1) 30번 부서에 존재하는 직위를 조회 : ?
+-- 2) ? 에 해당되지 않는 직위(JOB) 찾아서 전체 사원 + 부서를 조인한 테이블을 조회
+--   (단, 10 번부서에 해당하는 사람만 추가로 조건을 걸기 )
+
+SELECT DISTINCT JOB FROM EMPLOYEE
+WHERE DNO = 30;
+
+SELECT EMP.ENO, EMP.ENAME, EMP.JOB, EMP.DNO, DEP.DNAME
+FROM EMPLOYEE EMP, DEPARTMENT DEP
+WHERE EMP.DNO = DEP.DNO
+AND EMP.DNO = 10 AND EMP.JOB NOT IN (SELECT DISTINCT JOB FROM EMPLOYEE
+WHERE DNO = 30);
+
+
+
