@@ -5,6 +5,13 @@ import chap02.Sec0203;
 import chap02.Sec0204;
 import chap03.Sec0301;
 import chap03.Verify03;
+import chap04.Sec0401;
+import chap04.Sec0402;
+import chap04.Verify04;
+import chap05.Sec0501;
+import chap05.Sec0502;
+import chap05.Sec0503;
+import chap05.Verify05;
 
 import java.util.Scanner;
 
@@ -68,6 +75,39 @@ public class JavaApplication {
 //        verify03.exam02();
 //        verify03.exam03();
 
+        Sec0401 sec0401 = new Sec0401();
+//        sec0401.exam01();
+//        sec0401.exam04();
+//        sec0401.exam08();
+
+        Sec0402 sec0402 = new Sec0402();
+//        sec0402.exam01();
+//        sec0402.exam02();
+//        sec0402.exam08();
+//        sec0402.exam09();
+//        sec0402.exam10();
+
+        Verify04 verify04 = new Verify04();
+//        verify04.exam01();
+//        verify04.exam03();
+//        verify04.exam04();
+//        verify04.exam05();
+
+        Sec0501 sec0501 = new Sec0501();
+//        sec0501.stringEqualExam();
+
+        Sec0502 sec0502 = new Sec0502();
+//        sec0502.getStudent();
+//        sec0502.arrayFunc();
+//        sec0502.arrayTwo();
+//        sec0502.AdvancedExam();
+
+        Sec0503 sec0503 = new Sec0503();
+//        sec0503.EnumWeek();
+
+        Verify05 verify05 = new Verify05();
+        verify05.exam04();
+        verify05.exam05();
     }
 
 }
