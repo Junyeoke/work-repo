@@ -28,6 +28,13 @@ public class CarApplication {
         System.out.println("최고속도 : "+ car.maxSpeed);
         System.out.println("현재속도 : "+ car.speed);       // 기본값 출력
 
+
+//        car 클래스 속성값 수정 수정
+//        현재속도를 수정해보기 (car.speed)
+        car.speed = 60;
+//        결과출력
+        System.out.println("수정된 현재속도 : "+ car.speed);
+
     }
 
 

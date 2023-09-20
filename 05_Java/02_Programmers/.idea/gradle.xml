@@ -6,11 +6,10 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/AloneJava" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/programmers" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/AloneJava" />
+            <option value="$PROJECT_DIR$/programmers" />
           </set>
         </option>
       </GradleProjectSettings>
