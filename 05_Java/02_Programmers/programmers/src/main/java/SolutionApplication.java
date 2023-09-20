@@ -23,6 +23,8 @@ public class SolutionApplication {
         int denom1 = 2;
         int numer2 = 3;
         int denum2 = 4;
+        int[] result = solution.solution36(numer1,denom1,numer2,denum2);
+        System.out.println("[" + result[0] + ", " + result[1] + "]");
 
 
         // TODO : 숫자 비교하기
