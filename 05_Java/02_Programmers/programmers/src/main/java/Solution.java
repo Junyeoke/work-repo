@@ -22,26 +22,54 @@ public class Solution {
 
     /**
      * 가위바위보
+     *
      * @param rsp
-     * @return
+     * @return TODO : String.split("문자열 자를 기준")
+     *        String.split("구분자", 자를수);
      */
     public String solution8(String rsp) {
         String answer = "";
+        // 반복문 수행
+        for (int i = 0; i < rsp.length(); i++) {
+            // rsp를 "" 기준으로 나누고 그 숫자가 2 = 가위 이면
+            if (rsp.split("")[i].equals("2")) {
+                // answer에 0 = 바위 입력
+                answer += "0";
+            } else if (rsp.split("")[i].equals("0")) {
+                answer += "5";
+            } else {
+                answer += "2";
+            }
+        }
         return answer;
     }
 
     /**
      * 모스부호(1)
+     *
      * @param letter
      * @return
      */
     public String solution9(String letter) {
-        String answer = "";
-        return answer;
-    }
+
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        // morseString 배열 생성
+        String[] morseString;
+        // morseString에 letter 문자열 자르기 사용
+        morseString = letter.split("");
+        // StringBuilder 생성
+        StringBuilder sb = new StringBuilder();
+        // 반복문 word 변수에 차례대로 morseString 값 넣기
+        for (String word : morseString) {
+            for (int i = 0; i < morse.length; i++) {
+                if (word.equals(morse[i])) sb.append(Character.toString(i + 'a'));
+                }
+            return sb.toString();
+        }
 
     /**
      * 개미 군단
+     *
      * @param hp
      * @return
      */
@@ -52,6 +80,7 @@ public class Solution {
 
     /**
      * 순서쌍의 개수
+     *
      * @param n
      * @return
      */
@@ -62,6 +91,7 @@ public class Solution {
 
     /**
      * 진료 순서 정하기
+     *
      * @param emergency
      * @return
      */
@@ -72,6 +102,7 @@ public class Solution {
 
     /**
      * 외계행성의 나이
+     *
      * @param age
      * @return
      */
@@ -82,6 +113,7 @@ public class Solution {
 
     /**
      * 배열 자르기
+     *
      * @param numbers
      * @param num1
      * @param num2
@@ -94,13 +126,14 @@ public class Solution {
 
     /**
      * 짝수의 합
+     *
      * @param n
      * @return
      */
     public int solution15(int n) {
         int answer = 0;
-        for(int i = 1; i <= n; i++){
-            if((i % 2 == 0)){
+        for (int i = 1; i <= n; i++) {
+            if ((i % 2 == 0)) {
                 answer += i;
             }
         }
@@ -109,30 +142,32 @@ public class Solution {
 
     /**
      * 양꼬치
+     *
      * @param n
      * @param k
      * @return
      */
     public int solution16(int n, int k) {
         int answer = 0;
-        answer = (n * 12000) + (k * 2000) - (n/10 * 2000);
+        answer = (n * 12000) + (k * 2000) - (n / 10 * 2000);
         return answer;
     }
 
     /**
      * 각도기
+     *
      * @param angle
      * @return
      */
     public int solution17(int angle) {
         int answer = 0;
-        if(angle > 0 && angle < 90){
+        if (angle > 0 && angle < 90) {
             answer = 1;
-        } else if(angle == 90){
+        } else if (angle == 90) {
             answer = 2;
-        } else if(angle > 90 && angle < 180){
+        } else if (angle > 90 && angle < 180) {
             answer = 3;
-        } else if(angle == 180){
+        } else if (angle == 180) {
             answer = 4;
         }
         return answer;
@@ -140,6 +175,7 @@ public class Solution {
 
     /**
      * 특정문자 제거하기
+     *
      * @param my_string
      * @param letter
      * @return
@@ -151,6 +187,7 @@ public class Solution {
 
     /**
      * 문자 반복 출력하기
+     *
      * @param my_string
      * @param n
      * @return
@@ -162,6 +199,7 @@ public class Solution {
 
     /**
      * 짝수 홀수 개수
+     *
      * @param num_list
      * @return
      */
@@ -169,8 +207,8 @@ public class Solution {
         int[] answer = new int[2];
         int count1 = 0;
         int count2 = 0;
-        for(int i = 0; i < num_list.length; i++){
-            if(num_list[i] % 2 == 0){
+        for (int i = 0; i < num_list.length; i++) {
+            if (num_list[i] % 2 == 0) {
                 count1++;
                 answer[0] = count1;
             } else {
@@ -183,6 +221,7 @@ public class Solution {
 
     /**
      * 직각삼각형 출력하기
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -194,6 +233,7 @@ public class Solution {
 
     /**
      * 문자열 뒤집기
+     *
      * @param my_string
      * @return
      */
@@ -204,6 +244,7 @@ public class Solution {
 
     /**
      * 배열 뒤집기
+     *
      * @param num_list
      * @return
      */
@@ -212,7 +253,7 @@ public class Solution {
         int[] answer = new int[num_list.length];
         // 반복문
         // i는 num_list 길이 - 1, j = 0, i >= 0
-        for(int i = num_list.length - 1, j = 0; i >= 0; i--, j++){
+        for (int i = num_list.length - 1, j = 0; i >= 0; i--, j++) {
             answer[j] = num_list[i];
         }
         return answer;
@@ -220,17 +261,19 @@ public class Solution {
 
     /**
      * 나이 출력
+     *
      * @param age
      * @return
      */
     public int solution24(int age) {
         int answer = 0;
-        answer = (2022 - age) +1;
+        answer = (2022 - age) + 1;
         return answer;
     }
 
     /**
      * 아이스 아메리카노
+     *
      * @param money
      * @return
      */
@@ -243,6 +286,7 @@ public class Solution {
 
     /**
      * 옷가게 할인 받기
+     *
      * @param price
      * @return
      */
@@ -253,13 +297,14 @@ public class Solution {
 
     /**
      * 배열의 평균값
+     *
      * @param numbers
      * @return
      */
     public double solution27(int[] numbers) {
         double answer = 0;
         double sum = 0;
-        for(int i = 0; i < numbers.length; i++){
+        for (int i = 0; i < numbers.length; i++) {
             sum += numbers[i];
         }
 
@@ -269,6 +314,7 @@ public class Solution {
 
     /**
      * 피자 나눠 먹기(3)
+     *
      * @param slice
      * @param n
      * @return
@@ -280,6 +326,7 @@ public class Solution {
 
     /**
      * 피자 나눠 먹기(2)
+     *
      * @param n
      * @return
      */
@@ -290,12 +337,13 @@ public class Solution {
 
     /**
      * 피자 나눠 먹기(1)
+     *
      * @param n
      * @return
      */
     public int solution30(int n) {
         int answer = 0;
-        if(n % 7 == 0){
+        if (n % 7 == 0) {
             answer = n / 7;
         } else {
             answer = n / 7 + 1;
@@ -305,6 +353,7 @@ public class Solution {
 
     /**
      * 짝수는 싫어요
+     *
      * @param n
      * @return
      */
@@ -315,6 +364,7 @@ public class Solution {
 
     /**
      * 최빈값 구하기
+     *
      * @param array
      * @return
      */
@@ -325,6 +375,7 @@ public class Solution {
 
     /**
      * 중앙값 구하기
+     *
      * @param array
      * @return
      */
@@ -336,6 +387,7 @@ public class Solution {
 
     /**
      * 나머지 구하기
+     *
      * @param num1
      * @param num2
      * @return
@@ -348,19 +400,21 @@ public class Solution {
 
     /**
      * 배열 두배 만들기
+     *
      * @param numbers
      * @return
      */
     public int[] solution35(int[] numbers) {
         int[] answer = new int[numbers.length];
-        for(int i = 0; i < numbers.length; i++){
-            answer[i] = numbers[i]*2;
+        for (int i = 0; i < numbers.length; i++) {
+            answer[i] = numbers[i] * 2;
         }
         return answer;
     }
 
     /**
      * 분수의 덧셈
+     *
      * @param numer1
      * @param denom1
      * @param numer2
@@ -371,8 +425,8 @@ public class Solution {
         int numerlator = (numer1 * denom2) + (numer2 * denom1);
         int denominator = denom1 * denom2;
 
-        for(int i = numerlator - 1; i > 1; i--){
-            if(numerlator % i == 0 && denominator % i == 0){
+        for (int i = numerlator - 1; i > 1; i--) {
+            if (numerlator % i == 0 && denominator % i == 0) {
                 numerlator /= i;
                 denominator /= i;
             }
@@ -383,13 +437,14 @@ public class Solution {
 
     /**
      * 숫자 비교하기
+     *
      * @param num1
      * @param num2
      * @return
      */
     public int solution37(int num1, int num2) {
         int answer = 0;
-        if(num1 == num2){
+        if (num1 == num2) {
             answer = 1;
         } else {
             answer = -1;
@@ -399,17 +454,19 @@ public class Solution {
 
     /**
      * 두 수의 나눗셈
+     *
      * @param num1
      * @param num2
      * @return
      */
     public int solution38(int num1, int num2) {
-        double answer = (double)num1 / num2 * 1000;
+        double answer = (double) num1 / num2 * 1000;
         return (int) answer;
     }
 
     /**
      * 몫 구하기
+     *
      * @param num1
      * @param num2
      * @return
@@ -422,6 +479,7 @@ public class Solution {
 
     /**
      * 두 수의 곱
+     *
      * @param num1
      * @param num2
      * @return
@@ -434,6 +492,7 @@ public class Solution {
 
     /**
      * 두 수의 차
+     *
      * @param num1
      * @param num2
      * @return
@@ -446,6 +505,7 @@ public class Solution {
 
     /**
      * 두 수의 합
+     *
      * @param num1
      * @param num2
      * @return
@@ -458,14 +518,15 @@ public class Solution {
 
     /**
      * 머쓱이보다 키 큰 사람
+     *
      * @param array
      * @param height
      * @return
      */
     public int solution43(int[] array, int height) {
         int answer = 0;
-        for(int i = 0; i < array.length; i++){
-            if(array[i] > height){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > height) {
                 answer += 1;
             }
         }
@@ -474,14 +535,15 @@ public class Solution {
 
     /**
      * 중복된 숫자 개수
+     *
      * @param array
      * @param n
      * @return
      */
     public int solution44(int[] array, int n) {
         int answer = 0;
-        for(int i = 0; i < array.length; i++){
-            if(array[i] == n){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == n) {
                 answer += 1;
             }
         }

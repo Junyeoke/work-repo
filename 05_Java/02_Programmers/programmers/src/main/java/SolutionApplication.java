@@ -18,6 +18,9 @@ public class SolutionApplication {
         Solution solution = new Solution();
 
         // TODO : 가위바위보
+        String rsp = "025";
+        String result = solution.solution8(rsp);
+        System.out.println(result);
 
         // TODO : 모스부호(1)
 
