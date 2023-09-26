@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -25,7 +23,7 @@ public class Solution {
      *
      * @param rsp
      * @return TODO : String.split("문자열 자를 기준")
-     *        String.split("구분자", 자를수);
+     * String.split("구분자", 자를수);
      */
     public String solution8(String rsp) {
         String answer = "";
@@ -50,22 +48,13 @@ public class Solution {
      * @param letter
      * @return
      */
-    public String solution9(String letter) {
+    public int solution9(String letter) {
 
-        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
-        // morseString 배열 생성
-        String[] morseString;
-        // morseString에 letter 문자열 자르기 사용
-        morseString = letter.split("");
-        // StringBuilder 생성
-        StringBuilder sb = new StringBuilder();
-        // 반복문 word 변수에 차례대로 morseString 값 넣기
-        for (String word : morseString) {
-            for (int i = 0; i < morse.length; i++) {
-                if (word.equals(morse[i])) sb.append(Character.toString(i + 'a'));
-                }
-            return sb.toString();
-        }
+
+    }
+
+
+
 
     /**
      * 개미 군단
