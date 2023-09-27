@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * packageName : PACKAGE_NAME
@@ -49,7 +48,8 @@ public class Solution {
      * @return
      */
     public int solution9(String letter) {
-
+        int answer = 0;
+        return answer;
 
     }
 
@@ -108,8 +108,11 @@ public class Solution {
      * @param num2
      * @return
      */
-    public int[] solution14(int[] numbers, int num1, int num2) {
-        int[] answer = {};
+    public List<Integer> solution14(int[] numbers, int num1, int num2) {
+        List<Integer> answer = new ArrayList<>();
+        for (int i = num1; i <= num2; i++) {
+            answer.add(numbers[i]);
+        }
         return answer;
     }
 
@@ -228,6 +231,9 @@ public class Solution {
      */
     public String solution22(String my_string) {
         String answer = "";
+        for (int i = my_string.length() - 1; i >= 0 ; i++) {
+
+        }
         return answer;
     }
 
@@ -346,8 +352,13 @@ public class Solution {
      * @param n
      * @return
      */
-    public int[] solution31(int n) {
-        int[] answer = {};
+    public List<Integer> solution31(int n) {
+        List<Integer> answer = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            if(i % 2 != 0){
+                answer.add(i);
+            }
+        }
         return answer;
     }
 
@@ -359,6 +370,49 @@ public class Solution {
      */
     public int solution32(int[] array) {
         int answer = 0;
+        Arrays.sort(array); // 배열 오름차순 정렬
+        int max = array[array.length - 1];  // max변수에 array배열의 최대값 넣기
+        int[] count = new int[max + 1]; // count 배열 선언, 배열크기는 array 배열 최대값 크기 + 1
+
+        // 반복문을 돌면서 count 배열에 해당하는 인덱스에 1씩 ++
+        for (int i = 0; i < array.length; i++) {
+            count[array[i]] ++;
+//            System.out.println("count 배열 : " + Arrays.toString(count));
+        }
+        // top 변수에 count[0] == 0 값 대입
+        int top = count[0];
+
+        for (int i = 1; i <count.length ; i++) {
+            // top의 값이 count 배열 값보다 작으면?
+            if(top < count[i]) {
+                // top에 count배열 요소 대입
+                top = count[i];
+//                System.out.println("top의 값 : " + top);
+                answer = i;
+//                System.out.println("answer의 값 : " + answer);
+            } else if (top == count[i]) {
+                answer = -1;
+            }
+        }
+        return answer;
+    }
+    public int solution321(int[] array) {
+        int maxCount = 0;
+        int answer = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int number : array){
+            int count = map.getOrDefault(number, 0) + 1;
+            System.out.println("number : " + number);
+            System.out.println("count : " + count);
+            if(count > maxCount){
+                maxCount = count;
+                answer = number;
+            }
+             else if (count == maxCount){
+                 answer = -1;
+            }
+             map.put(number, count);
+        }
         return answer;
     }
 

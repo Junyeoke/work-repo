@@ -1,4 +1,6 @@
+import java.awt.*;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * packageName : PACKAGE_NAME
@@ -18,9 +20,9 @@ public class SolutionApplication {
         Solution solution = new Solution();
 
         // TODO : 가위바위보
-        String rsp = "025";
-        String result = solution.solution8(rsp);
-        System.out.println(result);
+//        String rsp = "025";
+//        String result = solution.solution8(rsp);
+//        System.out.println(result);
 
         // TODO : 모스부호(1)
 
@@ -62,6 +64,9 @@ public class SolutionApplication {
         // TODO : 직각삼각형 출력하기
 
         // TODO : 문자열 뒤집기
+        String my_string = "jaron";
+        String answer = solution.solution22(my_string);
+        System.out.println(answer);
 
         // TODO : 배열 뒤집기
 //        int[] num_list = {1, 2, 3, 4, 5};
@@ -95,8 +100,14 @@ public class SolutionApplication {
 //        System.out.println(result);
 
         // TODO : 짝수는 싫어요
+//        int n = 10;
+//        List<Integer> answer = solution.solution31(n);
+//        System.out.println(answer);
 
         // TODO : 최빈값 구하기
+//        int[] array = {1, 2, 3, 3, 3, 4};
+//        int answer = solution.solution321(array);
+//        System.out.println(answer);
 
         // TODO : 중앙값 구하기
 //        int[] array = {1, 2, 7, 10, 11};
