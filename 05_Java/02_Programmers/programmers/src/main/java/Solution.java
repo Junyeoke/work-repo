@@ -47,13 +47,22 @@ public class Solution {
      * @param letter
      * @return
      */
-    public int solution9(String letter) {
-        int answer = 0;
-        return answer;
+    public String solution9(String letter) {
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.",
+                "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-",
+                ".--", "-..-", "-.--", "--.."};
+        String[] morseString;
+        morseString = letter.split(" ");
 
+        StringBuilder sb = new StringBuilder();
+        for (String word : morseString) {
+            for (int i = 0; i < morse.length; i++) {
+                if (word.equals(morse[i])) sb.append(Character.toString(i + 'a'));
+            }
+        }
+        return sb.toString();
     }
-
-
 
 
     /**
@@ -63,7 +72,14 @@ public class Solution {
      * @return
      */
     public int solution10(int hp) {
-        int answer = 0;
+        int answer = hp / 5;            //필요한 장군개미의 수를 먼저 구함
+        hp %= 5;                    //장군개미를 전부 상대하고 남은 hp
+
+        answer += hp / 3;               //남은 hp에 필요한 병정개미의 수를 구함
+        hp %= 3;                    //병정개미를 전부 상대하고 남은 hp
+
+        answer += hp / 1;               //남은 hp에 필요한 일개미의 수를 구함
+
         return answer;
     }
 
@@ -75,6 +91,14 @@ public class Solution {
      */
     public int solution11(int n) {
         int answer = 0;
+        int count = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                count++;
+            }
+        }
+        answer = count;
         return answer;
     }
 
@@ -85,7 +109,24 @@ public class Solution {
      * @return
      */
     public int[] solution12(int[] emergency) {
-        int[] answer = {};
+// asc라는 배열을 새로 선언해서 새로운 메모리 공간을 확보하고
+        int[] asc = new int[emergency.length];
+        int[] answer = new int[emergency.length];
+
+        // for돌려서 값 하나하나 넣어준다.
+        for (int i = 0; i <= emergency.length - 1; i++) {
+            asc[i] = emergency[i];
+        }
+
+        Arrays.sort(asc);
+
+        for (int i = 0; i <= emergency.length - 1; i++) {
+            for (int j = 0; j <= emergency.length - 1; j++) {
+                if (asc[i] == emergency[j]) {
+                    answer[j] = emergency.length - i;
+                }
+            }
+        }
         return answer;
     }
 
@@ -97,6 +138,12 @@ public class Solution {
      */
     public String solution13(int age) {
         String answer = "";
+        String age962 = "abcdefghij";
+        String[] ageArr = String.valueOf(age).split("");
+
+        for (int i = 0; i < ageArr.length; i++) {
+            answer += age962.charAt(Integer.valueOf(ageArr[i]));
+        }
         return answer;
     }
 
@@ -173,8 +220,13 @@ public class Solution {
      * @return
      */
     public String solution18(String my_string, String letter) {
-        String answer = "";
-        return answer;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < my_string.length(); i++) {
+            if (my_string.charAt(i) != letter.charAt(0)) {
+                sb.append(my_string.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 
     /**
@@ -185,8 +237,16 @@ public class Solution {
      * @return
      */
     public String solution19(String my_string, int n) {
-        String answer = "";
-        return answer;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < my_string.length(); i++) {
+            char ch = my_string.charAt(i);
+            for (int j = 0; j < n; j++) {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
     }
 
     /**
@@ -219,8 +279,12 @@ public class Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-
-        System.out.println(n);
+        for(int i = 1; i <= n; i++){
+            for(int j = 0; j < i; j++){
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
     }
 
     /**
@@ -231,7 +295,7 @@ public class Solution {
      */
     public String solution22(String my_string) {
         String answer = "";
-        for (int i = my_string.length() - 1; i >= 0 ; i++) {
+        for (int i = my_string.length() - 1; i >= 0; i++) {
 
         }
         return answer;
@@ -286,8 +350,14 @@ public class Solution {
      * @return
      */
     public int solution26(int price) {
-        int answer = 0;
-        return answer;
+        if(price >= 500000) {
+            price *= 0.8;
+        } else if(price >= 300000) {
+            price *= 0.9;
+        } else if(price >= 100000) {
+            price *= 0.95;
+        }
+        return price;
     }
 
     /**
@@ -316,6 +386,10 @@ public class Solution {
      */
     public int solution28(int slice, int n) {
         int answer = 0;
+        if(n % slice == 0)
+            answer = n / slice;
+        else
+            answer = n / slice + 1;
         return answer;
     }
 
@@ -327,6 +401,12 @@ public class Solution {
      */
     public int solution29(int n) {
         int answer = 0;
+        for (int i = 1; i <= 6 * n; i++) {
+            if (6 * i % n == 0) {
+                answer = i;
+                break;
+            }
+        }
         return answer;
     }
 
@@ -355,7 +435,7 @@ public class Solution {
     public List<Integer> solution31(int n) {
         List<Integer> answer = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
-            if(i % 2 != 0){
+            if (i % 2 != 0) {
                 answer.add(i);
             }
         }
@@ -376,15 +456,15 @@ public class Solution {
 
         // 반복문을 돌면서 count 배열에 해당하는 인덱스에 1씩 ++
         for (int i = 0; i < array.length; i++) {
-            count[array[i]] ++;
+            count[array[i]]++;
 //            System.out.println("count 배열 : " + Arrays.toString(count));
         }
         // top 변수에 count[0] == 0 값 대입
         int top = count[0];
 
-        for (int i = 1; i <count.length ; i++) {
+        for (int i = 1; i < count.length; i++) {
             // top의 값이 count 배열 값보다 작으면?
-            if(top < count[i]) {
+            if (top < count[i]) {
                 // top에 count배열 요소 대입
                 top = count[i];
 //                System.out.println("top의 값 : " + top);
@@ -396,22 +476,22 @@ public class Solution {
         }
         return answer;
     }
+
     public int solution321(int[] array) {
         int maxCount = 0;
         int answer = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        for(int number : array){
+        for (int number : array) {
             int count = map.getOrDefault(number, 0) + 1;
             System.out.println("number : " + number);
             System.out.println("count : " + count);
-            if(count > maxCount){
+            if (count > maxCount) {
                 maxCount = count;
                 answer = number;
+            } else if (count == maxCount) {
+                answer = -1;
             }
-             else if (count == maxCount){
-                 answer = -1;
-            }
-             map.put(number, count);
+            map.put(number, count);
         }
         return answer;
     }

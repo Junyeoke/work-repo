@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * packageName : PACKAGE_NAME
@@ -25,16 +26,38 @@ public class SolutionApplication {
 //        System.out.println(result);
 
         // TODO : 모스부호(1)
+//        String letter = ".... . .-.. .-.. ---";
+//        String answer = solution.solution9(letter);
+//        System.out.println(answer);
+
 
         // TODO : 개미 군단
+//        int hp = 23;
+//        int answer = solution.solution10(hp);
+//        System.out.println(answer);
 
         // TODO : 순서쌍의 개수
+//        int n = 20;
+//        int answer = solution.solution11(n);
+//        System.out.println(answer);
 
         // TODO : 진료 순서 정하기
+//        int[] emergency = {3, 76, 24};
+//        int[] answer = solution.solution12(emergency);
+//        System.out.println(Arrays.toString(answer));
+
 
         // TODO : 외계행성의 나이
+//        int age = 23;
+//        String answer = solution.solution13(age);
+//        System.out.println(answer);
 
         // TODO : 배열 자르기
+//        int[] numbers = {1, 2, 3, 4, 5};
+//        int num1 = 1;
+//        int num2 = 3;
+//        List<Integer> answer = solution.solution14(numbers, num1, num2);
+//        System.out.println(answer);
 
         // TODO : 짝수의 합
 //        int n = 10;
@@ -53,8 +76,16 @@ public class SolutionApplication {
 //        System.out.println(result);
 
         // TODO : 특정문자 제거하기
+//        String my_string = "abcdef";
+//        String letter = "f";
+//        String answer = solution.solution18(my_string, letter);
+//        System.out.println(answer);
 
         // TODO : 문자 반복 출력하기
+//        String my_string = "hello";
+//        int n = 3;
+//        String answer = solution.solution19(my_string, n);
+//        System.out.println(answer);
 
         // TODO : 짝수 홀수 개수
 //        int[] num_list = {1, 2, 3, 4, 5};
@@ -62,11 +93,19 @@ public class SolutionApplication {
 //        System.out.println(Arrays.toString(result));
 
         // TODO : 직각삼각형 출력하기
+//        Scanner sc = new Scanner(System.in);
+//        int n = sc.nextInt();
+//        for(int i = 1; i <= n; i++){
+//            for(int j = 0; j < i; j++){
+//                System.out.print("*");
+//            }
+//            System.out.println("");
+//        }
 
         // TODO : 문자열 뒤집기
-        String my_string = "jaron";
-        String answer = solution.solution22(my_string);
-        System.out.println(answer);
+//        String my_string = "jaron";
+//        String answer = solution.solution22(my_string);
+//        System.out.println(answer);
 
         // TODO : 배열 뒤집기
 //        int[] num_list = {1, 2, 3, 4, 5};
@@ -84,6 +123,9 @@ public class SolutionApplication {
 //        System.out.println(Arrays.toString(result));
 
         // TODO : 옷가게 할인 받기
+//        int price = 150000;
+//        int answer = solution.solution26(price);
+//        System.out.println(answer);
 
         // TODO : 배열의 평균값
 //        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -91,8 +133,15 @@ public class SolutionApplication {
 //        System.out.println(result);
 
         // TODO : 피자 나눠 먹기(3)
+//        int slice = 7;
+//        int n = 10;
+//        int answer = solution.solution28(slice, n);
+//        System.out.println(answer);
 
         // TODO : 피자 나눠 먹기(2)
+//        int n = 6;
+//        int answer = solution.solution29(n);
+//        System.out.println(answer);
 
         // TODO : 피자 나눠 먹기(1)
 //        int n = 7;
