@@ -86,4 +86,31 @@ public class HelloController {
 
         return "exam01/operation.jsp";
     }
+
+//    TODO : url : /exam01/hello4
+//     jsp페이지명 : exam01/example03.jsp
+//     결과 : boolean, int, long, double 변수 4개를 만들어서 자료형으로 전달해서 출력
+
+    @GetMapping("/exam01/hello4")
+    public String Hello4(Model model){
+
+        boolean bFlag = true;
+        int iParam = 20;
+        long lParam = 4L;
+        double dParam = 1.2;
+
+        model.addAttribute("bFlag", bFlag);
+        model.addAttribute("iParam", iParam);
+        model.addAttribute("lParam", lParam);
+        model.addAttribute("dParam", dParam);
+
+//       TODO : Debugging : 기본 변수의 값 추적
+        System.out.println("bFlag" + bFlag);
+        System.out.println("iParam" + iParam);
+        System.out.println("lParam" + lParam);
+        System.out.println("dParam" + dParam);
+
+        return "exam01/example03.jsp";
+
+    }
 }

@@ -39,6 +39,9 @@
         <p>보다작음 : ${iNum <= 100}</p>
 
         <p>조건(삼항) : ${(iNum == 100)? "100임" : "100이 아님"}</p>
+<%--    TODO : empty(빈) : 변수의 값이 비었으면(null, 0, "") true, 아니면 false --%>
+        <p>empty : ${empty iNum}</p>
+        <p>not empty : ${not empty iNum}</p>
     </div>
 </div>
 
