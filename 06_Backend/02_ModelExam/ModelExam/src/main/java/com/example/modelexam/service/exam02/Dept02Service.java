@@ -1,4 +1,4 @@
-package com.example.modelexam.service.exam01;
+package com.example.modelexam.service.exam02;
 
 import com.example.modelexam.dao.DeptDao;
 import com.example.modelexam.model.Dept;
@@ -32,7 +32,7 @@ import java.util.List;
  * 2023-10-06         GGG          최초 생성
  */
 @Service
-public class DeptService {
+public class Dept02Service {
 
     @Autowired
     DeptDao deptDao;    // 가짜 DB에 접근하는 객체

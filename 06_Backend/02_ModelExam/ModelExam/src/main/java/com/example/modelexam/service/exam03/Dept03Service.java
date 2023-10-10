@@ -1,4 +1,4 @@
-package com.example.modelexam.service.exam01;
+package com.example.modelexam.service.exam03;
 
 import com.example.modelexam.dao.DeptDao;
 import com.example.modelexam.model.Dept;
@@ -32,7 +32,7 @@ import java.util.List;
  * 2023-10-06         GGG          최초 생성
  */
 @Service
-public class DeptService {
+public class Dept03Service {
 
     @Autowired
     DeptDao deptDao;    // 가짜 DB에 접근하는 객체
@@ -58,5 +58,17 @@ public class DeptService {
 //         id(기본키)로 조회
         Dept dept = deptDao.selectById(dno);
         return dept;
+    }
+
+
+    /**
+     * 부서 정보 저장 함수
+     * @param dept
+     * @return
+     */
+    public List<Dept> save(Dept dept){
+        List<Dept> list = deptDao.insert(dept);
+
+        return list;
     }
 }
