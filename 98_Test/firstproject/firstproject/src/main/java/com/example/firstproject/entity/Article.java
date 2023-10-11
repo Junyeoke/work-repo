@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * packageName : com.example.firstproject.entity
@@ -30,11 +27,19 @@ import javax.persistence.Id;
 @Entity     // 엔티티선언
 public class Article {
     @Id     // 엔티티의 대푯값 지정
-    @GeneratedValue // 자동 생성 기능 추가(숫자가 자동으로 매겨짐)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // db가 id 자동 생성
     private Long id;
     @Column     // title 필드 선언, DB 테이블의 title 열과 연결됨
     private String title;
     @Column     // content 필드 선언, DB 테이블의 content 열과 연결됨
     private String content;
 
+    public void patch(Article article) {
+        if (article.title != null) {
+            this.title = article.title;
+        }
+        if (article.content != null) {
+            this.content = article.content;
+        }
+    }
 }
