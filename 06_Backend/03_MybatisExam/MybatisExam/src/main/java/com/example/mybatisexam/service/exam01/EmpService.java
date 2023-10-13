@@ -4,10 +4,12 @@ import com.example.mybatisexam.dao.EmpDao;
 import com.example.mybatisexam.model.common.PageReq;
 import com.example.mybatisexam.model.common.PageRes;
 import com.example.mybatisexam.model.vo.Emp;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.mybatisexam.service.exam01
@@ -23,6 +25,7 @@ import java.util.List;
  * 2023-10-12         GGG          최초 생성
  */
 @Service
+@Slf4j
 public class EmpService {
     @Autowired
     EmpDao empDao;
@@ -44,5 +47,42 @@ public class EmpService {
                 pageReq.getSize()   // 1페이지당 개수
         );
         return pageRes;
+    }
+
+    /** 상세 조회 */
+    public Optional<Emp> findById(int eno){
+        Optional<Emp> optionalEmp = empDao.findById(eno);
+        return optionalEmp;
+    }
+
+    /** 저장함수 */
+    public int save(Emp emp){
+        int queryResult = -1;
+        try {
+            // TODO) 기본키(eno)가 없으면 insert
+            if(emp.getEno() == null){
+                queryResult = empDao.insert(emp);
+            } else {
+                // todo) 기본키가 있으면 update
+                queryResult = empDao.update(emp);
+            }
+
+        }catch (Exception e){
+            log.debug(e.getMessage());
+        }
+        return queryResult;
+    }
+
+    /** 삭제 함수 : 에러처리 */
+    public boolean removeById(int eno){
+        try {
+            if(empDao.existById(eno) > 0){
+                empDao.deleteById(eno);
+                return true;
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+        }
+        return false;
     }
 }

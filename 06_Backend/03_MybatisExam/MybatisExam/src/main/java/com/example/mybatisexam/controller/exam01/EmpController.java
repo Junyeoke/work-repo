@@ -8,9 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Optional;
 
 /**
  * packageName : com.example.mybatisexam.controller.exam01
@@ -65,4 +66,63 @@ public class EmpController {
         log.debug(model.toString());
         return "exam01/emp/emp_all.jsp";
     }
+
+    /** 상세 조회 */
+    @GetMapping("/emp/{eno}")
+    public String getEmpId(
+            @PathVariable int eno,
+            Model model
+    ){
+        Optional<Emp> optionalEmp = empService.findById(eno);
+        model.addAttribute("emp", optionalEmp.get());
+        return "exam01/emp/emp_id.jsp";
+    }
+
+    /** 저장함수 : 사원 추가 페이지 이동 */
+    @GetMapping("/emp/addition")
+    public String addEmp() {
+        return "exam01/emp/add_emp.jsp";
+    }
+
+    /** 저장함수 : db 저장 */
+    @PostMapping("/emp/add")
+    public RedirectView createEmp(
+            @ModelAttribute Emp emp
+    ){
+        empService.save(emp); // db 저장
+
+//      전체 조회 페이지로 강제 이동
+        return new RedirectView("/exam01/emp");
+    }
+
+    /** 수정함수 : 수정페이지 이동 + 상세조회 */
+    @GetMapping("/emp/edition/{eno}")
+    public String editEmp(@PathVariable int eno, Model model){
+        // todo ) 서비스 상세조회 함수 호출
+        Optional<Emp> optionalEmp = empService.findById(eno);
+        // todo ) jps 전달
+        model.addAttribute("emp", optionalEmp.get());
+        return "exam01/emp/update_emp.jsp";
+    }
+    /** 수정 함수 */
+    @PutMapping("/emp/edit/{eno}")
+    public RedirectView updateEmp(@PathVariable int eno, @ModelAttribute Emp emp){
+        // todo ) db 수정 저장
+        empService.save(emp);
+        // todo ) 전체 조회 페이지로 강제이동
+        return new RedirectView("/exam01/emp");
+    }
+
+
+    //  todo: 연습 5) 부서 클래스를 참고하여 사원 삭제기능을 추가하세요
+    //    empDao, emp.xml, EmpService, EmpController, update_emp.jsp 수정
+    //             url : /emp/delete/{eno}
+    //    redirect jsp : /exam01/emp
+    /** 삭제 함수 */
+    @DeleteMapping("/emp/delete/{eno}")
+    public RedirectView deleteEmp(@PathVariable int eno){
+        empService.removeById(eno);
+        return new RedirectView("/exam01/emp");
+    }
+
 }

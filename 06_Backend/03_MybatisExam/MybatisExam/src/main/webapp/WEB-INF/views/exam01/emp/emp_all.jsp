@@ -52,7 +52,7 @@
         <tbody>
         <c:forEach var="data" items="${emp}">
             <tr>
-                <td>${data.eno}</td>
+                <td><a href="/exam01/emp/edition/${data.eno}">${data.eno}</a></td>
                 <td>${data.ename}</td>
                 <td>${data.job}</td>
                 <td>${data.manager}</td>
@@ -92,6 +92,10 @@
         </ul>
     </div>
     <%--    todo : 페이지 번호 끝--%>
+        <%--    todo: Add 버튼 추가 --%>
+        <div class="text-center">
+            <a href="/exam01/emp/addition" class="btn btn-primary center">Add</a>
+        </div>
 </div>
 <script>
     let obj = "${emp}";

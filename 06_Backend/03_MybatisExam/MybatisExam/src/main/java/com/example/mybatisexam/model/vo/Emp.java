@@ -8,7 +8,7 @@ import lombok.*;
  * fileName : Emp
  * author : GGG
  * date : 2023-10-12
- * description :
+ * description : 사원 클래스(vo) == 테이블 같음
  * 요약 :
  * <p>
  * ===========================================================
@@ -21,7 +21,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Emp extends BaseTimeEntity {
+public class Emp extends BaseTimeEntity {   // 공통속성 상속받기
 
 
     private Integer eno;
