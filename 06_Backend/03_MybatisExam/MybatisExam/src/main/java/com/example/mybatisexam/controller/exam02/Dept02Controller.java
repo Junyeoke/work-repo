@@ -9,13 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * packageName : com.example.mybatisexam.controller.exam02
@@ -78,5 +76,123 @@ public class Dept02Controller {
 
 
     }
+
+    /** 상세 조회 */
+    @GetMapping("/dept/{dno}")
+    public ResponseEntity<Object> getDeptId(@PathVariable int dno) {
+        try {
+//            todo : 상세조회 함수 호출
+            Optional<Dept> optionalDept
+                    = deptService.findById(dno);
+
+            if(optionalDept.isEmpty() == false){
+                // todo) 조회 성공
+                return new ResponseEntity<>(optionalDept.get(), HttpStatus.OK);
+            } else {
+                // todo) 0건 조회
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * 저장함수
+     */
+    @PostMapping("/dept")
+    public ResponseEntity<Object> createDept(@RequestBody Dept dept){
+        try {
+            int count = deptService.save(dept);
+            return new ResponseEntity<>(count, HttpStatus.OK);
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * 수정 함수
+     */
+    @PutMapping("/dept/{dno}")
+    public ResponseEntity<Object> updateDept(@PathVariable int dno, @RequestBody Dept dept){
+        try {
+            // todo : 수정함수(기본키가 있으면)
+            int count = deptService.save(dept);
+            return new ResponseEntity<>(count, HttpStatus.OK);
+
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * 삭제함수
+     */
+    @DeleteMapping("/dept/deletion/{dno}")
+    public ResponseEntity<Object> deleteDept(@PathVariable int dno){
+        try {
+//            todo : 삭제 함수 호출
+            boolean bSuccess = deptService.removeById(dno);
+
+            if(bSuccess == true){
+                // todo) 삭제 성공
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                // todo) 0건 삭제 ( 실패 )
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * todo ) dynamic sql
+     */
+    @GetMapping("/dept/dynamic")
+    public ResponseEntity<Object> getDeptDynamic(
+            @RequestParam(defaultValue = "") String dname,
+            @RequestParam(defaultValue = "") String loc,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size
+    ){
+        try {
+            //      todo: 페이징 요청 객체에 정보 저장
+            //        page : 현재페이지 번호, size : 1 페이지당 개수
+            PageReq pageReq = new PageReq(page, size);
+
+            //      todo: dynamic 조회 함수 호출
+            PageRes<Dept> pageRes
+                    = deptService.findByDynamicContaining(dname, loc, pageReq);
+
+            //      todo : 자료구조 (키, 값) : Map
+            Map<String, Object> response = new HashMap<>();
+
+            response.put("dept", pageRes.getContent()); // 부서배열
+            response.put("currentPage", pageRes.getNumber()); // 현재 페이지 번호
+            response.put("totalItems", pageRes.getTotalElements()); // 전체 테이블 건수
+            response.put("totalPages", pageRes.getTotalPages()); // 전체 페이지 개수
+
+            if(pageRes.isEmpty() == false){
+                // todo) 조회 성공
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                // todo) 0건 조회
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+    }
+
+
 
 }

@@ -2,8 +2,10 @@ package com.example.mybatisexam.controller.exam01;
 
 import com.example.mybatisexam.model.common.PageReq;
 import com.example.mybatisexam.model.common.PageRes;
+import com.example.mybatisexam.model.vo.Dept;
 import com.example.mybatisexam.model.vo.Emp;
-import com.example.mybatisexam.service.exam01.EmpService;
+import com.example.mybatisexam.service.exam02.EmpService;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,31 +19,26 @@ import java.util.Optional;
  * packageName : com.example.mybatisexam.controller.exam01
  * fileName : EmpController
  * author : GGG
- * date : 2023-10-12
- * description :
+ * date : 2023-10-13
+ * description : 사원 컨트롤러 (@Controller : jsp 용)
  * 요약 :
  * <p>
  * ===========================================================
  * DATE            AUTHOR             NOTE
  * —————————————————————————————
- * 2023-10-12         GGG          최초 생성
+ * 2023-10-13         GGG          최초 생성
  */
 @Slf4j
 @Controller
 @RequestMapping("/exam01")
 public class EmpController {
-    //  todo: 연습 1)부서클래스를 참고하여
-    //      Emp 클래스 ( schema.sql 참고 )
-    //      EmpDao 클래스 findByEnameContaining()
-    //      emp.xml 클래스
-    //      EmpService 클래스를 만들고 findByEnameContaining() 함수를 정의한다.
-    //      EmpController 클래스를 만들어서 getEmpAll() 함수를 정의하고,
-    //    샘플데이터를 뷰로(emp_all.html) 전송해 보세요.
 
     @Autowired
-    EmpService empService;
+    EmpService empService; // 1개 가져오기(di)
 
-//    todo : 전체 조회
+    /** 전체 조회 : ename like 기능 (+) */
+//  todo: @RequestParam - url?변수=값&변수2=값2 (쿼리스트링 방식)
+//    page : 현재페이지번호, size : 1 페이지당 개수
     @GetMapping("/emp")
     public String getEmpAll(
             @RequestParam(defaultValue = "") String ename
@@ -49,32 +46,35 @@ public class EmpController {
             , @RequestParam(defaultValue = "3") int size
             , Model model
     ){
-        //      todo: 페이징 요청 객체에 정보 저장
-//               page : 현재페이지 번호, size : 1 페이지당 개수
+//      todo: 페이징 요청 객체에 정보 저장
+//        page : 현재페이지 번호, size : 1 페이지당 개수
         PageReq pageReq = new PageReq(page, size);
-        //      todo: 전체 조회 함수 호출
+
+//      todo: 전체 조회 함수 호출
         PageRes<Emp> pageRes
                 = empService.findByEnameContaining(ename, pageReq);
-        // todo : jsp 정보전달(부서배열, 페이징 정보)
-        model.addAttribute("emp", pageRes.getContent()); // 사원 배열
-        model.addAttribute("currentPage", pageRes.getNumber()); // 사원 배열
-        model.addAttribute("totalItems", pageRes.getTotalElements()); // 사원 배열
-        model.addAttribute("totalPages", pageRes.getTotalPages()); // 사원 배열
-        model.addAttribute("startPage", pageRes.getStartPage()); // 사원 배열
-        model.addAttribute("endPage", pageRes.getEndPage()); // 사원 배열
+//      todo: jsp 정보전달( 부서배열, 페이징정보 )
+        model.addAttribute("emp", pageRes.getContent()); // 사원배열
+        model.addAttribute("currentPage", pageRes.getNumber()); // 현재 페이지 번호
+        model.addAttribute("totalItems", pageRes.getTotalElements()); // 전체 테이블 건수
+        model.addAttribute("totalPages", pageRes.getTotalPages()); // 전체 페이지 개수
+        model.addAttribute("startPage", pageRes.getStartPage()); // 현재 시작 페이지 번호
+        model.addAttribute("endPage", pageRes.getEndPage()); // 현재 끝 페이지 번호
 
-        log.debug(model.toString());
+        log.debug(model.toString()); // 로그 출력
+
         return "exam01/emp/emp_all.jsp";
     }
 
-    /** 상세 조회 */
+    /** 상세조회 */
     @GetMapping("/emp/{eno}")
-    public String getEmpId(
-            @PathVariable int eno,
-            Model model
-    ){
+    public String getEmpId(@PathVariable int eno,
+                           Model model
+                           ) {
+//      서비스 상세 조회 함수 호출
         Optional<Emp> optionalEmp = empService.findById(eno);
         model.addAttribute("emp", optionalEmp.get());
+
         return "exam01/emp/emp_id.jsp";
     }
 
@@ -95,33 +95,34 @@ public class EmpController {
         return new RedirectView("/exam01/emp");
     }
 
-    /** 수정함수 : 수정페이지 이동 + 상세조회 */
+    /** 수정함수 : 수정페이지로 이동 + 상세조회 */
     @GetMapping("/emp/edition/{eno}")
-    public String editEmp(@PathVariable int eno, Model model){
-        // todo ) 서비스 상세조회 함수 호출
+    public String editEmp(@PathVariable int eno,
+                           Model model
+    ) {
+//      서비스 상세조회 함수 호출
         Optional<Emp> optionalEmp = empService.findById(eno);
-        // todo ) jps 전달
+//      jsp 전달
         model.addAttribute("emp", optionalEmp.get());
         return "exam01/emp/update_emp.jsp";
     }
-    /** 수정 함수 */
+
+    /** 수정함수 : db 수정 저장 */
     @PutMapping("/emp/edit/{eno}")
-    public RedirectView updateEmp(@PathVariable int eno, @ModelAttribute Emp emp){
-        // todo ) db 수정 저장
-        empService.save(emp);
-        // todo ) 전체 조회 페이지로 강제이동
+    public RedirectView updateEmp(@PathVariable int eno,
+                                   @ModelAttribute Emp emp
+    ) {
+        empService.save(emp); // db 수정 저장
+
+//      전체 조회 페이지로 강제 이동
         return new RedirectView("/exam01/emp");
     }
 
-
-    //  todo: 연습 5) 부서 클래스를 참고하여 사원 삭제기능을 추가하세요
-    //    empDao, emp.xml, EmpService, EmpController, update_emp.jsp 수정
-    //             url : /emp/delete/{eno}
-    //    redirect jsp : /exam01/emp
-    /** 삭제 함수 */
+    /** 삭제함수 */
     @DeleteMapping("/emp/delete/{eno}")
-    public RedirectView deleteEmp(@PathVariable int eno){
-        empService.removeById(eno);
+    public RedirectView deleteEmp(@PathVariable int eno) {
+        empService.removeById(eno); // db 삭제
+
         return new RedirectView("/exam01/emp");
     }
 
