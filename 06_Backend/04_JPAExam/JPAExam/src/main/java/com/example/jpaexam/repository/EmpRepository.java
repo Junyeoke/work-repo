@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
  * date : 2023-10-16
  * description :
  * 요약 :
+ *      사용법 : public interface EmpRepository extends JpaRepository<모델명, 기본키자료형>
  * <p>
  * ===========================================================
  * DATE            AUTHOR             NOTE
