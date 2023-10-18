@@ -1,13 +1,13 @@
-package com.example.secondproject;
+package com.example.secondexam;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SecondprojectApplicationTests {
+class SecondExamApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

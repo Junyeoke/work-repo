@@ -1,8 +1,12 @@
 package com.example.jpacustomexam.service;
 
+import com.example.jpacustomexam.dto.EmpGroupDto;
+import com.example.jpacustomexam.model.Dept;
 import com.example.jpacustomexam.model.Emp;
 import com.example.jpacustomexam.repository.EmpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -91,9 +95,86 @@ public class EmpService {
         return list;
     }
 
+    //    ----------------------------------------
+    //    @Query 예제
+    //    1) 오라클 쿼리
+    //    2) 객체 쿼리
+    //    ----------------------------------------
+    //    todo 1) ename like 검색
+
     /** 전체조회 + ename like 검색 : @Query */
     public List<Emp> selectByEname(String ename){
         List<Emp> list = empRepository.selectByEname(ename);
         return list;
+    }
+    // 연습 2
+    public List<Emp> selectBySalaryAndEname(){
+        List<Emp> list = empRepository.selectBySalaryAndEname();
+        return list;
+    }
+
+    // 연습3
+    public List<Emp> selectByCommissionAndSalary(int salary){
+        List<Emp> list = empRepository.selectByCommissionAndSalary(salary);
+        return list;
+    }
+
+    // 연습4
+    public List<Emp> selectByHiredate(String first, String last){
+        List<Emp> list = empRepository.selectByHiredate(first, last);
+        return list;
+    }
+
+    // 연습5
+    public List<EmpGroupDto> selectGroupDnoJob(){
+        List<EmpGroupDto> list = empRepository.selectGroupDnoJob();
+        return list;
+    }
+
+    // 연습6
+    public List<EmpGroupDto> selectAvgSalary(){
+        List<EmpGroupDto> list = empRepository.selectAvgSalary();
+        return list;
+    }
+
+    /** 연습 7) : @Query(dto) */
+    public List<EmpGroupDto> selectGroupSumMax() {
+        List<EmpGroupDto> list
+                = empRepository.selectGroupSumMax();
+
+        return list;
+    }
+
+
+    // 연습8
+    public List<EmpGroupDto> selectGroupHiredate(){
+        List<EmpGroupDto> list = empRepository.selectGroupHiredate();
+        return list;
+    }
+
+    //--------------------------------------------
+    // 페이징 예제
+    //--------------------------------------------
+    // 1) ename like 검색
+    public Page<Emp> findAllByEnameContaining(String ename, Pageable pageable){
+        Page<Emp> page = empRepository.findAllByEnameContaining(ename, pageable);
+        return page;
+    }
+
+    // 2) 기본 제공되는 전체조회 함수 : 페이징처리 기능 추가
+    public Page<Emp> findAllPage(Pageable pageable){
+        Page<Emp> page = empRepository.findAll(pageable);
+        return page;
+    }
+
+    // --------------------------------------------
+    // @Query : 페이징 처리
+    // --------------------------------------------
+
+    public Page<Emp> selectByEnamePage(String ename, Pageable pageable) {
+        Page<Emp> page
+                = empRepository.selectByEnamePage(ename, pageable);
+
+        return page;
     }
 }
