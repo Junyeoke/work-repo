@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.simpledms.service
@@ -35,5 +36,27 @@ public class EmpService {
     public List<Emp> findAllByEnameContaining(String ename){
         List<Emp> list = empRepository.findAllByEnameContaining(ename);
         return list;
+    }
+
+    /** 저장함수 */
+    public Emp save(Emp emp){
+        Emp emp2 = empRepository.save(emp);
+        return emp2;
+    }
+
+    /** 상세조회 */
+    public Optional<Emp> findById(int eno){
+        Optional<Emp> optionalEmp = empRepository.findById(eno);
+        return optionalEmp;
+    }
+
+    /** 삭제 함수 */
+    public boolean removeById(int eno){
+
+        if(empRepository.existsById(eno)){
+            empRepository.deleteById(eno);
+            return true;
+        }
+        return false;
     }
 }
