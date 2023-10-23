@@ -6,6 +6,20 @@ INSERT INTO TB_NOTICE
 VALUES (SQ_NOTICE.nextval, '블로그 오픈 안내', '주녘주녘','공지사항 내용 테스트 3', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
 INSERT INTO TB_NOTICE
 VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 4', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 5', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 6', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 7', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 8', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 9', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 10', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+INSERT INTO TB_NOTICE
+VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 11', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
 
 
 

@@ -2,10 +2,14 @@ package com.example.back.service;
 
 import com.example.back.model.Notice;
 import com.example.back.repository.NoticeRepository;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.simpledms.service
@@ -25,16 +29,43 @@ public class NoticeService {
     @Autowired
     NoticeRepository noticeRepository;  // DI
 
-    /** 전체조회 */
-    public List<Notice> findAll(){
-        List<Notice> list = noticeRepository.findAll();
-        return list;
+    //    전체조회
+    public Page<Notice> findAll(Pageable pageable) {
+        Page<Notice> page = noticeRepository.findAll(pageable);
+        return page;
+
     }
 
-    /** 검색어(dname like) 조회 함수 */
-    public List<Notice> findAllByUserNameContaining(String uname){
-        List<Notice> list = noticeRepository.findAllByUserNameContaining(uname);
-        return list;
+
+    //    ename like 조회 + paging
+    public Page<Notice> findAllByUserNameContaining(String uname, Pageable pageable) {
+        Page<Notice> page
+                = noticeRepository.findAllByUserNameContaining(uname, pageable);
+        return page;
+
+    }
+
+    // 저장 함수
+    public Notice save(Notice notice) {
+
+        Notice Notice2 = noticeRepository.save(notice);
+
+        return Notice2;
+    }
+
+    // 상세 조회(1건 조회) 함수
+    public Optional<Notice> findById(int num) {
+        Optional<Notice> optionalNotice = noticeRepository.findById(num);
+        return optionalNotice;
+    }
+
+    // 삭제함수
+    public boolean removeById(int num) {
+        if(noticeRepository.existsById(num)) {    // dno 있는지 확인
+            noticeRepository.deleteById(num); // 삭제 진행
+            return true;
+        }
+        return false;
     }
 
 

@@ -1,7 +1,7 @@
-package com.example.back.controller;
+package com.example.simpledms.controller.basic;
 
-import com.example.back.model.Notice;
-import com.example.back.service.NoticeService;
+import com.example.simpledms.model.entity.basic.Dept;
+import com.example.simpledms.service.basic.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,38 +12,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 /**
- * packageName : com.example.simpledms.controller
+ * packageName : com.example.simpledms.controller.basic
  * fileName : DeptController
  * author : GGG
- * date : 2023-10-19
- * description : 부서 컨트롤러 (@RestController - react용)
+ * date : 2023-10-23
+ * description : 부서 컨트롤러
  * 요약 :
- * react(3000) <-> springboot(8000) 연동 : axios
- * 인터넷 기본 보안 : ip, port 최초에 지정된 것과 달라지면
- * => 해킹으로 기본 인정 (블러킹 : 단절) : CORS 보안
  * <p>
  * ===========================================================
  * DATE            AUTHOR             NOTE
  * —————————————————————————————
- * 2023-10-19         GGG          최초 생성
+ * 2023-10-23         GGG          최초 생성
  */
-@Slf4j
 @RestController
-@RequestMapping("/api")
-public class NoticeController {
-    @Autowired
-    NoticeService noticeService;    // DI
+@Slf4j
+@RequestMapping("/api/basic")
+public class DeptController {
 
+    @Autowired
+    DeptService deptService;    // DI
 
     // 전체 조회 + dname like 검색
-    @GetMapping("/notice")
-    public ResponseEntity<Object> findAllByUserNameContaining(
-            @RequestParam(defaultValue = "") String uname,
+    @GetMapping("/dept")
+    public ResponseEntity<Object> findAllByDnameContaining(
+            @RequestParam(defaultValue = "") String dname,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
 
@@ -55,18 +51,18 @@ public class NoticeController {
             Pageable pageable = PageRequest.of(page, size);
 
 //            전체조회(dname="") + like 검색(dname="S")
-            Page<Notice> noticePage
-                    = noticeService.findAllByUserNameContaining(uname, pageable);
+            Page<Dept> deptPage
+                    = deptService.findAllByDnameContaining(dname, pageable);
 
 //            리액트 전송 : 부서배열, 페이징 정보 [자료구조 : Map<키이름, 값>]
             Map<String, Object> response = new HashMap<>();
-            response.put("notice", noticePage.getContent());                // 부서배열 전송
-            response.put("currentPage", noticePage.getNumber());          // 현재페이지번호 전송
-            response.put("totalItems", noticePage.getTotalElements());    // 총 건수(개수) 전송
-            response.put("totalPages", noticePage.getTotalPages());       // 총 페이지수 전송
+            response.put("dept", deptPage.getContent());                // 부서배열 전송
+            response.put("currentPage", deptPage.getNumber());          // 현재페이지번호 전송
+            response.put("totalItems", deptPage.getTotalElements());    // 총 건수(개수) 전송
+            response.put("totalPages", deptPage.getTotalPages());       // 총 페이지수 전송
 
 //            신호 보내기
-            if (noticePage.isEmpty() == false) {
+            if (deptPage.isEmpty() == false) {
 //                성공
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
@@ -82,13 +78,13 @@ public class NoticeController {
     }
 
     //    저장함수
-    @PostMapping("/notice")
-    public ResponseEntity<Object> create(@RequestBody Notice notice) {
+    @PostMapping("/dept")
+    public ResponseEntity<Object> create(@RequestBody Dept dept) {
 
         try {
-            Notice notice2 = noticeService.save(notice);
+            Dept dept2 = deptService.save(dept);
 
-            return new ResponseEntity<>(notice2, HttpStatus.OK);
+            return new ResponseEntity<>(dept2, HttpStatus.OK);
         } catch (Exception e) {
 //            DB 에러가 났을경우 : INTERNAL_SERVER_ERROR 프론트엔드로 전송
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -96,13 +92,13 @@ public class NoticeController {
     }
 
     //    수정함수
-    @PutMapping("/notice/{num}")
-    public ResponseEntity<Object> update(@RequestBody Notice notice, @PathVariable int num) {
+    @PutMapping("/dept/{dno}")
+    public ResponseEntity<Object> update(@RequestBody Dept dept, @PathVariable int dno) {
 
         try {
-            Notice notice2 = noticeService.save(notice);    // db 수정
+            Dept dept2 = deptService.save(dept);    // db 수정
 
-            return new ResponseEntity<>(notice2, HttpStatus.OK);
+            return new ResponseEntity<>(dept2, HttpStatus.OK);
         } catch (Exception e) {
 //            DB 에러가 났을경우 : INTERNAL_SERVER_ERROR 프론트엔드로 전송
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -111,15 +107,15 @@ public class NoticeController {
 
 
     // 상세조회
-    @GetMapping("/notice/{num}")
-    public ResponseEntity<Object> findById(@PathVariable int num) {
+    @GetMapping("/dept/{dno}")
+    public ResponseEntity<Object> findById(@PathVariable int dno) {
 //    상세조회 실행
         try {
-            Optional<Notice> optionalNotice = noticeService.findById(num);
+            Optional<Dept> optionalDept = deptService.findById(dno);
 
-            if (optionalNotice.isPresent()) {
+            if (optionalDept.isPresent()) {
 //                성공
-                return new ResponseEntity<>(optionalNotice.get(), HttpStatus.OK);
+                return new ResponseEntity<>(optionalDept.get(), HttpStatus.OK);
             } else {
 //                데이터 없음
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -132,12 +128,12 @@ public class NoticeController {
 
     // 삭제함수
 
-    @DeleteMapping("/notice/deletion/{num}")
-    public ResponseEntity<Object> delete(@PathVariable int num) {
+    @DeleteMapping("/dept/deletion/{dno}")
+    public ResponseEntity<Object> delete(@PathVariable int dno) {
 
 //        프론트엔드 쪽으로 상태정보를 보내줌
         try {
-            boolean bSuccess = noticeService.removeById(num);
+            boolean bSuccess = deptService.removeById(dno);
 
             if (bSuccess == true) {
 //                delete 문이 성공했을 경우
