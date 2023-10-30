@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * packageName : com.example.simpledms.repository
@@ -25,4 +26,5 @@ import java.util.List;
 public interface NoticeRepository extends JpaRepository<Notice, Integer> {
     // username like 검색 - 쿼리메소드
     Page<Notice> findAllByUserNameContaining(String uname, Pageable pageable);
+
 }

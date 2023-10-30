@@ -130,6 +130,7 @@ public class NoticeController {
         }
     }
 
+
     // 삭제함수
 
     @DeleteMapping("/notice/deletion/{num}")
