@@ -38,6 +38,7 @@ public class Notice extends BaseTimeEntity {
     )
     @Column
     private Integer num;
+
     //    게시글 제목
     @Column
     private String title;

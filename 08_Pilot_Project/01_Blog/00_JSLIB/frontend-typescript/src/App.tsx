@@ -21,6 +21,11 @@ import SimpleLightboxCom from "./pages/SimpleLightboxCom";
 import SimpleLightboxComExam from "./pages/SimpleLightboxComExam";
 import OwlCarouselCom from "./pages/OwlCarouselCom";
 import OwlCarouselComExam from "./pages/OwlCarouselComExam";
+import IsotopeCom from "./pages/IsotopeCom";
+import IsotopeComExam from "./pages/IsotopeComExam";
+import EasingCom from "./pages/EasingCom";
+import Datepicker from "./pages/Datepicker";
+import DaterangePicker from "./pages/DaterangePicker";
 
 function App() {
   return (
@@ -52,6 +57,15 @@ function App() {
           {/* owl-carousel */}
           <Route path="/owl-carousel" element={<OwlCarouselCom />} />
           <Route path="/owl-carousel-exam" element={<OwlCarouselComExam />} />
+          {/* isotope */}
+          <Route path="/isotope" element={<IsotopeCom />} />
+          <Route path="/isotope-exam" element={<IsotopeComExam />} />
+          {/* easing */}
+          <Route path="/easing" element={<EasingCom />} />
+          {/* datepicker */}
+          <Route path="/datepicker" element={<Datepicker />} />
+          {/* rangedatepicker */}
+          <Route path="/daterange-picker" element={<DaterangePicker />} />
         </Routes>
       </div>
     </div>
