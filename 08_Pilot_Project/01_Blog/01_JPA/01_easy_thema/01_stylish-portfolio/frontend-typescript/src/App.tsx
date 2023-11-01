@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './components/common/NotFound';
 
+
+
 function App() {
   return (
     <div>

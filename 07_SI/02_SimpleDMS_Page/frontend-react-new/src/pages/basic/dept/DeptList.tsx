@@ -152,7 +152,7 @@ function DeptList() {
                   <td>{data.dname}</td>
                   <td>{data.loc}</td>
                   <td>
-                    <a ref={"/dept/" + data.dno}>
+                    <a href={"/dept/" + data.dno}>
                       <span className="badge bg-success">Edit</span>
                     </a>
                   </td>
