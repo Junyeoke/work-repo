@@ -10,7 +10,7 @@ function Header() {
         id="sideNav"
       >
         <a className="navbar-brand js-scroll-trigger" href="#page-top">
-          <span className="d-block d-lg-none">Clarence Taylor</span>
+          <span className="d-block d-lg-none">JunHyuk Lee</span>
           <span className="d-none d-lg-block">
             <img
               className="img-fluid img-profile rounded-circle mx-auto mb-2"
@@ -43,7 +43,7 @@ function Header() {
             {/* 보유기술 시작 */}
             <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#experience">
-                보유기술
+              experience
               </a>
             </li>
             {/* 보유기술 끝 */}
@@ -51,7 +51,7 @@ function Header() {
              {/* 자유게시판 시작 */}
              <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#board">
-                자유게시판
+              board
               </a>
             </li>
             {/* 자유게시판 끝 */}
@@ -59,7 +59,7 @@ function Header() {
            {/* 방명록 시작 */}
             <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#guest">
-                방명록
+              guestbook
               </a>
             </li>
             {/* 방명록 끝 */}

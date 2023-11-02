@@ -1,16 +1,76 @@
 // Home.tsx : rfce
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// 개발자 작성 css import
+import "../assets/css/style.css";
+import initMain from "../assets/js/main";
+import { useState } from 'react';
+import EmpList from "./basic/emp/EmpList";
+import AddEmp from "./basic/emp/AddEmp";
+import QnaList from "./basic/qna/QnaList";
+import AddQna from "./basic/qna/AddQna";
+import Emp from "./basic/emp/Emp";
+import Qna from "./basic/qna/Qna";
+
 function Home() {
+  
+  // todo: 바인딩 변수 정의  
+  // emp 게시판 이름 저장 변수
+  const [viewBoard, setViewBoard] = useState<string>("");
+  // qna 게시판 이름 저장 변수
+  const [viewQna, setViewQna] = useState<string>("");
+  // 기본키 저장 변수
+  const [pid, setPid] = useState<number>(0);
 
-    // todo: 함수 정의
-    const handleChangeBoard = (viewBoard: string) => {  }
+  // todo: 함수 정의
+  useEffect(()=>{
+    initMain();
+  },[])
+  
+  // 사원 조회/추가 버튼 클릭시 실행되는 함수
+  const handleChangeBoard = (viewBoard: string, pid = 0) => {
+    setViewBoard(viewBoard);  // 화면명 저장
+    setPid(pid);              // 기본키 저장
+  };
 
-    const changeBoard = () => {  }
+  // 화면이름에 따라 다른 컴포넌트를 보여주는 함수
+  const changeBoard = () => {
+    if(viewBoard === "empList") {
+      return <EmpList handleChangeBoard={handleChangeBoard}/>;
+    } else if (viewBoard === "addEmp") {
+      return <AddEmp/>
+    } else if (viewBoard === "emp") {
+      // props : Emp 컴포넌트에 eno로 데이터 전송
+      return <Emp eno={pid}/>
+    }
+    
+  };
 
-    const handleChangeQna = (viewQna: string) => {  }
+  const changeQna = () => {
+    if(viewQna === "QnaList") {
+      return <QnaList handleChangeQna={handleChangeQna}/>;
+    } else if(viewQna === "AddQna") {
+      return <AddQna/>;
+    }else if(viewQna === "Qna") {
+      return <Qna qno={pid}/>;
+    }
+  };
 
+  // qna 조회/추가 버튼 클릭시 실행되는 함수
+  const handleChangeQna = (viewQna: string, pid = 0) => {
+    setViewQna(viewQna);
+    setPid(pid);
+  };
+
+  // todo: html -> react 고칠때 주의점
+  // 1) class -> className 수정
+  // 2) lable 태그 for -> htmlFor
+  // 3) html 태그 여는 태그가 있으면 반드시 닫는 태그가 있어야함
+  // 예) <input id="dept"> -> <input id="dept" />
+  //     <img src="경로"> -> <input src="경로" />
+  // 4) html 속성에러발생시 빨간 글씨로 에러 가이드가 있음 참조할 것
+  // 예) tabindex="-1" -> tabIndex={-1} // 카멜표기법과 리액트식 속성 표현법으로 변경
   return (
     // 여기
     <div data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
@@ -30,11 +90,12 @@ function Home() {
                 <a href="" className="btn btn-primary py-3 px-4 me-5">
                   Download CV
                 </a>
+                {/* 유튜브 경로 추가 */}
                 <button
                   type="button"
                   className="btn-play"
                   data-bs-toggle="modal"
-                  data-src="https://www.youtube.com/embed/Ci52Iq_IQso?si=_SjejqE2vzcClmDQ"
+                  data-src="https://www.youtube.com/embed/-lXxbJTsxVQ?si=2ZBxR6TIHKSVbVrn"
                   data-bs-target="#videoModal"
                 >
                   <span></span>
@@ -370,14 +431,14 @@ function Home() {
               <Link
                 to="#!"
                 className="btn btn-primary py-3 px-5"
-                onClick={() => handleChangeBoard("ReplyBoardList")}
+                onClick={() => handleChangeBoard("empList")}
               >
-                답변 게시판 조회
+                Employee 게시판 조회
               </Link>
               <Link
                 to="#!"
                 className="btn btn-success py-3 px-5 ms-3"
-                onClick={() => handleChangeBoard("AddReplyBoard")}
+                onClick={() => handleChangeBoard("addEmp")}
               >
                 새글 쓰기
               </Link>
