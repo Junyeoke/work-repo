@@ -45,11 +45,11 @@ public class BoardService {
     }
 
     // 저장 함수
-    public Board save(Board news) {
+    public Board save(Board board) {
 
-        Board News2 = boardRepository.save(news);
+        Board Board2 = boardRepository.save(board);
 
-        return News2;
+        return Board2;
     }
 
     // 상세 조회(1건 조회) 함수

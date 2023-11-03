@@ -4,7 +4,9 @@ import Typed from "typed.js";
 /* eslint-disable */
 export default function initScripts () {
     $(function () {
-        var slides = $(".slides"),
+    // .typed-words(css) 있을 때만 Typed 생성자 함수 실행
+    if(document.querySelector(".typed-words")) {
+      var slides = $(".slides"),
           images = slides.find("img");
       
         images.each(function (i) {
@@ -12,6 +14,7 @@ export default function initScripts () {
         });
       
         // type lib (npm 설치)
+        
         var typed = new Typed(".typed-words", {
           strings: [
             "San Francisco.",
@@ -33,6 +36,9 @@ export default function initScripts () {
             $('.slides img[data-id="' + arrayPos + '"]').addClass("active");
           },
         });
+    }
+    
+      
       });
       
 }

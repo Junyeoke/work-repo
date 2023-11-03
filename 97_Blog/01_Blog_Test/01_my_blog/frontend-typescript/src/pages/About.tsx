@@ -1,32 +1,75 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function About() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <div>
+    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture">
       {/* <!-- 블로그소개--> */}
       <section className="resume-section" id="about">
-        <div className="resume-section-content">
-          <h1 className="mb-0" id="typed1">
-            &nbsp;
+        <div className="resume-section-content ">
+          {/* 메인 제목 시작 */}
+          <h1 className="mb-0">
+            JUNHYUK's&nbsp;<span className="text-primary">blog</span>
           </h1>
+          {/* 메인 제목 끝 */}
 
-          <div className="subheading mb-5">
-             · (010) 4547-9941 ·
-            <a href="mailto:name@email.com">junyeoke@kakao.com</a>
+          {/* 소제목 시작 */}
+          <div>
+            <p className="lead mb-5">
+              안녕하세요! 웹 개발자가 되기위해 열심히 배우고 노력하고 있는 개발자 이준혁입니다!
+            </p>
           </div>
-          <p className="lead mb-5">
-            안녕하세요 저의 블로그에 오신것을 환영합니다.
-          </p>
+          {/* 소제목 끝 */}
+
+          {/* 소셜 아이콘 + 하이퍼링크 시작 */}
           <div className="social-icons">
-            <a className="social-icon" href="https://www.instagram.com/junyeoke">
-              <i className="fab fa-instagram">https://www.instagram.com/junyeoke</i>
+            <a
+              className="social-icon"
+              href="https://www.instagram.com/junyeoke"
+            >
+              <i className="fab fa-instagram">
+                https://www.instagram.com/junyeoke
+              </i>
             </a>
             <a className="social-icon" href="https://github.com/Junyeoke">
               <i className="fab fa-github">https://github.com/Junyeoke</i>
             </a>
           </div>
+          {/* 소셜 아이콘 + 하이퍼링크 끝 */}
         </div>
+        {/* 이미지 시작 */}
+        <div className="container text-end">
+          <img
+            className="img-fluid img-profile  mx-auto mb-2"
+            src="assets/img/pro.png"
+            alt="..."
+          />
+        </div>
+        {/* 이미지 끝 */}
+
       </section>
+      <div className="row">
+        <div className="container card col-md-4 mb-5" >
+          <div className="card-body">
+            <h4 className="card-title">이준혁(LEE JUNHYUK)</h4>
+            <h6 className="card-subtitle mb-2 text-muted">이준혁(LEE JUNHYUK)</h6>
+            <p className="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" className="card-link">
+              Card link
+            </a>
+            <a href="#" className="card-link">
+              Another link
+            </a>
+          </div>
+        </div>
+        </div>
       <hr className="m-0" />
       {/* <!-- 블로그소개 끝--> */}
     </div>

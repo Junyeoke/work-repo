@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Notice from "../../types/Notice";
 import NoticeService from "../../services/NoticeService";
 import { useNavigate } from "react-router-dom";
+import NoticeList from "./NoticeList";
 
 function AddNotice() {
   // 객체 초기화
@@ -39,7 +40,7 @@ function AddNotice() {
       .then((response: any) => {
         setSubmitted(true);
         alert("저장되었습니다.");
-        navigate("/notice");
+        window.location.reload();
         console.log(response.data);
       })
       .catch((e: Error) => {
@@ -57,9 +58,6 @@ function AddNotice() {
       {submitted ? (
         <div className="col-6 mx-auto">
          
-          <button className="btn btn-success" onClick={newNotice}>
-            글쓰기
-          </button>
         </div>
       ) : (
         <>
@@ -94,7 +92,16 @@ function AddNotice() {
             내용
           </label>
             {/* TODO : 글쓰기 화면  : CKeditor*/}
-      
+            <input
+            type="text"
+            id="content"
+            required
+            className="form-control mb-4"
+            value={notice.content}
+            onChange={handleInputChange}
+            placeholder="내용"
+            name="content"
+          />
           
 
           <div className="form-row float-end mt-3">

@@ -50,7 +50,7 @@ function Header() {
 
              {/* 자유게시판 시작 */}
              <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#board">
+              <a className="nav-link js-scroll-trigger" href="/#board">
               board
               </a>
             </li>

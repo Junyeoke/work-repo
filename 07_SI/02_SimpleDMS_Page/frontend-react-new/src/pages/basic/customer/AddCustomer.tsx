@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import TitleCom from '../../../components/common/TitleCom'
-import ICustomer from '../../../types/basic/ICustomer';
+
 import CustomerService from '../../../services/basic/CustomerService';
+import ICustomer from './../../../types/basic/ICustomer';
 
 function AddCustomer() {
         // 객체 초기화

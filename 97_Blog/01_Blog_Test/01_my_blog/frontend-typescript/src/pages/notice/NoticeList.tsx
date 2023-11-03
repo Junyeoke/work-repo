@@ -14,7 +14,7 @@ function NoticeList(props:any) {
   // todo 공통 변수 : page(현재페이지 번호), count(총 페이지 건수), pageSize(3,6,9 배열)
   const [page, setPage] = useState<number>(1);
   const [count, setCount] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(3); // 한 페이지당 개수
+  const [pageSize, setPageSize] = useState<number>(6); // 한 페이지당 개수
   // todo 공통 pageSizes : 배열 (selectbox에 사용)
   const pageSizes = [3, 6, 9];
 
@@ -69,8 +69,8 @@ function NoticeList(props:any) {
   return (
     <>
       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <Link to={"/add-notice"}>
-          <button type="button" className="btn btn-outline-dark mb-3 ">
+        <Link to="#">
+          <button type="button" className="btn btn-outline-dark mb-3 "  onClick={() => props.handleChangeNotice("addNotice")}>
             글쓰기
           </button>
         </Link>
@@ -80,7 +80,7 @@ function NoticeList(props:any) {
       <div className="col-md-12">
         {/* table start */}
         <table className="table">
-          <thead className="table-secondary">
+          <thead className="notice-table text-white" style={{backgroundColor: "#bd5d38"}}>
             <tr>
               <th className="text-center col-md-1" scope="col">
                 번호
@@ -101,8 +101,8 @@ function NoticeList(props:any) {
               notice.map((data) => (
                 <tr key={data.id}>
                   <td className="text-center">{data.id}</td>
-                  <td className="text-center">
-                    <Link to={"/notice/" + data.id}>{data.title}</Link>
+                  <td className="text-center" >
+                    <Link to="#"><span onClick={()=>props.handleChangeNotice("noticeDetail", data.id)}>{data.title}</span></Link>
                   </td>
                   <td className="text-center">{data.userName}</td>
                   <td className="text-center">{data.insertTime}</td>
