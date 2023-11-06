@@ -77,7 +77,7 @@ function Board() {
                 aria-selected="true"
                 onClick={()=>handleChangeNotice("noticeList")}
               >
-                공지사항
+                📢공지사항
               </button>
             </li>
             <li className="nav-item" role="presentation">
@@ -92,7 +92,7 @@ function Board() {
                 aria-selected="false"
                 onClick={()=>handleChangeBoard("freeBoard")}
               >
-                자유게시판
+                🎪자유게시판
               </button>
             </li>
 
