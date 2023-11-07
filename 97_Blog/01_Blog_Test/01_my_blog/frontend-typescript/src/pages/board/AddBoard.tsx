@@ -56,7 +56,9 @@ function AddBoard() {
   };
   return (
     <>
+     
     <div className="container ">
+    <h4>✏글쓰기</h4>
       {submitted ? (
         <div className="col-6 mx-auto">
          

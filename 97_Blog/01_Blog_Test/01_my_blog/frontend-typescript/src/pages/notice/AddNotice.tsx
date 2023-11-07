@@ -61,6 +61,7 @@ function AddNotice() {
         </div>
       ) : (
         <>
+        <h4>✏글쓰기</h4>
 
           <label htmlFor="title" className="col-form-label">
             제목
