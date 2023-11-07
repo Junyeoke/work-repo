@@ -7,7 +7,7 @@ import Header from "./components/common/Header";
 import Board from "./pages/Board";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
-import Guestbook from "./pages/Guestbook";
+import Project from "./pages/Project";
 
 function App() {
   return (
@@ -21,13 +21,13 @@ function App() {
       <Experience />
       {/* <!-- 보유기술 끝--> */}
 
+      {/* 프로젝트 시작 */}
+      <Project />
+      {/* 프로젝트 끝 */}
+
       {/* <!-- 게시판 시작--> */}
       <Board />
       {/* <!-- 자유게시판 끝--> */}
-
-      {/* <!-- 방명록 시작--> */}
-      <Guestbook/>
-      {/* <!-- 방명록 끝--> */}
     </div>
   );
 }

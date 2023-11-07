@@ -40,6 +40,20 @@ function About() {
             </a>
           </div>
           {/* 소셜 아이콘 + 하이퍼링크 끝 */}
+          <div className="row">
+        <div className="card col-md-6 mt-5" >
+          <div className="card-body">
+            <h4 className="card-title">이준혁(LEE JUNHYUK)</h4>
+            <h6 className="card-subtitle mb-2 text-muted">1994.08.22(29세)</h6>
+            <p className="card-text">
+             email : junyeoke@kakao.com
+             phone : 010 - 4547 - 9941
+             
+            </p>
+           
+          </div>
+        </div>
+        </div>
         </div>
         {/* 이미지 시작 */}
         <div className="container text-end">
@@ -52,24 +66,7 @@ function About() {
         {/* 이미지 끝 */}
 
       </section>
-      <div className="row">
-        <div className="container card col-md-4 mb-5" >
-          <div className="card-body">
-            <h4 className="card-title">이준혁(LEE JUNHYUK)</h4>
-            <h6 className="card-subtitle mb-2 text-muted">이준혁(LEE JUNHYUK)</h6>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="card-link">
-              Card link
-            </a>
-            <a href="#" className="card-link">
-              Another link
-            </a>
-          </div>
-        </div>
-        </div>
+   
       <hr className="m-0" />
       {/* <!-- 블로그소개 끝--> */}
     </div>

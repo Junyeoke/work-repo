@@ -1,7 +1,6 @@
 package com.example.back.repository;
 
 import com.example.back.model.Board;
-import com.example.back.model.News;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

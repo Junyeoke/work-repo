@@ -9,6 +9,7 @@
 
 import * as bootstrap from "bootstrap";
 // window.addEventListener('DOMContentLoaded', event => {
+
 export default function maininit(){
     // Activate Bootstrap scrollspy on the main nav element
     const sideNav = document.body.querySelector('#sideNav');
@@ -31,6 +32,8 @@ export default function maininit(){
             }
         });
     });
+
+   
 
 }
 

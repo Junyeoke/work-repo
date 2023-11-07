@@ -29,7 +29,9 @@ function Experience() {
               <p>
                 - HTML5 표준 태그 활용 - TABLE, DIV 등 태그 활용을 통한 웹페이지
                 구성과 디자인 편집 가능 <br />
+
               </p>
+
               <h5 className="font-weight-bold text-end">80%</h5>
               <div className="progress">
                 <div
@@ -60,8 +62,9 @@ function Experience() {
               <h3 className="mb-0">Bootstrap</h3>
               <div className="subheading mb-3">FrontEnd</div>
               <p>
-                - 부트스트랩 템플릿을 활용한 반응형 웹 페이지 구현 <br />-
-                부트스트랩 디자인 소스를 활용한 다양한 웹 페이지 구현
+                - 부트스트랩 템플릿을 활용한 반응형 웹 페이지 구현 <br />
+                - 부트스트랩 디자인 소스를 활용한 다양한 웹 페이지 구현
+                <br />
               </p>
               <h5 className="font-weight-bold text-end">95%</h5>
               <div className="progress">
@@ -123,12 +126,10 @@ function Experience() {
             data-aos-mirror="ture"
           >
             <div className="flex-grow-1">
-              <h3 className="mb-0">Oracle 18xe</h3>
-              <div className="subheading mb-3">BackEnd</div>
-              <p>
-              - 데이터베이스 CRUD 구현
-              </p>
-              <h5 className="font-weight-bold text-end">75%</h5>
+              <h3 className="mb-0">Oracle</h3>
+              <div className="subheading mb-3">Database</div>
+              <p>- 데이터베이스 CRUD 구현</p>
+              <h5 className="font-weight-bold text-end">70%</h5>
               <div className="progress">
                 <div
                   className="progress-bar"
@@ -146,6 +147,39 @@ function Experience() {
             </div>
           </div>
           {/* 네번째 보유기술/경험 끝 */}
+
+          {/* 다섯번째 보유기술/경험 시작 */}
+          <div
+            className="d-flex flex-column flex-md-row justify-content-between mb-5"
+            data-aos="fade-right"
+            data-aos-duration="2000"
+            data-aos-mirror="ture"
+          >
+            <div className="flex-grow-1">
+              <h3 className="mb-0">React(typescript) + springboot</h3>
+              <div className="subheading mb-3">fullstack</div>
+              <p>
+                - 리액트 + 스프링부트를 활용한 블로그 제작 및 게시판 CRUD 기능
+                구현
+              </p>
+              <h5 className="font-weight-bold text-end">70%</h5>
+              <div className="progress">
+                <div
+                  className="progress-bar"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  style={{ width: "70%" }}
+                  aria-valuenow={70}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                ></div>
+              </div>
+            </div>
+            <div className="flex-shrink-0">
+              <span className="text-primary">July 2023 - Present</span>
+            </div>
+          </div>
+          {/* 다섯번째 보유기술/경험 끝 */}
         </div>
       </section>
       <hr className="m-0" />

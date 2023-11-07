@@ -198,15 +198,7 @@ function BoardDetail(props:any) {
     </table>
     <div dangerouslySetInnerHTML={{ __html: board.content }}></div>
 
-    <hr />
-    <h5>댓글</h5>
-    <br />
-    <div className="card">
-      <div className="card-header">userID 들어갈곳</div>
-      <div className="card-body">
-        <p className="card-text">댓글 내용보는 곳</p>
-      </div>
-    </div>
+    
   </>
   )
 }

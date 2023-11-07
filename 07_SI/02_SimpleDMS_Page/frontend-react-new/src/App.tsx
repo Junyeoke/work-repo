@@ -33,6 +33,10 @@ import AddReplyBoard from "./pages/normal/reply-board/AddReplyBoard";
 import AddThreadBoard from "./pages/normal/thread-board/AddThreadBoard";
 import ReplyBoard from "./pages/normal/reply-board/ReplyBoard";
 import ThreadBoard from "./pages/normal/thread-board/ThreadBoard";
+import CodeCategoryList from "./pages/admin/CodeCategoryList";
+import AddCodeCategory from "./pages/admin/AddCodeCategory";
+import CodeList from "./pages/admin/CodeList";
+import AddCode from "./pages/admin/AddCode";
 
 function App() {
   return (
@@ -89,12 +93,26 @@ function App() {
           <Route path="/add-reply-board" element={<AddReplyBoard />} />
           {/* 정리 : boardParent = 0 이면 부모글을 클릭 */}
           {/* 정리 : boardParent = 0 아니면 자식글을 클릭 */}
-          <Route path="/reply-board/bid/:bid/boardParent/:boardParent" element={<ReplyBoard />} />
+          <Route
+            path="/reply-board/bid/:bid/boardParent/:boardParent"
+            element={<ReplyBoard />}
+          />
 
           {/* thread-board */}
           <Route path="/thread-board" element={<ThreadBoardList />} />
           <Route path="/add-thread-board" element={<AddThreadBoard />} />
-          <Route path="/thread-board/tid/:tid/tparent/:tparent" element={<ThreadBoard/>} />
+          <Route
+            path="/thread-board/tid/:tid/tparent/:tparent"
+            element={<ThreadBoard />}
+          />
+
+          {/* codeCategory(대분류 공통코드(부모)) 예제 */}
+          <Route path="code-category" element={<CodeCategoryList />} />
+          <Route path="add-code-category" element={<AddCodeCategory />} />
+
+          {/* code(소분류 공통코드(자식)) */}
+          <Route path="/code" element={<CodeList />} />
+          <Route path="/add-code" element={<AddCode />} />
 
           {/* NotFound */}
           <Route path="*" element={<NotFound />} />

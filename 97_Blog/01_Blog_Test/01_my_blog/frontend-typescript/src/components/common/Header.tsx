@@ -3,7 +3,6 @@ import React from "react";
 function Header() {
   return (
     <div>
-    
       {/* <!-- Navigation--> */}
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
@@ -43,26 +42,26 @@ function Header() {
             {/* 보유기술 시작 */}
             <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#experience">
-              experience
+                experience
               </a>
             </li>
             {/* 보유기술 끝 */}
 
-             {/* 자유게시판 시작 */}
-             <li className="nav-item">
+            {/* 보유기술 시작 */}
+            <li className="nav-item">
+              <a className="nav-link js-scroll-trigger" href="#project">
+                Project
+              </a>
+            </li>
+            {/* 보유기술 끝 */}
+
+            {/* 자유게시판 시작 */}
+            <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="/#board">
-              board
+                board
               </a>
             </li>
             {/* 자유게시판 끝 */}
-           
-           {/* 방명록 시작 */}
-            <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#guest">
-              guestbook
-              </a>
-            </li>
-            {/* 방명록 끝 */}
           </ul>
         </div>
       </nav>

@@ -33,7 +33,7 @@ function BoardList(props:any) {
          // const dept =  response.data.dept;  // 부서배열
          // const totalPage = response.data.totalPages;  // 전체페이지수
          const { board, totalPages } = response.data;
-         // dept 저장
+         
          setNotice(board);
          setCount(totalPages);
          // 로그 출력
