@@ -10,7 +10,9 @@ function Home() {
   useEffect(() => {
     maininit();
   }, []);
-  return <div id="page-top"></div>;
+  return <div >
+
+  </div>;
 }
 
 export default Home;

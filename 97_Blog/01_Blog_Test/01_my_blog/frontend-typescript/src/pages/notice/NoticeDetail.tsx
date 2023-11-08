@@ -92,6 +92,10 @@ function NoticeDetail(props: any) {
         >
           게시글 수정
         </button>
+
+        <button className="btn btn-outline-danger" onClick={deleteNotice}>
+                  삭제
+                </button>
         {/* 수정 모달창 */}
         <div
           className="modal fade modal-lg"
@@ -171,9 +175,7 @@ function NoticeDetail(props: any) {
                   수정
                 </button>
 
-                <button className="btn btn-outline-danger" onClick={deleteNotice}>
-                  삭제
-                </button>
+                
               </div>
             </div>
           </div>

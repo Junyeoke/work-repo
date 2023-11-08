@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Notice from "../../types/Notice";
 import NoticeService from "../../services/NoticeService";
 import { useNavigate } from "react-router-dom";
-import NoticeList from "./NoticeList";
 
 function AddNotice() {
   // 객체 초기화

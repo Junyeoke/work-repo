@@ -39,7 +39,7 @@ function Project() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h1 className="modal-title fs-5" id="exampleModalLabel">
-                        첫번째 프로젝트
+                        첫번째 개인 프로젝트
                       </h1>
                       <button
                         type="button"
@@ -53,13 +53,13 @@ function Project() {
                       <br />
                       <p>
                         ✔ 처음 프론트엔드 기술인 HTML과 CSS를 배웠을 때 HTML과
-                        CSS 코드만으로 작성된 블로그 페이지 입니다.<br/>
-                        ✔ one true layout 구조의 형태로 제작하였습니다.
+                        CSS 코드만으로 작성된 블로그 페이지 입니다.
+                        <br />✔ one true layout 구조의 형태로 제작하였습니다.
                       </p>
                       <h5>🛠 사용기술 : HTML5, CSS </h5>
                       <br />
                       <img
-                        src="https://lh3.google.com/u/0/d/1dJRHwtUigfU_2-wUTIHRi-CkVChZJZVp=w1920-h931-iv1"
+                        src="https://drive.google.com/uc?export=view&id=1w_HMd_ZtJI-uIquv6YD99bNNm3ur5zhm"
                         className="card-img-top"
                         alt="..."
                       />
@@ -112,7 +112,7 @@ function Project() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h1 className="modal-title fs-5" id="exampleModalLabel">
-                        두번째 프로젝트
+                        두번째 개인 프로젝트
                       </h1>
                       <button
                         type="button"
@@ -133,31 +133,11 @@ function Project() {
                         springboot{" "}
                       </h5>
                       <br />
-                      <div className="owl-carousel carousel-div owl-theme">
-                        <div className="position-relative mb-5">
-                          <img
-                            className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1yNGXc5G3fLUDPLBTiDnL53iRTYIApvxm=w1920-h931-iv1"
-                            alt=""
-                          />
-                        </div>
-
-                        <div className="position-relative mb-5">
-                          <img
-                            className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1silct3th7QqS-O7cJhbHc0_YlaYp-i1Z=w925-h931-iv1"
-                            alt=""
-                          />
-                        </div>
-
-                        <div className="position-relative mb-5">
-                          <img
-                            className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1BHEP7J_yUa64EwjR85w8OHVpbkA-w60b=w925-h931-iv1"
-                            alt=""
-                          />
-                        </div>
-                      </div>
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=1yNGXc5G3fLUDPLBTiDnL53iRTYIApvxm"
+                        className="card-img-top"
+                        alt="..."
+                      />
                     </div>
                     <div className="modal-footer">
                       <button
@@ -184,9 +164,13 @@ function Project() {
                 리액트(Typescript) + 스프링부트를 활용한 블로그 페이지 만들기
               </h5>
               <p className="card-text">
-                지금 보고있는 블로그 사이트가 리액트와 스프링부트를 이용하여 제작한 블로그 페이지 입니다.<br/>
-                포트폴리오 형식의 블로그 페이지이며, 저에 대한 소개, 기술 및 경험 및 작은 개인 프로젝트 목록들을 보여주고 있습니다. <br/>
-                그리고, 게시판에는 기본적인 기능인 게시글 생성, 수정, 삭제, 조회 기능이 있습니다.
+                지금 보고있는 블로그 사이트가 리액트와 스프링부트를 이용하여
+                제작한 블로그 페이지 입니다.
+                <br />
+                포트폴리오 형식의 블로그 페이지이며, 저에 대한 소개, 기술 및
+                경험 및 작은 개인 프로젝트 목록들을 보여주고 있습니다. <br />
+                그리고, 게시판에는 기본적인 기능인 게시글 생성, 수정, 삭제, 조회
+                기능이 있습니다.
               </p>
               <button
                 type="button"
@@ -208,7 +192,7 @@ function Project() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h1 className="modal-title fs-5" id="exampleModalLabel">
-                        세번째 프로젝트
+                        세번째 개인 프로젝트
                       </h1>
                       <button
                         type="button"
@@ -221,39 +205,20 @@ function Project() {
                       <h5>📌저의 세번째 개인 프로젝트 입니다.</h5>
                       <br />
                       <p>
-                        ✔ 프론트 작업 부분은 React + typescript 을 이용하였습니다. <br/>
-                        ✔ 백엔드 작업 부분은 Springboot + JPA + Oracle DB를 이용하였습니다.
+                        ✔ 프론트 작업 부분은 React + typescript 을
+                        이용하였습니다. <br />✔ 백엔드 작업 부분은 Springboot +
+                        JPA + Oracle DB를 이용하였습니다.
                       </p>
                       <h5>
                         🛠 사용기술 : bootstrap, css, html, typescript, react,
                         springboot{" "}
                       </h5>
                       <br />
-                      <div className="owl-carousel carousel-div owl-theme">
-                        <div className="position-relative mb-5">
-                          <img
+                      <img
                             className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1yNGXc5G3fLUDPLBTiDnL53iRTYIApvxm=w1920-h931-iv1"
+                            src="https://drive.google.com/uc?export=view&id=1iSW2ngQllYJJqYURSZhszNi2pGJ7c6Gr"
                             alt=""
                           />
-                        </div>
-
-                        <div className="position-relative mb-5">
-                          <img
-                            className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1silct3th7QqS-O7cJhbHc0_YlaYp-i1Z=w925-h931-iv1"
-                            alt=""
-                          />
-                        </div>
-
-                        <div className="position-relative mb-5">
-                          <img
-                            className="img-fluid  border border-secondary p-2 mx-auto"
-                            src="https://lh3.google.com/u/0/d/1BHEP7J_yUa64EwjR85w8OHVpbkA-w60b=w925-h931-iv1"
-                            alt=""
-                          />
-                        </div>
-                      </div>
                     </div>
                     <div className="modal-footer">
                       <button

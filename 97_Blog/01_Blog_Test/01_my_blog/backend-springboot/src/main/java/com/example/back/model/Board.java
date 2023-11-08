@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * packageName : com.example.back.model
@@ -22,7 +23,7 @@ import javax.persistence.*;
  * 2023-10-26         GGG          최초 생성
  */
 @Entity
-@Table(name="TB_BOARD")
+@Table(name = "TB_BOARD")
 @SequenceGenerator(
         name = "SQ_BOARD_GENERATOR"
         , sequenceName = "SQ_BOARD"
@@ -42,7 +43,7 @@ import javax.persistence.*;
 //         2) @SQLDelete(sql = "대체 sql문") : delete 될때 대체해서 실행될 쿼리문
 @Where(clause = "DELETE_YN = 'N'")
 @SQLDelete(sql = "UPDATE TB_BOARD SET DELETE_YN = 'Y', DELETE_TIME=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') WHERE NO = ?")
-public class Board extends BaseTimeEntity{
+public class Board extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_BOARD_GENERATOR"
@@ -56,5 +57,6 @@ public class Board extends BaseTimeEntity{
     private String content;
 
     private Integer viewCnt;
+
 
 }

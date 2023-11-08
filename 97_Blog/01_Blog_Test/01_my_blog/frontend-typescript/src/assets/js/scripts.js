@@ -1,14 +1,5 @@
-/*!
-* Start Bootstrap - Resume v7.0.6 (https://startbootstrap.com/theme/resume)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
 import * as bootstrap from "bootstrap";
-// window.addEventListener('DOMContentLoaded', event => {
+
 
 export default function maininit(){
     // Activate Bootstrap scrollspy on the main nav element
@@ -33,8 +24,7 @@ export default function maininit(){
         });
     });
 
+    
    
 
 }
-
-// });

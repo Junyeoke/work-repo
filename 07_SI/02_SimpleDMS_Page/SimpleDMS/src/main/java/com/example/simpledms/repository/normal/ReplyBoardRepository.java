@@ -70,4 +70,5 @@ public interface ReplyBoardRepository extends JpaRepository<ReplyBoard, Integer>
 
 
 
+
 }

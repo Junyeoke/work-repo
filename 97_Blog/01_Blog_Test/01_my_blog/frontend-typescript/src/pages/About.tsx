@@ -7,7 +7,7 @@ function About() {
     AOS.init();
   }, []);
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture">
+    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture" id="page-top">
       {/* <!-- 블로그소개--> */}
       <section className="resume-section" id="about">
         <div className="resume-section-content ">
