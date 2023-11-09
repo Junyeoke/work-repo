@@ -7,7 +7,7 @@ import { Pagination } from '@mui/material';
 function ProductList() {
    // todo : 변수정의
 
-  // 부서 배열 변수
+  // product 배열 변수
   const [product, setProduct] = useState<Array<IProduct>>([]);
 
   // 검색어 변수

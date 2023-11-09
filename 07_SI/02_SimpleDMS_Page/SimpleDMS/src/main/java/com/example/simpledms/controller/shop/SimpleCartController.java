@@ -1,8 +1,8 @@
 package com.example.simpledms.controller.shop;
 
-import com.example.simpledms.model.entity.basic.Dept;
-import com.example.simpledms.model.entity.shop.SimpleProduct;
-import com.example.simpledms.service.shop.SimpleProductService;
+import com.example.simpledms.model.dto.shop.SimpleCartDto;
+import com.example.simpledms.model.entity.shop.SimpleCart;
+import com.example.simpledms.service.shop.SimpleCartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,27 +18,27 @@ import java.util.Optional;
 
 /**
  * packageName : com.example.simpledms.controller.shop
- * fileName : SimpleProductController
+ * fileName : SimpleCartController
  * author : GGG
- * date : 2023-11-08
+ * date : 2023-11-09
  * description :
  * 요약 :
  * <p>
  * ===========================================================
  * DATE            AUTHOR             NOTE
  * —————————————————————————————
- * 2023-11-08         GGG          최초 생성
+ * 2023-11-09         GGG          최초 생성
  */
 @Slf4j
 @RestController
 @RequestMapping("/api/shop")
-public class SimpleProductController {
+public class SimpleCartController {
     @Autowired
-    SimpleProductService simpleProductService;
+    SimpleCartService simpleCartService;
 
     // 전체 조회 + dname like 검색
-    @GetMapping("/simple-product")
-    public ResponseEntity<Object> findAllByTitleContaining(
+    @GetMapping("/simple-cart")
+    public ResponseEntity<Object> selectByTitleContaining(
             @RequestParam(defaultValue = "") String title,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
@@ -51,18 +51,18 @@ public class SimpleProductController {
             Pageable pageable = PageRequest.of(page, size);
 
 //            전체조회(dname="") + like 검색(dname="S")
-            Page<SimpleProduct> simpleProductPage
-                    = simpleProductService.findAllByTitleContaining(title, pageable);
+            Page<SimpleCartDto> simpleCartDtoPage
+                    = simpleCartService.selectByTitleContaining(title, pageable);
 
 //            리액트 전송 : 부서배열, 페이징 정보 [자료구조 : Map<키이름, 값>]
             Map<String, Object> response = new HashMap<>();
-            response.put("simpleProduct", simpleProductPage.getContent());                // 부서배열 전송
-            response.put("currentPage", simpleProductPage.getNumber());          // 현재페이지번호 전송
-            response.put("totalItems", simpleProductPage.getTotalElements());    // 총 건수(개수) 전송
-            response.put("totalPages", simpleProductPage.getTotalPages());       // 총 페이지수 전송
+            response.put("simpleCart", simpleCartDtoPage.getContent());                // simpleCart 배열 전송
+            response.put("currentPage", simpleCartDtoPage.getNumber());          // 현재페이지번호 전송
+            response.put("totalItems", simpleCartDtoPage.getTotalElements());    // 총 건수(개수) 전송
+            response.put("totalPages", simpleCartDtoPage.getTotalPages());       // 총 페이지수 전송
 
 //            신호 보내기
-            if (simpleProductPage.isEmpty() == false) {
+            if (simpleCartDtoPage.isEmpty() == false) {
 //                성공
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
@@ -78,15 +78,15 @@ public class SimpleProductController {
     }
 
     // 상세조회
-    @GetMapping("/simple-product/{spno}")
-    public ResponseEntity<Object> findById(@PathVariable int spno) {
+    @GetMapping("/simple-cart/{scno}")
+    public ResponseEntity<Object> selectById(@PathVariable int scno) {
 //    상세조회 실행
         try {
-            Optional<SimpleProduct> optionalSimpleProduct = simpleProductService.findById(spno);
+            Optional<SimpleCartDto> optionalSimpleCartDto = simpleCartService.selectById(scno);
 
-            if (optionalSimpleProduct.isPresent()) {
+            if (optionalSimpleCartDto.isPresent()) {
 //                성공
-                return new ResponseEntity<>(optionalSimpleProduct.get(), HttpStatus.OK);
+                return new ResponseEntity<>(optionalSimpleCartDto.get(), HttpStatus.OK);
             } else {
 //                데이터 없음
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -97,34 +97,39 @@ public class SimpleProductController {
         }
     }
 
-
-
     //    저장함수
-    @PostMapping("/simple-product")
-    public ResponseEntity<Object> create(@RequestBody SimpleProduct simpleProduct) {
+    @PostMapping("/simple-cart")
+    public ResponseEntity<Object> create(@RequestBody SimpleCart simpleCart) {
 
         try {
-            SimpleProduct simpleProduct2 = simpleProductService.save(simpleProduct);
+            SimpleCart simpleCart2 = simpleCartService.save(simpleCart);
 
-            return new ResponseEntity<>(simpleProduct2, HttpStatus.OK);
+            return new ResponseEntity<>(simpleCart2, HttpStatus.OK);
         } catch (Exception e) {
 //            DB 에러가 났을경우 : INTERNAL_SERVER_ERROR 프론트엔드로 전송
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    // 삭제함수
 
-    //    수정함수
-    @PutMapping("/simple-product/{spno}")
-    public ResponseEntity<Object> update(@RequestBody SimpleProduct simpleProduct, @PathVariable int spno) {
+    @DeleteMapping("/simple-cart/deletion/{scno}")
+    public ResponseEntity<Object> delete(@PathVariable int scno) {
 
+//        프론트엔드 쪽으로 상태정보를 보내줌
         try {
-            SimpleProduct simpleProduct2 = simpleProductService.save(simpleProduct);    // db 수정
+            boolean bSuccess = simpleCartService.removeById(scno);
 
-            return new ResponseEntity<>(simpleProduct2, HttpStatus.OK);
+            if (bSuccess == true) {
+//                delete 문이 성공했을 경우
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+//            delete 실패했을 경우( 0건 삭제가 될경우 )
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
-//            DB 에러가 났을경우 : INTERNAL_SERVER_ERROR 프론트엔드로 전송
+//            DB 에러가 날경우
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
 }

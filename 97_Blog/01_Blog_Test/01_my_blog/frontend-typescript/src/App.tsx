@@ -8,6 +8,7 @@ import Board from "./pages/Board";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
 import Project from "./pages/Project";
+import ReplyBoard from "./pages/reply-board/ReplyBoard";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 export default interface IProduct {
-  pno: any | null;
+  pno?: any | null;
   kindCode: number;
   pname: string;
   image: string;

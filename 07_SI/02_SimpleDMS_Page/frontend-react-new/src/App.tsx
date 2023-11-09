@@ -41,6 +41,12 @@ import Code from "./pages/admin/Code";
 import SimpleProductList from "./pages/shop/simple-product/SimpleProductList";
 import ProductList from "./pages/shop/product/ProductList";
 import AddSimpleProduct from "./pages/shop/simple-product/AddSimpleProduct";
+import AddProduct from "./pages/shop/product/AddProduct";
+import SimpleProduct from "./pages/shop/simple-product/SimpleProduct";
+import Product from "./pages/shop/product/Product";
+import SimpleCart from "./pages/shop/simple-product/SimpleCart";
+import SimpleCartList from "./pages/shop/simple-product/SimpleCartList";
+
 
 
 function App() {
@@ -122,8 +128,17 @@ function App() {
 
           {/* simple product */}
           <Route path="/simple-product" element={<SimpleProductList/>} />
-          <Route path="/product" element={<ProductList/>} />
           <Route path="/add-simple-product" element={<AddSimpleProduct/>} />
+          <Route path="/simple-product/:spno" element={<SimpleProduct/>} />
+          {/* simple cart(장바구니 상세) */}
+          <Route path="/simple-cart/:spno" element={<SimpleCart/>} />
+          {/* 장바구니 전체조회 */}
+          <Route path="/simple-cart/" element={<SimpleCartList/>} />
+
+          {/* product 연습 */}
+          <Route path="/product" element={<ProductList/>} />
+          <Route path="/add-product" element={<AddProduct/>} />
+          <Route path="/product/:pno" element={<Product/>} />
 
           {/* NotFound */}
           <Route path="*" element={<NotFound />} />

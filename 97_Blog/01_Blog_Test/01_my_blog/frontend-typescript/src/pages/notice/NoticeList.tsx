@@ -14,9 +14,9 @@ function NoticeList(props:any) {
   // todo 공통 변수 : page(현재페이지 번호), count(총 페이지 건수), pageSize(3,6,9 배열)
   const [page, setPage] = useState<number>(1);
   const [count, setCount] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(6); // 한 페이지당 개수
+  const [pageSize, setPageSize] = useState<number>(12); // 한 페이지당 개수
   // todo 공통 pageSizes : 배열 (selectbox에 사용)
-  const pageSizes = [3, 6, 9];
+  const pageSizes = [3, 6, 9, 12];
 
   // 함수 정의
   useEffect(() => {

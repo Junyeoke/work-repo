@@ -1,16 +1,16 @@
-// SimpleProductList.tsx
-// 상품 전체조회 화면
+// SimpleCartList : 장바구니 전체조회 페이지
 import React, { useEffect, useState } from "react";
 import TitleCom from "../../../components/common/TitleCom";
 import { Pagination } from "@mui/material";
-import ISimpleProduct from "../../../types/shop/ISimpleProduct";
-import SimpleProductService from "../../../services/shop/SimpleProductService";
+import ISimpleCart from "../../../types/shop/ISimpleCart";
+import SimpleCartService from "../../../services/shop/SimpleCartService";
+import { useNavigate } from "react-router-dom";
 
-function SimpleProductList() {
+function SimpleCartList() {
   // todo : 변수정의
 
-  // simpleProduct 배열 변수
-  const [simpleProduct, setSimpleProduct] = useState<Array<ISimpleProduct>>([]);
+  // simpleCart 배열 변수
+  const [simpleCart, setSimpleCart] = useState<Array<ISimpleCart>>([]);
 
   // 검색어 변수
   const [searchTitle, setSearchTitle] = useState<string>("");
@@ -26,22 +26,22 @@ function SimpleProductList() {
   //  1) 컴포넌트가 mounted 될때 한번만 실행됨 : useEffect(() => {},[])
   //  2) 컴포넌트의 변수값이 변할 때 실행됨 : useEffect(() => {실행문},[감시할 변수])
   useEffect(() => {
-    retrieveSimpleProduct(); // 전체 조회
+    retrieveSimpleCart(); // 전체 조회
   }, [page, pageSize]);
 
   // 전체 조회 함수
-  const retrieveSimpleProduct = () => {
+  const retrieveSimpleCart = () => {
     // 벡엔드 매개변수 전송 : 현재페이지(page), 1페이지당 개수(pageSize)
-    SimpleProductService.getAll(searchTitle, page - 1, pageSize) // 벡엔드 전체조회요청
+    SimpleCartService.getAll(searchTitle, page - 1, pageSize) // 벡엔드 전체조회요청
       .then((response: any) => {
         // 벡엔드 성공시 실행됨
         // es6(모던js) 문법 : 객체 분해 할당
         // 원래 코드
-        // const simpleProduct =  response.data.simpleProduct;  // 부서배열
+        // const simpleCart =  response.data.simpleCart;  // 부서배열
         // const totalPage = response.data.totalPages;  // 전체페이지수
-        const { simpleProduct, totalPages } = response.data;
-        // simpleProduct 저장
-        setSimpleProduct(simpleProduct);
+        const { simpleCart, totalPages } = response.data;
+        // simpleCart 저장
+        setSimpleCart(simpleCart);
         setCount(totalPages);
         // 로그 출력
         console.log("response", response.data);
@@ -72,13 +72,33 @@ function SimpleProductList() {
     setPage(value);
   };
 
+  // todo : goOrder : 주문했습니다 출력하는 함수
+  const goOrder = () => {
+    alert("상품을 주문했습니다.");
+  };
+
+  // todo : 장바구니 삭제함수
+    const deleteSimpleCart = (scno:any) => {
+        SimpleCartService.remove(scno)    // 벡엔드로 삭제요청
+          .then((response: any) => {
+            console.log(response.data);
+            alert("삭제되었습니다.")
+            // 삭제 후 재조회
+            retrieveSimpleCart();
+          })
+          .catch((e: Error) => {
+            console.log(e);
+          });
+      };
+
+
   return (
     <>
       {/* 제목 start */}
-      <TitleCom title="SimpleProduct List" />
+      <TitleCom title="SimpleCart List" />
       {/* 제목 end */}
 
-      {/* shop start */}
+      {/* dname start */}
       <div className="row mb-5 justify-content-center">
         {/* w-50 : 크기 조정, mx-auto : 중앙정렬(margin: 0 auto), justify-content-center */}
         <div className="col-12 w-50 input-group mb-3">
@@ -93,7 +113,7 @@ function SimpleProductList() {
             <button
               className="btn btn-outline-secondary"
               type="button"
-              onClick={retrieveSimpleProduct}
+              onClick={retrieveSimpleCart}
             >
               Search
             </button>
@@ -128,34 +148,57 @@ function SimpleProductList() {
       {/* paging 끝 */}
 
       <div className="row">
-        {simpleProduct &&
-          simpleProduct.map((data) => (
-            <div className="ms-5 col-lg-3 col-md-3 mt-5" key={data.spno}>
-              <div className="card">
-                <img src={data.imgPath} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">{data.title}</h5>
-                  <h5 className="card-title">₩ {data.unitPrice}</h5>
-                  <a
-                    href={`/simple-cart/${data.spno}`}
-                    className="btn btn-primary"
-                  >
-                    SimpleProduct Cart
-                  </a>
-                  <br />
-                  <a
-                    href={`/simple-product/${data.spno}`}
-                    className="btn btn-success mt-2"
-                  >
-                    SimpleProduct Detail(admin)
-                  </a>
+        {simpleCart &&
+          simpleCart.map((data) => (
+            <div className="card mb-3" key={data.scno}>
+              <div className="row g-0 p-3">
+                <div className="col-md-4 p-3 border">
+                  <img
+                    src={data.imgPath}
+                    className="img-fluid rounded-start"
+                    alt="..."
+                    style={{ height: 15 + "vh", width: 5 + "vw" }}
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title">물품 : {data.title}</h5>
+                    <h5 className="card-title">
+                      가격 : {data.unitPrice * data.cartCount}
+                    </h5>
+                    <h5 className="card-title">장바구니 : {data.cartCount}</h5>
+                    <div className="mt-3">
+                      {/* 삭제 버튼 시작 */}
+                      <button
+                        type="button"
+                        onClick={() => deleteSimpleCart(data.scno)}
+                        className="btn btn-danger w-25"
+                      >
+                        delete to Cart
+                      </button>
+                      {/* 삭제 버튼 끝 */}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
       </div>
+      <div className="row d-flex justify-content-end">
+        {/* 삭제 버튼 시작 */}
+        {simpleCart && (
+          <button
+            type="button"
+            onClick={goOrder}
+            className="btn btn-warning w-25"
+          >
+            Simple Order
+          </button>
+        )}
+        {/* 삭제 버튼 끝 */}
+      </div>
     </>
   );
 }
 
-export default SimpleProductList;
+export default SimpleCartList;
