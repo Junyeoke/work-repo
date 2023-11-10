@@ -7,6 +7,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +49,7 @@ public class Board extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE
             , generator = "SQ_BOARD_GENERATOR"
     )
+
     private Integer no;
 
     private String title;
@@ -57,6 +59,8 @@ public class Board extends BaseTimeEntity {
     private String content;
 
     private Integer viewCnt;
+
+
 
 
 }

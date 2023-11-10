@@ -69,7 +69,7 @@ function AddProduct() {
     setSubmitted(false); // submitted 변수 초기화
   };
 
-    //   todo: select 태그 에 반복문으로 code 데이터를 출력하는 함수
+   //   todo: select 태그 에 반복문으로 code 데이터를 출력하는 함수
   //   todo: code 전체 조회 함수(페이징 없음)
   const retrieveCodeAll = () => {
     CodeService.getAllNoPage()
@@ -81,6 +81,7 @@ function AddProduct() {
         console.log(e);
       });
   };
+
   useEffect(() => {
     retrieveCodeAll(); // code 전체조회(페이징 없음)
   }, []);

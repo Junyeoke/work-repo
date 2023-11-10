@@ -12,7 +12,7 @@ function HeaderCom() {
       <div className="nav-wrapper bg-light">
         <nav className="navbar navbar-expand-lg p-2">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <a className="navbar-brand" href="*">
               <img
                 src={require("../../assets/img/simple-coding2.png")}
                 alt=""
@@ -94,7 +94,7 @@ function HeaderCom() {
                       {/* <!-- 3행 시작--> */}
                       <li className="sidebar-nav-item col-3">
                         <a href="/qna" className="nav-link active ms-2">
-                          Qna(다양한검색)
+                          Qna(다양한검색))
                         </a>
                       </li>
                       <li className="sidebar-nav-item col-3">
@@ -117,7 +117,7 @@ function HeaderCom() {
                           href="/add-customer"
                           className="nav-link active ms-2"
                         >
-                          AddCustomer(연습)
+                          Customer(연습)
                         </a>
                       </li>
                       {/* <!-- 줄바꿈 : w-100 --> */}

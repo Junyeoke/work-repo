@@ -5,19 +5,19 @@ import DeptService from "../../../services/basic/DeptService";
 
 function AddDept() {
 
-  // 객체 초기화
+  // todo: 객체 초기화
   const initialDept = {
     dno: null,
     dname: "",
     loc: "",
   };
 
-  // 부서 객체
+  // 부서객체
   const [dept, setDept] = useState<IDept>(initialDept);
-  // 저장버튼 클릭 후 submitted = true 변경됨
+  // 저장버튼 클릭후 submitted = true 변경됨
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  // input 태그에 수동 바인딩 함수
+  // todo: input 태그에 수동 바인딩
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target; // 화면값
     setDept({ ...dept, [name]: value });  // 변수저장
@@ -41,7 +41,7 @@ function AddDept() {
       });
   };
 
-  // 새 폼 보여주기 함수 : 변수값 변경 -> 화면 자동 갱신(리액트 특징)
+  // 새폼 보여주기 함수 : 변수값 변경 -> 화면 자동 갱신(리액트 특징)
   const newDept = () => {
     setDept(initialDept); // 부서 초기화
     setSubmitted(false);  // submitted 변수 초기화

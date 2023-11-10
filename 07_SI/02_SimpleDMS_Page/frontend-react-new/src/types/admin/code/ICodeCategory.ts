@@ -6,4 +6,3 @@ export default interface ICodeCategory {
     categoryId: number,
     categoryName: string
 }
-

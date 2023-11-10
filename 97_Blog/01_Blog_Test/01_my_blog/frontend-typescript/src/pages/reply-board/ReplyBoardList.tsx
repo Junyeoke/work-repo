@@ -171,13 +171,13 @@ function ReplyBoardList(props: any) {
             {replyBoard &&
               replyBoard.map((data, index) => (
                 // 키값 추가 않하면 react 에서 경고를 추가 : 키는 내부적으로 리액트가 rerending 할때 체크하는 값임
-                <tr className="text-center" key={index}>
-                  <td>{data.bid}</td>
+                <tr key={index}>
+                  <td className="text-center">{data.bid}</td>
                   <td>{data.boardTitle}</td>
-                  <td>{data.boardContent}</td>
-                  <td><b>{data.boardWriter}</b></td>
+                  <td >{data.boardContent}</td>
+                  <td className="text-center"><b>{data.boardWriter}</b></td>
 
-                  <td>
+                  <td className="text-center">
                     {/* 클릭하면 아래 답변 폼이 열림 */}
                     {data.boardParent == 0 && (
                       <Link to={"#"}>
@@ -192,7 +192,7 @@ function ReplyBoardList(props: any) {
                       </Link>
                     )}
                   </td>
-                  <td>
+                  <td className="text-center">
                     {/* 클릭시 상세화면 이동 */}
                     <Link to="#">
                       <span

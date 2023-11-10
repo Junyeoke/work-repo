@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TitleCom from "../../../components/common/TitleCom";
 import IQna from "../../../types/basic/IQna";
-import QnaService from "../../../services/basic/QnaServics";
-
+import QnaService from "../../../services/basic/QnaService";
 
 function QnaList() {
   // 변수 정의
@@ -159,7 +158,7 @@ function QnaList() {
               <th scope="col">Questioner</th>
               <th scope="col">Answer</th>
               <th scope="col">Answerer</th>
-              <th scope="col">Action</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>

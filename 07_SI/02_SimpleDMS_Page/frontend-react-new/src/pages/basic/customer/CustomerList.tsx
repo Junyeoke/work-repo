@@ -1,15 +1,16 @@
+// CustomerList.tsx : rfce
 import React, { useEffect, useState } from "react";
+import TitleCom from "../../../components/common/TitleCom";
+import { Link } from "react-router-dom";
 import ICustomer from "../../../types/basic/ICustomer";
 import CustomerService from "../../../services/basic/CustomerService";
-import TitleCom from "../../../components/common/TitleCom";
 import { Pagination } from "@mui/material";
-import { Link } from "react-router-dom";
 
 function CustomerList() {
   // 변수 정의
-  // Customer 배열 변수
+  // customer 배열 변수
   const [customer, setCustomer] = useState<Array<ICustomer>>([]);
-  // select 태그에 선택된 값을 저장할 변수 : 기본 (fullName)
+  // select 태그에 선택된 값을 저장할 변수 : 기본 (question)
   const [searchSelect, setSearchSelect] = useState<string>("fullName");
   // 검색어(input) 변수
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -21,8 +22,7 @@ function CustomerList() {
   const [pageSize, setPageSize] = useState<number>(3); // 1페이지당개수
   const pageSizes = [3, 6, 9]; // 공통 pageSizes : 배열 (셀렉트 박스 사용)
 
-  // 함수 정의
-  //   화면이 뜰때 실행되는 이벤트 + 감시변수
+  // todo: 함수 정의
   useEffect(() => {
     retrieveCustomer(); // 전체조회 실행
   }, [page, pageSize]);
@@ -67,17 +67,19 @@ function CustomerList() {
     // value == 화면의 페이지번호
     setPage(value);
   };
+
   return (
+    // 여기
     <>
       {/* 제목 start */}
-      <TitleCom title="Customer List" />
+      <TitleCom title="Cusomter List" />
       {/* 제목 end */}
 
-      {/* fullname start(다양한 검색어 부분) */}
+      {/* fullName start(다양한 검색어 부분) */}
       <div className="row mb-5 justify-content-center">
         <div className="col-md-8">
           <div className="input-group mb-3">
-            {/* 다양한 검색(select : fullname,email) 시작 */}
+            {/* 다양한 검색(select : fullName,email) 시작 */}
             <div className="col-2">
               <select
                 className="form-select"
@@ -120,7 +122,7 @@ function CustomerList() {
           </div>
         </div>
       </div>
-      {/* question end */}
+      {/* fullName end */}
 
       <div className="col-md-12">
         {/* page control start(페이징 html) */}
@@ -151,10 +153,10 @@ function CustomerList() {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">FullName</th>
+              <th scope="col">Full Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone</th>
-              <th scope="col">Action</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>

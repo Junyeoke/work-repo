@@ -1,5 +1,4 @@
-// SimpleCartService.ts : axios 공통 crud 함수
-
+// SimpleCartService.ts : axios 공통 함수 
 import ISimpleCart from "../../types/shop/ISimpleCart";
 import http from "../../utils/http-common";
 
@@ -19,6 +18,8 @@ const getAll = (title:string, page:number, size:number) => {
   };
   // 수정함수
   const update = (scno:any, data:ISimpleCart) => {
+    console.log("scno", scno);
+    console.log("data", data);
     return http.put<any>(`/shop/simple-cart/${scno}`, data);
   };
   // 삭제함수

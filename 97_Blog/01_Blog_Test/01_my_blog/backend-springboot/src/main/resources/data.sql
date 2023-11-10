@@ -2,52 +2,14 @@ INSERT INTO TB_NOTICE
 VALUES (SQ_NOTICE.nextval, '사이트 오픈 공지', '주녘주녘','공지사항 내용 테스트 1','N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
 INSERT INTO TB_NOTICE
 VALUES (SQ_NOTICE.nextval, '사이트 점검 공지', '주녘주녘','공지사항 내용 테스트 2', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 안내', '주녘주녘','공지사항 내용 테스트 3', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 4', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 5', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 6', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 7', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 8', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 9', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 10', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
-INSERT INTO TB_NOTICE
-VALUES (SQ_NOTICE.nextval, '블로그 오픈 이벤트', '주녘주녘','공지사항 내용 테스트 11', 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),NULL, NULL);
+
 
 
 
 -- 답변형 게시판 테스트
 -- 1
 INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 1, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 2
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 2, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 3
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 2, 2, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 4
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 2, 2, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 5
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 5, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 6
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 5, 5, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 7
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 7, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
--- 8
-INSERT INTO TB_REPLY_BOARD
-VALUES (SQ_REPLY_BOARD.nextval, '제목', '내용', '작성자', 0, 8, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
+VALUES (SQ_REPLY_BOARD.nextval, '방문하고 갑니다', '블로그 구경하고 갑니다', '홍길동', 0, 1, 0, 'N', TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') ,NULL, NULL);
 
 
 COMMIT;

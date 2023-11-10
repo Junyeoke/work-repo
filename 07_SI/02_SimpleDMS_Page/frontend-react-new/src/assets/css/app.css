@@ -29,7 +29,7 @@ body {
 h1:before {
   content: "";
   padding-left: 10px;
-  border-left: 10px solid rgb(52, 104, 201);
+  border-left: 10px solid green;
 }
 
 a {

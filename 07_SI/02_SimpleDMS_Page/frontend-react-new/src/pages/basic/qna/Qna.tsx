@@ -1,30 +1,33 @@
+// Qna.tsx : rfce
 import React, { useEffect, useState } from "react";
 import TitleCom from "../../../components/common/TitleCom";
 import { useNavigate, useParams } from "react-router-dom";
 import IQna from "../../../types/basic/IQna";
-import QnaService from "../../../services/basic/QnaServics";
+import QnaService from "../../../services/basic/QnaService";
 
 function Qna() {
+  // todo: 변수 정의
   // 전체조회 페이지에서 전송한 기본키(qno)
   const { qno } = useParams();
-  // 강제 페이지 이동 함수
+  // 강제페이지 이동 함수
   let navigate = useNavigate();
 
-  // 객체 초기화(상세 조회 : 기본키 있음)
+  // 객체 초기화(상세조회 : 기본키 있음)
   const initialQna = {
-    qno: null,
+    qno: "",
     question: "",
     answer: "",
     questioner: "",
     answerer: "",
   };
 
-  // 수정될 객체
+  // 수정될객체
   const [qna, setQna] = useState<IQna>(initialQna);
-  // 화면에 수정 성공 메세지 찍기 변수
+  // 화면에 수정 성공에 메세지 찍기 변수
   const [message, setMessage] = useState<string>("");
 
-  // 상세 조회 함수
+  // todo: 함수 정의
+  // 상세조회 함수
   const getQna = (qno: string) => {
     QnaService.get(qno) // 벡엔드로 상세조회 요청
       .then((response: any) => {
@@ -41,18 +44,18 @@ function Qna() {
     if (qno) getQna(qno);
   }, [qno]);
 
-  // input 태그 수동바인딩
+  // input 태그 수동 바인딩
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setQna({ ...qna, [name]: value });
   };
 
-  // 수정함수
+  // 수정 함수
   const updateQna = () => {
     QnaService.update(qna.qno, qna) // 벡엔드로 수정요청
       .then((response: any) => {
         console.log(response.data);
-        setMessage("The customer was updated successfully!");
+        setMessage("qna 객체가 수정되었습니다.");
       })
       .catch((e: Error) => {
         console.log(e);
@@ -64,14 +67,16 @@ function Qna() {
     QnaService.remove(qna.qno) // 벡엔드로 삭제요청
       .then((response: any) => {
         console.log(response.data);
-        // 페이지 이동
+        // 강제 페이지 이동 : 전체조회
         navigate("/qna");
       })
       .catch((e: Error) => {
         console.log(e);
       });
   };
+
   return (
+    // 여기
     <>
       {/* 제목 start */}
       <TitleCom title="Qna Detail" />
@@ -81,6 +86,7 @@ function Qna() {
         {qna ? (
           <div className="col-6 mx-auto">
             <form>
+              {/* question 입력창 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="question" className="col-form-label">
@@ -101,7 +107,9 @@ function Qna() {
                   />
                 </div>
               </div>
+              {/* question 입력창 끝 */}
 
+              {/* answer 입력창 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="answer" className="col-form-label">
@@ -122,7 +130,9 @@ function Qna() {
                   />
                 </div>
               </div>
+              {/* answer 입력창 끝 */}
 
+              {/* questioner 입력창 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="questioner" className="col-form-label">
@@ -143,11 +153,13 @@ function Qna() {
                   />
                 </div>
               </div>
+              {/* questioner 입력창 끝 */}
 
+              {/* answerer 입력창 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="answerer" className="col-form-label">
-                    Answener
+                    Answerer
                   </label>
                 </div>
 
@@ -164,6 +176,7 @@ function Qna() {
                   />
                 </div>
               </div>
+              {/* answerer 입력창 끝 */}
             </form>
 
             <div className="row g-3 mt-3 mb-3">
@@ -190,7 +203,7 @@ function Qna() {
         ) : (
           <div className="col-6 mx-auto">
             <br />
-            <p>Please click on a Dept...</p>
+            <p>Please click on a Qna...</p>
           </div>
         )}
       </>

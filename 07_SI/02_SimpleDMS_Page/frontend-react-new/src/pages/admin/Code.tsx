@@ -1,74 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import TitleCom from '../../components/common/TitleCom'
-import { useNavigate, useParams } from 'react-router-dom';
 import ICode from '../../types/admin/code/ICode';
 import CodeService from '../../services/admin/code/CodeService';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Code() {
-  
-  // 전체조회 페이지에서 전송한 기본키(codeId)
-  const { codeId } = useParams();
-  // 강제 페이지 이동 함수
-  let navigate = useNavigate();
+    const initCode = {
+        codeId: 0,       // 공통코드ID
+        codeName: "",     // 공통코드명
+        categoryId: 0,   // 대분류코드ID
+        categoryName: "", // 대분류코드명
+        useYn: ""         // 사용유무
+    }
 
+    const [code, setCode] = useState<ICode>(initCode);
+    const [message, setMessage] = useState("");
+    const {codeId} = useParams();
+    const navi = useNavigate();
 
-  // 객체 초기화(상세 조회 : 기본키 있음)
-  const initialCode = {
-    codeId: 0,              // 공통코드 ID
-    codeName: "",             // 공통코드명
-    categoryId: 0,           // 대분류코드 ID
-    categoryName: "",         // 대분류명
-    useYn: "" 
-  };
+    useEffect(()=>{retrieveCode();},[])
 
-  // 수정될 객체
-  const [code, setCode] = useState<ICode>(initialCode);
-  // 화면에 수정 성공 메세지 찍기 변수
-  const [message, setMessage] = useState<string>("");
-
-  // 상세 조회 함수
-  const getCode = (codeId: string) => {
-    CodeService.get(codeId)    // 벡엔드로 상세조회 요청
-      .then((response: any) => {
+    const retrieveCode = () => {
+        CodeService.get(codeId)
+        .then((response:any)=>{console.log(response);
         setCode(response.data);
-        console.log(response.data);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
-  };
-
-  // 화면이 뜰때 실행되는 이벤트 + codeId 값이 바뀌면 실행
-  useEffect(() => {
-    if (codeId) getCode(codeId);
-  }, [codeId]);
-
-  // input 태그 수동바인딩
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setCode({ ...code, [name]: value });
-  };
-
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    setCode({ ...code, [name]: value });
-  };
-
-  // 수정함수
-  const updateCode = () => {
-    CodeService.update(code.codeId, code)  // 벡엔드로 수정요청
-      .then((response: any) => {
-        console.log(response.data);
-        setMessage("The code was updated successfully!");
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
-  };
-
+        })
+        .catch((error:Error)=>{console.log(error)})
+        
+    };
+    const handleInputChange = (e:any) => {
+        const {name,value} = e.target;
+        setCode({...code, [name]:value});
+    };
+    const handleSelectChange = (e:any) => {
+        const {name,value} = e.target;
+        setCode({...code, [name]:value});
+    };
+    const updateCode = () => {
+        CodeService.update(codeId,code)
+        .then((response:any)=>{console.log(response);
+            navi("/code");
+            })
+            .catch((error:Error)=>{console.log(error);
+                setMessage(error.message);})
+    };
 
   return (
-    <>
+    <div>    <>
     {/* 제목 start */}
     <TitleCom title="Code Detail" />
     {/* 제목 end */}
@@ -180,7 +158,7 @@ function Code() {
         </div>
       )}
     </>
-  </>
+  </></div>
   )
 }
 

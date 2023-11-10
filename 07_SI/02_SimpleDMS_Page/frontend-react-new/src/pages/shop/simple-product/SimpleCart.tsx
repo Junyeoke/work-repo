@@ -1,5 +1,5 @@
+// SimpleCart.tsx : rfce
 // 장바구니 상세 화면
-
 import React, { useEffect, useState } from "react";
 import TitleCom from "../../../components/common/TitleCom";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,13 +8,14 @@ import SimpleProductService from "../../../services/shop/SimpleProductService";
 import SimpleCartService from "../../../services/shop/SimpleCartService";
 
 function SimpleCart() {
-  // todo 변수정의
+  // todo: 변수 정의
   // 전체조회 페이지에서 전송한 기본키(spno)
   const { spno } = useParams();
-  // 강제 페이지 이동 함수
+  // 강제페이지 이동 함수
   let navigate = useNavigate();
 
-  // 객체 초기화(상세 조회 : 기본키 있음)
+  // simpleProduct 객체 초기화(상세조회 : 기본키 있음)
+  // todo: 객체 초기화
   const initialSimpleProduct = {
     spno: null,
     codeId: 0,
@@ -27,13 +28,13 @@ function SimpleCart() {
   // simpleProduct 객체
   const [simpleProduct, setSimpleProduct] =
     useState<ISimpleProduct>(initialSimpleProduct);
-  // 화면에 수정 성공 메세지 찍기 변수
+  // 화면에 수정 성공에 메세지 찍기 변수
   const [message, setMessage] = useState<string>("");
-  // todo : 장바구니 물품 개수를 저장할 변수
+  // todo: 장바구니 물품 개수를 저장할 변수
   let [cartCount, setCartCount] = useState<number>(0);
 
-  // todo 함수정의
-  // simpleProduct 상세 조회 함수
+  // todo: 함수 정의
+  // simpleProduct 상세조회 함수
   const getSimpleProduct = (spno: string) => {
     SimpleProductService.get(spno) // 벡엔드로 상세조회 요청
       .then((response: any) => {
@@ -50,10 +51,9 @@ function SimpleCart() {
     if (spno) getSimpleProduct(spno);
   }, [spno]);
 
-  // todo 장바구니 상세화면에서 사용하는 함수들
-  // 1) 장바구니 저장함수
+  // todo: 장바구니 저장 함수
   const saveSimpleCart = () => {
-    // 임시 장바구니 객체
+    // 임시 객체
     var data = {
       spno: simpleProduct.spno,
       codeId: simpleProduct.codeId,
@@ -73,35 +73,37 @@ function SimpleCart() {
       });
   };
 
-  // todo : simple-cart 전체 조회 페이지로 이동
+  // todo: /simple-cart(장바구니) 전체 조회 페이지로 이동하는 함수
   const goSimpleCart = () => {
     navigate("/simple-cart");
   };
 
-  // todo : 장바구니 개수 증가 함수
+  //  todo: 장바구니 개수 증가 함수
   const increaseCount = () => {
     cartCount += 1;
+    setMessage("");
     setCartCount(cartCount); // 현재 증가값 저장
   };
-  // todo : 장바구니 개수 감소 함수
+
+  //  todo: 장바구니 개수 감소 함수
   const decreaseCount = () => {
-    if (cartCount > 0) {
-      // 장바구니 개수가 음수가 나오면 안되기 때문에 조건문 지정
+    if(cartCount > 0) {
       cartCount -= 1;
       setCartCount(cartCount); // 현재 감소값 저장
     }
   };
 
-  //   todo: 주문결과 표시 함수
-  const goOrder = () => {
-    if(cartCount == 0) {
-        setMessage("장바구니 개수를 증가시켜주세요")
-        return; // 함수에서 강제 중단(==break)
-    }
-    alert(`주문했습니다. ${simpleProduct.title}, ${cartCount}`);
-  };
+  // todo: 주문 결과 표시 함수
+  const goOrder = () => { 
+     if(cartCount == 0) {
+      setMessage("장바구니 개수를 증가시켜주세요")
+      return;
+     }
+     alert(`주문했습니다. ${simpleProduct.title}, ${cartCount}`)
+   }
 
   return (
+    // 여기
     <div>
       {/* 제목 start */}
       <TitleCom title="SimpleProduct Detail" />
