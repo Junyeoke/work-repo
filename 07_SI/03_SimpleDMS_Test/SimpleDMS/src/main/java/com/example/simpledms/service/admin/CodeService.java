@@ -36,9 +36,9 @@ public class CodeService {
         return page;
     }
 
-    // 전체 검색 : paging 없음
-    public List<Code> findAll() {
-        List<Code> list = codeRepository.findAll();     // 전체 조회 함수
+    // 전체 검색 : paging 없음 + 조인
+    public List<CodeDto> selectAllNoPage() {
+        List<CodeDto> list = codeRepository.selectAllNoPage();     // 전체 조회 함수
         return list;
     }
 

@@ -11,8 +11,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
  * packageName : com.example.simpledms.repository.normal
  * fileName : ReplyBoardRepository
@@ -71,7 +69,6 @@ public interface ReplyBoardRepository extends JpaRepository<ReplyBoard, Integer>
     int removeAllByBoardGroup(@Param("boardGroup") int boardGroup);
 
 
-    List<ReplyBoard> findAllByBoardParentContaining (Integer boardParent);
 
 
 }

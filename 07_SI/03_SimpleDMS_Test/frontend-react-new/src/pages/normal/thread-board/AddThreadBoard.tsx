@@ -1,28 +1,31 @@
+// AddThreadBoard.tsx
+// 추가페이지
 import React, { useState } from "react";
 import TitleCom from "../../../components/common/TitleCom";
 import IThreadBoard from "../../../types/normal/IThreadBoard";
-import ThreadBoardService from './../../../services/normal/ThreadBoardService';
+import ThreadBoardService from "../../../services/normal/ThreadBoardService";
 
 function AddThreadBoard() {
-  // todo 변수 정의
-  // 1) 객체 초기화
+  // todo: 변수 정의
+  // todo: 객체 초기화
   const initialThreadBoard = {
     tid: null,
     subject: "", // 제목
     mainText: "", // 본문
-    writer: "", // 작성자
+    writer: "",
     views: 0, // 조회수
-    tgroup: null, // 테이블 그룹
-    tparent: 0,
+    tgroup: null, // 그룹번호
+    tparent: 0, // 부모속성
   };
 
   // threadBoard 객체
-  const [threadBoard, setThreadBoard] = useState<IThreadBoard>(initialThreadBoard);
-  // 저장버튼 클릭 후 submitted = true 변경됨
+  const [threadBoard, setThreadBoard] =
+    useState<IThreadBoard>(initialThreadBoard);
+  // 저장버튼 클릭후 submitted = true 변경됨
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  // todo 함수정의
-  // input 태그에 수동 바인딩 함수
+  // todo: 함수 정의
+  // input 태그에 수동 바인딩
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target; // 화면값
     setThreadBoard({ ...threadBoard, [name]: value }); // 변수저장
@@ -30,17 +33,17 @@ function AddThreadBoard() {
 
   // 저장 함수
   const saveThreadBoard = () => {
-    // 임시 threadBoard 객체
+    // 임시 객체
     var data = {
-      subject: threadBoard.subject,
-      mainText: threadBoard.mainText,
-      writer: threadBoard.writer,
-      views: threadBoard.views,
-      tgroup: null,     // 입력시 제외
-      tparent: 0        // 입력시 제외
+        subject: threadBoard.subject, // 제목
+        mainText: threadBoard.mainText, // 본문
+        writer: threadBoard.writer,
+        views: 0,     // 조회수
+        tgroup: null, // 그룹번호
+        tparent: 0, // 부모속성        
     };
 
-    ThreadBoardService.createBoard(data) // 게시물 저장
+    ThreadBoardService.createBoard(data) // 게시물 저장 요청
       .then((response: any) => {
         setSubmitted(true);
         console.log(response.data);
@@ -50,13 +53,14 @@ function AddThreadBoard() {
       });
   };
 
-  // 새 폼 보여주기 함수 : 변수값 변경 -> 화면 자동 갱신(리액트 특징)
+  // 새폼 보여주기 함수 : 변수값 변경 -> 화면 자동 갱신(리액트 특징)
   const newThreadBoard = () => {
-    setThreadBoard(initialThreadBoard); // 부서 초기화
+    setThreadBoard(initialThreadBoard); //  초기화
     setSubmitted(false); // submitted 변수 초기화
   };
 
   return (
+    // 여기
     <div className="row">
       {submitted ? (
         <div className="col-6 mx-auto">
@@ -68,7 +72,7 @@ function AddThreadBoard() {
       ) : (
         <>
           {/* 제목 start */}
-          <TitleCom title="Add Reply Board" />
+          <TitleCom title="Add Thread Board" />
           {/* 제목 end */}
 
           <div className="col-6 mx-auto">

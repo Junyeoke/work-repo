@@ -2,6 +2,7 @@ package com.example.simpledms.controller.admin;
 
 import com.example.simpledms.model.dto.admin.CodeDto;
 import com.example.simpledms.model.entity.admin.Code;
+import com.example.simpledms.model.entity.admin.CodeCategory;
 import com.example.simpledms.model.entity.basic.Customer;
 import com.example.simpledms.model.entity.basic.Dept;
 import com.example.simpledms.service.admin.CodeService;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -75,6 +77,27 @@ public class CodeController {
         }
     }
 
+    //    전체조회 : 페이징 없음
+    @GetMapping("/code/all")
+    public ResponseEntity<Object> findAllByNoPage(){
+        try {
+
+            List<CodeDto> list = codeService.selectAllNoPage();
+
+            if (list.isEmpty() == false) {
+//                성공
+                return new ResponseEntity<>(list, HttpStatus.OK);
+            } else {
+//                데이터 없음
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        }catch (Exception e) {
+            log.debug(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     /** 저장 함수 */
 //    저장 함수
     @PostMapping("/code")
@@ -108,7 +131,7 @@ public class CodeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 
 
     //    수정함수

@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -127,27 +126,6 @@ public class ReplyBoardController {
             if (optionalReplyBoard.isPresent()) {
 //                성공
                 return new ResponseEntity<>(optionalReplyBoard.get(), HttpStatus.OK);
-            } else {
-//                데이터 없음
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-//            서버 에러
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    //    상세조회
-    @GetMapping("/reply/{boardParent}")
-    public ResponseEntity<Object> findByBoardParent(@PathVariable int boardParent) {
-
-        try {
-//            상세조회 실행
-            List<ReplyBoard> list = replyBoardService.findByBoardParent(boardParent);
-
-            if (list.isEmpty() == false) {
-//                성공
-                return new ResponseEntity<>(list.get(boardParent), HttpStatus.OK);
             } else {
 //                데이터 없음
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);

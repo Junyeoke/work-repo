@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -78,12 +76,6 @@ public class ReplyBoardService {
         } else {
             return false;
         }
-    }
-
-    // 댓글 조회 함수
-    public List<ReplyBoard> findByBoardParent(int boardParent) {
-        List<ReplyBoard> list = replyBoardRepository.findAllByBoardParentContaining(boardParent);
-        return list;
     }
 
 

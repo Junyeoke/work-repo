@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import TitleCom from '../../../components/common/TitleCom'
-import { useNavigate, useParams } from 'react-router-dom';
-import ICinemaFaq from '../../../types/normal/ICinemaFaq';
-import CinemaFaqService from '../../../services/normal/CinemaFaqService';
+// CinemaFaq.tsx : rfce
+import React, { useEffect, useState } from "react";
+import TitleCom from "../../../components/common/TitleCom";
+import { useNavigate, useParams } from "react-router-dom";
+import ICinemaFaq from "../../../types/normal/ICinemaFaq";
+import CinemaFaqService from "../../../services/normal/CinemaFaqService";
 
 function CinemaFaq() {
-     // 전체조회 페이지에서 전송한 기본키(dno)
+  // todo: 변수 정의
+  // 전체조회 페이지에서 전송한 기본키(cfno)
   const { cfno } = useParams();
-  // 강제 페이지 이동 함수
+  // 강제페이지 이동 함수
   let navigate = useNavigate();
 
-
-  // 객체 초기화(상세 조회 : 기본키 있음)
+  // 객체 초기화(상세조회 : 기본키 있음)
   const initialCinemaFaq = {
-    cfno: "",
-    question: "",
-    answer: "",
-    sortOrder: "",
+    cfno: null,
+    question: "",             
+    answer: "",            
+    sortOrder: ""    
   };
 
-  // 수정될 객체
+  // 수정될객체
   const [cinemaFaq, setCinemaFaq] = useState<ICinemaFaq>(initialCinemaFaq);
-  // 화면에 수정 성공 메세지 찍기 변수
+  // 화면에 수정 성공에 메세지 찍기 변수
   const [message, setMessage] = useState<string>("");
-
-  // 상세 조회 함수
+  
+  // todo: 함수 정의
+  // 상세조회 함수
   const getCinemaFaq = (cfno: string) => {
-    CinemaFaqService.get(cfno)    // 벡엔드로 상세조회 요청
+    CinemaFaqService.get(cfno)           // 벡엔드로 상세조회 요청
       .then((response: any) => {
         setCinemaFaq(response.data);
         console.log(response.data);
@@ -36,23 +38,23 @@ function CinemaFaq() {
       });
   };
 
-  // 화면이 뜰때 실행되는 이벤트 + dno 값이 바뀌면 실행
+  // 화면이 뜰때 실행되는 이벤트 + cfno 값이 바뀌면 실행
   useEffect(() => {
     if (cfno) getCinemaFaq(cfno);
   }, [cfno]);
 
-  // input 태그 수동바인딩
+  // input 태그 수동 바인딩
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCinemaFaq({ ...cinemaFaq, [name]: value });
   };
 
-  // 수정함수
+  // 수정 함수
   const updateCinemaFaq = () => {
-    CinemaFaqService.update(cinemaFaq.cfno, cinemaFaq)  // 벡엔드로 수정요청
+    CinemaFaqService.update(cinemaFaq.cfno, cinemaFaq) // 벡엔드로 수정요청
       .then((response: any) => {
         console.log(response.data);
-        setMessage("The Cinema Faq was updated successfully!");
+        setMessage("cinemaFaq 수정되었습니다.!");
       })
       .catch((e: Error) => {
         console.log(e);
@@ -61,7 +63,7 @@ function CinemaFaq() {
 
   // 삭제함수
   const deleteCinemaFaq = () => {
-    CinemaFaqService.remove(cinemaFaq.cfno)    // 벡엔드로 삭제요청
+    CinemaFaqService.remove(cinemaFaq.cfno) // 벡엔드로 삭제요청
       .then((response: any) => {
         console.log(response.data);
         // 페이지 이동
@@ -71,20 +73,23 @@ function CinemaFaq() {
         console.log(e);
       });
   };
+
   return (
+    // 여기
     <>
       {/* 제목 start */}
-      <TitleCom title="Cinema Faq Detail" />
+      <TitleCom title="CinemaFaq Detail" />
       {/* 제목 end */}
 
       <>
         {cinemaFaq ? (
           <div className="col-6 mx-auto">
             <form>
+              {/* question 입력 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="question" className="col-form-label">
-                    Qeustion
+                    Question
                   </label>
                 </div>
 
@@ -101,31 +106,13 @@ function CinemaFaq() {
                   />
                 </div>
               </div>
+              {/* question 입력 끝 */}
 
-              <div className="row g-3 align-items-center mb-3">
-            <div className="col-3">
-              <label htmlFor="sortOrder" className="col-form-label">
-                SortOrder
-              </label>
-            </div>
-            <div className="col-9">
-              <input
-                type="number"
-                id="sortOrder"
-                required
-                className="form-control"
-                value={cinemaFaq.sortOrder}
-                onChange={handleInputChange}
-                placeholder="sortOrder"
-                name="sortOrder"
-              />
-            </div>
-          </div>
-
+              {/* answer 입력 시작 */}
               <div className="row g-3 align-items-center mb-3">
                 <div className="col-3">
                   <label htmlFor="answer" className="col-form-label">
-                  Answer
+                    Answer
                   </label>
                 </div>
 
@@ -142,6 +129,30 @@ function CinemaFaq() {
                   />
                 </div>
               </div>
+              {/* answer 입력 끝 */}
+
+              {/* sortOrder 입력 시작 */}
+              <div className="row g-3 align-items-center mb-3">
+                <div className="col-3">
+                  <label htmlFor="sortOrder" className="col-form-label">
+                    Sort Order
+                  </label>
+                </div>
+
+                <div className="col-9">
+                  <input
+                    type="text"
+                    id="sortOrder"
+                    required
+                    className="form-control"
+                    value={cinemaFaq.sortOrder}
+                    onChange={handleInputChange}
+                    placeholder="sortOrder"
+                    name="sortOrder"
+                  />
+                </div>
+              </div>
+              {/* sortOrder 입력 끝 */}
             </form>
 
             <div className="row g-3 mt-3 mb-3">
@@ -168,12 +179,12 @@ function CinemaFaq() {
         ) : (
           <div className="col-6 mx-auto">
             <br />
-            <p>Please click on a Cinema Faq...</p>
+            <p>Please click on a CinemaFaq...</p>
           </div>
         )}
       </>
     </>
-  )
+  );
 }
 
-export default CinemaFaq
+export default CinemaFaq;

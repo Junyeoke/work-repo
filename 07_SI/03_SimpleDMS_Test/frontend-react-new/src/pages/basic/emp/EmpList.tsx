@@ -1,68 +1,81 @@
-import React, { useEffect, useState } from "react";
-import IEmp from "./../../../types/basic/IEmp";
-import EmpService from "../../../services/basic/EmpService";
-import TitleCom from "../../../components/common/TitleCom";
-import { Pagination } from "@mui/material";
-import { Link } from "react-router-dom";
+// EmpList.tsx : rfce
+import React, { useEffect, useState } from 'react'
+import TitleCom from '../../../components/common/TitleCom'
+import { Link } from 'react-router-dom'
+import IEmp from '../../../types/basic/IEmp';
+import EmpService from '../../../services/basic/EmpService';
+import { Pagination } from '@mui/material';
 
 function EmpList() {
-  // 변수 정의
-  const [emp, setEmp] = useState<Array<IEmp>>([]);
 
+    // 변수 정의
+  // 사원 배열 변수
+  const [emp, setEmp] = useState<Array<IEmp>>([]);
   // 검색어 변수
   const [searchEname, setSearchEname] = useState<string>("");
 
-  // 공통 변수 : page(현재페이지 번호), count(총 페이지 건수), pageSize(3, 6, 9배열)
+  // todo: 공통 변수 : page(현재페이지번호), count(총페이지건수), pageSize(3,6,9 배열)
   const [page, setPage] = useState<number>(1);
   const [count, setCount] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(3);
-
-  // 공통 pageSizes 배열
+  const [pageSize, setPageSize] = useState<number>(3); // 1페이지당개수
+  // todo: 공통 pageSizes : 배열 (셀렉트 박스 사용)
   const pageSizes = [3, 6, 9];
 
   // 함수 정의
+  // 1) 컴포넌트가 mounted 될때 한번만 실행됨 : useEffect(() => {실행문},[])
+  // 2) 컴포넌트의 변수값이 변할때 실행됨 : useEffect(() => {실행문},[감시변수])
   useEffect(() => {
-    retrieveEmp();
+    retrieveEmp(); // 전체 조회
   }, [page, pageSize]);
 
-  // 전체 조회 함수
+  //   전체조회 함수
   const retrieveEmp = () => {
-    EmpService.getAll(searchEname, page - 1, pageSize) // 벡엔드 전체조회 요청
-      .then((response: any) => {
-        const { emp, totalPages } = response.data;
-        setEmp(emp);
-        setCount(totalPages);
-        console.log("respones", response.data);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
+    // 벡엔드 매개변수 전송 : + 현재페이지(page), 1페이지당개수(pageSize)
+    EmpService.getAll(searchEname, page -1, pageSize) // 벡엔드 전체조회요청
+    .then((response: any)=>{
+      // 벡엔드 성공시 실행됨
+      const { emp, totalPages } = response.data;
+      // emp 저장
+      setEmp(emp);
+      setCount(totalPages);
+      // 로그 출력
+      console.log("response", response.data);
+
+    })
+    .catch((e: Error)=>{
+      // 벡엔드 실패시 실행됨
+      console.log(e);
+    })
   };
 
-  // 검색어 수동바인딩 함수
+  //  검색어 수동 바인딩 함수
   const onChangeSearchEname = (e: any) => {
     const searchEname = e.target.value;
     setSearchEname(searchEname);
   };
 
-  // select 태그 수동바인딩
-  const handlePageSizeChange = (e: any) => {
-    setPageSize(e.target.value); // 한 페이지당 개수 저장
-    setPage(1); // 현재페이지 번호 : 1로 강제 설정
-  };
+  // todo: handlePageSizeChange(공통) : pageSize 값 변경시 실행되는 함수
+  //  select 태그 수동 바인딩 : 화면값 -> 변수에 저장
+  const handlePageSizeChange = (event: any) => { 
+      setPageSize(event.target.value); // 1페이지당 개수저장(3,6,9)
+      setPage(1); // 현재페이지번호 : 1로 강제설정
+   }
 
-  // pagination 수동 바인딩
-  const handlePageChange = (e: any, value: number) => {
-    setPage(value);
-  };
+  //  todo: Pagination 수동 바인딩(공통)
+  //  페이지 번호를 누르면 => page 변수에 값 저장
+  const handlePageChange = (event:any, value:number) => { 
+      // value == 화면의 페이지번호
+      setPage(value);
+   }
 
   return (
+    // 여기
     <>
-       {/* 제목 start */}
-       <TitleCom title="Emp List" />
+      {/* 제목 start */}
+      <TitleCom title="Emp List" />
       {/* 제목 end */}
 
-      {/* dname start 검색어 입력창 */}
+      {/* ename start */}
       <div className="row mb-5 justify-content-center">
         {/* w-50 : 크기 조정, mx-auto : 중앙정렬(margin: 0 auto), justify-content-center */}
         <div className="col-12 w-50 input-group mb-3">
@@ -84,12 +97,11 @@ function EmpList() {
           </div>
         </div>
       </div>
-      {/* dname end */}
+      {/* ename end */}
 
-      {/* paging 시작(페이지 번호 컴포넌트)*/}
+      {/* paging 시작 */}
       <div className="mt-3">
         {"Items per Page: "}
-        {/* 페이지 size 변경하는 selectbox 시작 */}
         <select onChange={handlePageSizeChange} value={pageSize}>
           {pageSizes.map((size) => (
             <option key={size} value={size}>
@@ -97,14 +109,10 @@ function EmpList() {
             </option>
           ))}
         </select>
-        {/* 페이지 size 변경하는 selectbox 끝 */}
 
-        {/* Material UI(구글) 컴포넌트 시작 */}
-        {/* count : 총 페이지 건수(개수), page : 현재 페이지 번호 */}
-        {/* count={1페이지당개수}, page={현재페이지번호} */}
-        <div className="pagination">
+        {/* 사용법 : count={1페이지당개수} , page={현재페이지번호} */}
         <Pagination
-          className="pagination"
+          className="my-3"
           count={count}
           page={page}
           siblingCount={1}
@@ -113,13 +121,11 @@ function EmpList() {
           shape="rounded"
           onChange={handlePageChange}
         />
-        </div>
-        {/* Material UI(구글) 컴포넌트 끝 */}
       </div>
       {/* paging 끝 */}
 
- {/* table start(테이블 본문) */}
- <div className="col-md-12">
+      {/* table start */}
+      <div className="col-md-12">
         {/* table start */}
         <table className="table">
           <thead className="table-light">
@@ -157,9 +163,8 @@ function EmpList() {
         {/* table end */}
       </div>
       {/* table end */}
-
-    </>
-  );
+    </>    
+  )
 }
 
-export default EmpList;
+export default EmpList
