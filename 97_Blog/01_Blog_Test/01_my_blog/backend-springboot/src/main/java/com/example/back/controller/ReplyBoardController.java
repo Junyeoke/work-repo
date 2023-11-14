@@ -32,7 +32,7 @@ import java.util.Optional;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/normal")
+@RequestMapping("/api/guestbook")
 public class ReplyBoardController {
 
     @Autowired

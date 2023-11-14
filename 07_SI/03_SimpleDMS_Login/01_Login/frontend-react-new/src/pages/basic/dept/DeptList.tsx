@@ -3,7 +3,7 @@
 import TitleCom from "../../../components/common/TitleCom";
 import { Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import IDept from "../../../types/basic/IDept";
 import DeptService from "../../../services/basic/DeptService";
 
@@ -28,13 +28,15 @@ function DeptList() {
     retrieveDept(); // 전체 조회
   }, [page, pageSize]);
 
-  //   전체조회 함수
+  // 약식 코딩(참고): useEffect(retrieveDept, [page, pageSize])
+
+  //   전체조회 함수 : Promise 비동기 코딩 방식
   const retrieveDept = () => {
     // 벡엔드 매개변수 전송 : + 현재페이지(page), 1페이지당개수(pageSize)
     DeptService.getAll(searchDname, page -1, pageSize) // 벡엔드 전체조회요청
     .then((response: any)=>{
       // 벡엔드 성공시 실행됨
-      // es6(모던js) 문법 : 객체 분해 할당 
+      // es6(모던js) 문법 : 객체 분해 할당
       // const dept = response.data.dept; // 부서배열
       // const totalPages = response.data.totalPages; // 전체페이지수
       const { dept, totalPages } = response.data;
@@ -51,6 +53,23 @@ function DeptList() {
     })
   };
 
+  // todo : async ~ await 비동기 코딩방식(최근)
+  // todo : 주의점) useEffect(()=>{},[])이 형태로 사용해야 에러가 발생 안함
+  // const retrieveDept = async () => {
+  //   try {
+  //     // 벡엔드 매개변수 전송 : + 현재페이지(page), 1페이지당개수(pageSize)
+  //     const response: any = await DeptService.getAll(searchDname, page - 1, pageSize); // 벡엔드 전체조회요청
+  //     const { dept, totalPages } = response.data;
+  //     // dept 저장
+  //     setDept(dept);
+  //     setCount(totalPages);
+  //     // 로그 출력
+  //     console.log("response", response.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   //  검색어 수동 바인딩 함수
   const onChangeSearchDname = (e: any) => {
     const searchDname = e.target.value;
@@ -59,17 +78,17 @@ function DeptList() {
 
   // todo: handlePageSizeChange(공통) : pageSize 값 변경시 실행되는 함수
   //  select 태그 수동 바인딩 : 화면값 -> 변수에 저장
-  const handlePageSizeChange = (event: any) => { 
-      setPageSize(event.target.value); // 1페이지당 개수저장(3,6,9)
-      setPage(1); // 현재페이지번호 : 1로 강제설정
-   }
+  const handlePageSizeChange = (event: any) => {
+    setPageSize(event.target.value); // 1페이지당 개수저장(3,6,9)
+    setPage(1); // 현재페이지번호 : 1로 강제설정
+  };
 
   //  todo: Pagination 수동 바인딩(공통)
   //  페이지 번호를 누르면 => page 변수에 값 저장
-  const handlePageChange = (event:any, value:number) => { 
-      // value == 화면의 페이지번호
-      setPage(value);
-   }
+  const handlePageChange = (event: any, value: number) => {
+    // value == 화면의 페이지번호
+    setPage(value);
+  };
 
   return (
     // 여기

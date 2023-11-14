@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
 import NoticeList from "./notice/NoticeList";
 import BoardList from "./board/BoardList";
 
@@ -9,10 +10,14 @@ import BoardDetail from "./board/BoardDetail";
 import AddReplyBoard from "./reply-board/AddReplyBoard";
 import ReplyBoard from "./reply-board/ReplyBoard";
 import ReplyBoardList from "./reply-board/ReplyBoardList";
+import FileDbList from "./advanced/FileDbList";
+import AddFileDb from "./advanced/AddFileDb";
+import FileDb from "./advanced/FileDb";
 
 function Board() {
   useEffect(() => {
     handleChangeNotice("noticeList");
+    AOS.init();
   }, []);
   // todo: 바인딩 변수 정의
   // notice 게시판 이름 저장 변수
@@ -20,9 +25,10 @@ function Board() {
   // board 게시판 이름 저장 변수
   const [viewBoard, setViewBoard] = useState<string>("");
   // 답변형 게시판 이름 저장 변수
-  const [viewReplyBoard, setViewReplyBoard] = useState<string>("");
+  const [viewImgBoard, setviewImgBoard] = useState<string>("");
   // 기본키 저장 변수
   const [pid, setPid] = useState<number>(0);
+  const [uuid, setUuid] = useState<string>("");
   const [boardParent, setBoardParent] = useState<number>(0);
 
   // 공지사항 버튼 클릭시 실행되는 함수
@@ -63,24 +69,41 @@ function Board() {
 
   // 방명록 화면 이름에 따라 다른 컴포넌트 보여주는 함수
   const changeReplyBoard = () => {
-    if (viewReplyBoard === "replyBoard") {
+    if (viewImgBoard === "replyBoard") {
       return <ReplyBoardList handleChangeReplyBoard={handleChangeReplyBoard} />;
-    } else if (viewReplyBoard === "addReplyBoard") {
+    } else if (viewImgBoard === "addReplyBoard") {
       return <AddReplyBoard />;
-    } else if (viewReplyBoard === "replyBoardDetail") {
+    } else if (viewImgBoard === "replyBoardDetail") {
       return <ReplyBoard bid={pid} boardParent={boardParent} />;
     }
   };
 
   // 방명록 버튼 클릭시 실행되는 함수
-  const handleChangeReplyBoard = (viewReplyBoard: string, pid = 0, boardParent = 0) => {
-    setViewReplyBoard(viewReplyBoard);
+  const handleChangeReplyBoard = (viewImgBoard: string, pid = 0, boardParent = 0) => {
+    setviewImgBoard(viewImgBoard);
     setPid(pid);
     setBoardParent(boardParent);
   };
 
+   // 사진첩 화면 이름에 따라 다른 컴포넌트 보여주는 함수
+   const changeImgBoard = () => {
+    if (viewImgBoard === "imgBoard") {
+      return <FileDbList handleChangeImgBoard={handleChangeImgBoard} />;
+    } else if (viewImgBoard === "addImgBoard") {
+      return <AddFileDb />;
+    } else if (viewImgBoard === "imgBoardDetail") {
+      return <FileDb uuid={uuid}/>;
+    }
+  };
+
+  // 사진첩 버튼 클릭시 실행되는 함수
+  const handleChangeImgBoard = (viewImgBoard: string, uuid = "") => {
+    setviewImgBoard(viewImgBoard);
+    setUuid(uuid);
+  };
+
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture">
+    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture" data-aos-once="false">
       {/* <!-- 게시판 시작--> */}
       <section className="resume-section" id="board">
         <div className="resume-section-content">
@@ -132,6 +155,21 @@ function Board() {
                 📝방명록-답변형 게시판
               </button>
             </li>
+            <li className="nav-item" role="presentation">
+              <button
+                className="nav-link"
+                id="imgBoard-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#imgBoard-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="imgBoard-tab-pane"
+                aria-selected="false"
+                onClick={() => handleChangeImgBoard("imgBoard")}
+              >
+                📸사진첩
+              </button>
+            </li>
           </ul>
           <div className="tab-content" id="myTabContent">
             <div
@@ -156,10 +194,20 @@ function Board() {
               className="tab-pane fade"
               id="replyBoard-tab-pane"
               role="tabpanel"
-              aria-labelledby="board-tab"
+              aria-labelledby="replyBoard-tab"
               tabIndex={0}
             >
               {changeReplyBoard()}
+            </div>
+            <div
+              className="tab-pane fade"
+              id="imgBoard-tab-pane"
+              role="tabpanel"
+              aria-labelledby="imgBoard-tab"
+              tabIndex={0}
+            >
+              {changeImgBoard()}
+              
             </div>
           </div>
           {/* 게시판 탭 끝 */}

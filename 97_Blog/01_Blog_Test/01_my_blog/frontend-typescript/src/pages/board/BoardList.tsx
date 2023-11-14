@@ -67,7 +67,7 @@ function BoardList(props:any) {
   return (
     <>
       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-        <Link to={"/add-board"}>
+        <Link to="#">
           <button type="button" className="btn btn-outline-dark mb-3 " onClick={() => props.handleChangeBoard("addBoard")}>
             글쓰기
           </button>

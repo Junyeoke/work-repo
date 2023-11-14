@@ -7,7 +7,13 @@ function About() {
     AOS.init();
   }, []);
   return (
-    <div data-aos="fade-right" data-aos-duration="1000" data-aos-mirror="ture" id="page-top">
+    <div
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      data-aos-mirror="ture"
+      id="page-top"
+      data-aos-once="false"
+    >
       {/* <!-- 블로그소개--> */}
       <section className="resume-section" id="about">
         <div className="resume-section-content ">
@@ -19,9 +25,11 @@ function About() {
 
           {/* 소제목 시작 */}
           <div>
-            <p className="lead mb-5">
-              안녕하세요! 웹 개발자가 되기위해 열심히 배우고 노력하고 있는 개발자 이준혁입니다!
-            </p>
+            <h4 className="lead mt-5 mb-5">
+              안녕하세요! <br/>
+              웹 개발자가 되기 위해 열심히 배우고 노력하고 있는 <br/>
+              개발자 이준혁입니다!
+            </h4>
           </div>
           {/* 소제목 끝 */}
 
@@ -41,19 +49,34 @@ function About() {
           </div>
           {/* 소셜 아이콘 + 하이퍼링크 끝 */}
           <div className="row">
-        <div className="card col-md-6 mt-5" >
-          <div className="card-body">
-            <h4 className="card-title">이준혁(LEE JUNHYUK)</h4>
-            <h6 className="card-subtitle mb-2 text-muted">1994.08.22(29세)</h6>
-            <p className="card-text">
-             email : junyeoke@kakao.com
-             phone : 010 - 4547 - 9941
-             
-            </p>
-           
+            {/* 개인소개 카드 부분 */}
+            <div className="card col-md-11 mt-5">
+              <div className="card-body">
+                <h4 className="card-title">🙋‍♂️ 이준혁(LEE JUNHYUK)</h4>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  1994.08.22(29세)
+                </h6>
+                <p className="card-text">
+                  📧 email : junyeoke@kakao.com 
+                  <br/>
+                  📱 phone : 010 - 4547 - 9941
+                  <br/>
+                  🧑🏻‍🎓 동의대학교 의생명공학 학사졸업
+                </p>
+                <hr/>
+                <h4 className="card-title">🪪 certificate</h4>
+                <p className="card-text">
+                   정보처리기사(필기)
+                   <br/>
+                   컴퓨터활용능력 2급
+                   <br/>
+                   워드프로세서 단일등급
+
+                </p>
+              </div>
+            </div>
+            {/* 카드부분 끝 */}
           </div>
-        </div>
-        </div>
         </div>
         {/* 이미지 시작 */}
         <div className="container text-end">
@@ -64,9 +87,8 @@ function About() {
           />
         </div>
         {/* 이미지 끝 */}
-
       </section>
-   
+
       <hr className="m-0" />
       {/* <!-- 블로그소개 끝--> */}
     </div>
