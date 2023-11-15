@@ -64,7 +64,7 @@ function Login() {
       // 예) email:email => email (간략 표기 가능)
       email,
       password,
-      userName: "",
+      username: "",
       codeName: "ROLE_USER"   // 일반 유저 권한       
     }
 

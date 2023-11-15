@@ -22,6 +22,11 @@ import Login from "./pages/more-pages/Login";
 import Register from "./pages/more-pages/Register";
 import NewsSingle from "./pages/news/NewsSingle";
 import Elements from "./pages/Elements";
+import Cart from "./pages/shop/Cart";
+import CheckOut from "./pages/payment/Checkout";
+import { SuccessPage } from "./pages/payment/Success";
+import Fail from './pages/payment/Fail';
+import CodeCategoryList from "./pages/admin/CodeCategoryList";
 
 function App() {
   return (
@@ -78,6 +83,15 @@ function App() {
           {/* 나머지 않쓰이는? 것들인가 */}
           <Route path="/elements" element={<Elements />} />
           <Route path="/news-single" element={<NewsSingle />} />
+
+          {/* shop */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/success" element={<SuccessPage />} />
+          <Route path="/fail" element={<Fail />} />
+
+          {/* codeCategory(대분류 공통코드(부모)) */}
+          <Route path="/code-category" element={<CodeCategoryList />} />
 
         </Routes>
 

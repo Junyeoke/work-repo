@@ -14,6 +14,9 @@ npm install @mui/material @emotion/react @emotion/styled
 import Pagination from '@mui/material/Pagination';
 
 
+# 토스 페이먼츠 api
+npm install @tosspayments/payment-widget-sdk
+
 
 
 

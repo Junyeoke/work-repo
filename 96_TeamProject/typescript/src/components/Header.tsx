@@ -1,6 +1,6 @@
 // TODO : Link 를 사용하면 랜더링 문제가 생김
 
-import React , {useEffect} from "react";
+import React, { useEffect } from "react";
 import customMarquee from "../assets/js/custom-marquee";
 import customSwiper1 from "../assets/js/custom-swiper-1";
 
@@ -8,7 +8,10 @@ function Header() {
   useEffect(() => {
     customMarquee();
     customSwiper1();
-  },[])
+  }, []);
+
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  
   return (
     <div>
       {/* <!-- header begin --> */}
@@ -82,26 +85,17 @@ function Header() {
                           </a>
                         </li>
                         <li>
-                          <a
-                            className="menu-item"
-                            href="/pricing-table-one"
-                          >
+                          <a className="menu-item" href="/pricing-table-one">
                             Pricing Table One
                           </a>
                         </li>
                         <li>
-                          <a
-                            className="menu-item"
-                            href="/pricing-table-two"
-                          >
+                          <a className="menu-item" href="/pricing-table-two">
                             Pricing Table Two
                           </a>
                         </li>
                         <li>
-                          <a
-                            className="menu-item"
-                            href="/pricing-table-three"
-                          >
+                          <a className="menu-item" href="/pricing-table-three">
                             Pricing Table Three
                           </a>
                         </li>
@@ -175,15 +169,23 @@ function Header() {
                     </li>
                   </ul>
                 </div>
+
                 <div className="de-flex-col">
                   <div className="menu_side_area">
+                  <a href="/cart" className="btn-line">
+                      어드민메뉴
+                    </a>
+                    <span id="menu-btn"></span>&nbsp;&nbsp;
+                    <a href="/cart" className="btn-line">
+                      장바구니
+                    </a>
+                    <span id="menu-btn"></span>&nbsp;&nbsp;
                     <a href="/games" className="btn-line">
                       로그인
                     </a>
                     <span id="menu-btn"></span>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
