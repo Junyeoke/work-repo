@@ -1,0 +1,14 @@
+-- INSERT INTO PROJECT_USER VALUES (SQ_PROJECT_USER.NEXTVAL , '관리자' ,'ADMIN','ADMIN','ADMIN',
+--                                TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') , NULL , 'N',NULL);
+-- INSERT INTO PROJECT_USER VALUES (SQ_PROJECT_USER.NEXTVAL , '유저1' ,'USER1','USER1','USER',
+--                                  TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') , NULL , 'N',NULL);
+-- INSERT INTO PROJECT_USER VALUES (SQ_PROJECT_USER.NEXTVAL , '유저2' ,'USER2','USER2','USER',
+--                                  TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') , NULL , 'N',NULL);
+
+-- INSERT INTO PRODUCT VALUES (2105090,'Speedrunners Paradise: Sky is the limit','https://cdn.akamai.steamstatic.com/steam/apps/2105090/header.jpg?t=1688407213',6700,'액션',0,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') , NULL , 'N',NULL);
+-- INSERT INTO PRODUCT VALUES (2105210,'Fantasy Grounds - Potbellied Kobold''s Guide to Villains & Lairs','https://cdn.akamai.steamstatic.com/steam/apps/2105210/header.jpg?t=1660655885',26000,'인디',20,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') , NULL , 'N',NULL);
+
+-- INSERT INTO LIBRARY VALUES(SQ_LIBRARY.NEXTVAL , 2 , 2105090 , TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),'N' , NULL , 'N' , NULL);
+-- INSERT INTO LIBRARY VALUES(SQ_LIBRARY.NEXTVAL , 2 , 2105210 , TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS'),'N' , NULL , 'N' , NULL);
+
+COMMIT;

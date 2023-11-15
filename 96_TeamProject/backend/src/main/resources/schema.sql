@@ -1,0 +1,123 @@
+-- Table , 시퀀스 등 구조 정의
+DROP SEQUENCE SQ_PROJECT_USER;
+CREATE SEQUENCE SQ_PROJECT_USER START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE SQ_QNA;
+CREATE SEQUENCE SQ_QNA START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE SQ_REVIEW;
+CREATE SEQUENCE SQ_REVIEW START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE SQ_CART;
+CREATE SEQUENCE SQ_CART START WITH 1 INCREMENT BY 1;
+
+DROP SEQUENCE SQ_LIBRARY;
+CREATE SEQUENCE SQ_LIBRARY START WITH 1 INCREMENT BY 1;
+
+DROP TABLE LIBRARY CASCADE CONSTRAINT;
+DROP TABLE CART CASCADE CONSTRAINT;
+DROP TABLE REVIEW CASCADE CONSTRAINT;
+DROP TABLE QNA CASCADE CONSTRAINT;
+DROP TABLE PROJECT_USER CASCADE CONSTRAINT;
+DROP TABLE PRODUCT CASCADE CONSTRAINT;
+
+CREATE TABLE PRODUCT -- 제품 (게임)
+(
+    PID         NUMBER NOT NULL
+--        CONSTRAINT PK_PRODUCT
+        PRIMARY KEY ,                     -- PRODUCT의 기본키
+    NAME       VARCHAR2(500),             -- 제목
+    IMG_URL         VARCHAR2(1000),       -- 이미지(전체조회때 쓰일)
+    PRICE       NUMBER(8),                -- 가격
+    TAG         VARCHAR2(50),             -- 태그
+    DISCOUNT    NUMBER(4),                -- 할인율
+    INSERT_TIME VARCHAR2(255),
+    UPDATE_TIME VARCHAR2(255),
+    DELETE_YN   VARCHAR2(2) DEFAULT 'N',
+    DELETE_TIME VARCHAR2(255)
+);
+
+CREATE TABLE PROJECT_USER -- 유저
+(
+    USER_ID         NUMBER NOT NULL
+        CONSTRAINT PK_PROJECT_USER
+        PRIMARY KEY, -- 유저의 기본키
+    NAME        VARCHAR2(255),                  -- 유저의 이름
+    EMAIL       VARCHAR2(255) UNIQUE,           -- 유저의 이메일
+    PASSWORD    VARCHAR2(255),                  -- 유저의 패스워드
+    ROLE        VARCHAR2(20),                   -- 유저의 권한
+    INSERT_TIME VARCHAR2(255),
+    UPDATE_TIME VARCHAR2(255),
+    DELETE_YN   VARCHAR2(2) DEFAULT 'N',
+    DELETE_TIME VARCHAR2(255)
+);
+
+CREATE TABLE QNA -- 고객센터
+(
+    QID         NUMBER NOT NULL
+--        CONSTRAINT PK_QNA
+        PRIMARY KEY, -- QNA의 기본키
+    USER_ID         NUMBER,                     -- 유저의 참조키
+    QUESTIONER  VARCHAR2(255),                  -- 질문자의 이름
+    QUESTION    VARCHAR2(2000),                 -- 질문
+    ANSWERER    VARCHAR2(255),                  -- 답변자
+    ANSWER      VARCHAR2(2000),                 -- 답변
+    INSERT_TIME VARCHAR2(255),
+    UPDATE_TIME VARCHAR2(255),
+    DELETE_YN   VARCHAR2(2) DEFAULT 'N',
+    DELETE_TIME VARCHAR2(255),
+    CONSTRAINT FK_QNA_USER_ID FOREIGN KEY (USER_ID)
+        REFERENCES PROJECT_USER (USER_ID)
+);
+
+CREATE TABLE REVIEW -- PRODUCT 의 리뷰기능
+(
+    RID         NUMBER NOT NULL
+        CONSTRAINT PK_REVIEW PRIMARY KEY, -- REVIEW의 기본키
+    TITLE       VARCHAR2(512),                   -- 제목
+    CONTENT     VARCHAR2(2000),           -- 컨텐츠
+    WRITER      VARCHAR2(255),            -- 작성자
+    IS_LIKE     VARCHAR2(1),              -- 좋아요
+    GROUP_ID       NUMBER,                   -- 그룹 ID
+    PARENT_ID      NUMBER,                   -- 부모 ID
+    PID         NUMBER,                   -- PRODUCT의 참조키
+    INSERT_TIME VARCHAR2(255),
+    UPDATE_TIME VARCHAR2(255),
+    DELETE_YN   VARCHAR2(2) DEFAULT 'N',
+    DELETE_TIME VARCHAR2(255),
+    CONSTRAINT FK_REVIEW_PID FOREIGN KEY (PID)
+        REFERENCES PRODUCT (PID)
+);
+
+CREATE TABLE CART
+(
+    CID         NUMBER NOT NULL
+--        CONSTRAINT PK_CART
+        PRIMARY KEY, -- REVIEW의 기본키
+    USER_ID         NUMBER,                 -- 유저의 기본키
+    PID         NUMBER,                 -- PRODUCT 의 기본키
+    INSERT_TIME VARCHAR2(255),
+    UPDATE_TIME VARCHAR2(255),
+    DELETE_YN   VARCHAR2(2) DEFAULT 'N',
+    DELETE_TIME VARCHAR2(255),
+    CONSTRAINT FK_CART_PID FOREIGN KEY (PID)
+        REFERENCES PRODUCT (PID)
+);
+
+CREATE TABLE LIBRARY
+(
+    LID         NUMBER NOT NULL
+--        CONSTRAINT PK_CART 
+        PRIMARY KEY, -- LIBRARY 기본키
+    USER_ID         NUMBER,                 -- 유저의 기본키
+    PID         NUMBER,                     -- PRODUCT 의 참조키
+    INSERT_TIME VARCHAR2(255),              -- 구매 날짜
+    REQUEST_REFUND VARCHAR2(1) DEFAULT 'N', -- 환불 요청
+    REFUND_REASON   VARCHAR2(1000),         -- 환불 사유
+    REFUND VARCHAR2(1) DEFAULT 'N',         -- 환불
+    REFUND_TIME VARCHAR2(255),              -- 환불 시간
+    CONSTRAINT FK_LIBRARY_PID FOREIGN KEY (PID)
+        REFERENCES PRODUCT (PID)
+);
+
+COMMIT;
