@@ -1,6 +1,7 @@
 package com.example.playhostproject.model.entity;
 
 import com.example.playhostproject.model.entity.common.BaseTimeEntity;
+import com.example.playhostproject.model.entity.user.User;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -45,7 +46,8 @@ public class Cart extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "SQ_CART_GENERATOR")
-    private Integer cid;        // 기본키
+    private Integer cid;        // 기본키, 시퀀스, 장바구니 번호
     private Integer userId;     // 유저 참조키 (설정은 안해놓음)
-    private Integer pid;        // Product 참조키
+    private Integer pid;        // Product(상품번호) 참조키
+
 }
