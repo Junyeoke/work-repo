@@ -98,7 +98,7 @@ function FileDbList(props:any) {
         )}
         {/* upload 성공/실패 메세지 출력 끝 */}
 
-        {/* 쇼핑카트 이미지 start */}
+        {/*   이미지 start */}
         <div className="row">
           {fileDb &&
             fileDb.map((data, index) => (
@@ -127,9 +127,9 @@ function FileDbList(props:any) {
               </div>
             ))}
         </div>
-        {/* 쇼핑카트 이미지 end */}
+        {/*   이미지 end */}
 
-         {/* dname start 검색어 입력창 */}
+         {/* 검색어 입력창 */}
       <div className="row mb-5 justify-content-center mt-5">
         {/* w-50 : 크기 조정, mx-auto : 중앙정렬(margin: 0 auto), justify-content-center */}
         <div className="input-group mb-3">
@@ -151,7 +151,7 @@ function FileDbList(props:any) {
           </div>
         </div>
       </div>
-      {/* dname end */}
+      {/* 검색창 end */}
 
       {/* paging 시작(페이지 번호 컴포넌트)*/}
       <div className="mt-3  ">
